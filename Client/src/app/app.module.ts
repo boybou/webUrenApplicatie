@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule} from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes} from '@angular/router';
 
@@ -19,16 +19,16 @@ import { UserinfoComponent } from './components/userinfo/userinfo.component';
 
 
 const appRoutes: Routes = [
-  {path:'', component: HomeComponent},
-  {path:'login', component: Login},
-  {path:'hourInsert', component: Hour},
-  {path:'accountManagement', component: AccountmanagementComponent},
-  {path:'statistics', component: StatistictsComponent},
-  {path:'hourApproval', component: HourapprovalComponent},
-  {path:'export', component: ExportComponent},
-  {path:'hourOverview', component: HouroveriewComponent},
-  {path:'userInfo', component: UserinfoComponent}
-  
+  {path: '', component: HomeComponent},
+  {path: 'login', component: Login},
+  {path: 'hourInsert', component: Hour},
+  {path: 'accountManagement', component: AccountmanagementComponent},
+  {path: 'statistics', component: StatistictsComponent},
+  {path: 'hourApproval', component: HourapprovalComponent},
+  {path: 'export', component: ExportComponent},
+  {path: 'hourOverview', component: HouroveriewComponent},
+  {path: 'userInfo', component: UserinfoComponent}
+
 ];
 
 
