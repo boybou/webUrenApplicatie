@@ -1,0 +1,17 @@
+apiName: "UrenApplicatie API"
+
+assets:
+  mappings:
+    /assets: /
+  overrides:
+    /: ../webUrenApplicatie/Client/dist/
+
+server:
+  rootPath: /api/*
+  adminContextPath: /admin
+  applicationConnectors:
+    - type: http
+      port: 8080
+  adminConnectors:
+    - type: http
+      port: 8081
