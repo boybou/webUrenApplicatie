@@ -4,7 +4,7 @@ assets:
   mappings:
     /assets: /
   overrides:
-    /: ../webUrenApplicatie/Client/dist/out-tsc/
+    /: ../webUrenApplicatie/Client/dist/
 
 server:
   rootPath: /api/*
