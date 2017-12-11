@@ -10,6 +10,11 @@ export class ExportComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
+  // checkdi(): void {
+  //   alert('woow');
+  // }
+
 
 }
