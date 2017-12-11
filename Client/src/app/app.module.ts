@@ -16,6 +16,8 @@ import { HourapprovalComponent } from './components/hourapproval/hourapproval.co
 import { ExportComponent } from './components/export/export.component';
 import { HouroveriewComponent } from './components/houroveriew/houroveriew.component';
 import { UserinfoComponent } from './components/userinfo/userinfo.component';
+import {HttpClientModule} from "@angular/common/http";
+import {FormsModule} from "@angular/forms";
 
 
 const appRoutes: Routes = [
@@ -49,8 +51,10 @@ const appRoutes: Routes = [
     UserinfoComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    FormsModule
   ],
   providers: [Authorization],
   bootstrap: [AppComponent]

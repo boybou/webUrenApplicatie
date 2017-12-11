@@ -8,12 +8,12 @@
 </head>
 
 <body>
-  <div class="login-card">
-    <h2>Log-in</h2><br>
+<div class="login-card">
+  <h2>Log-in{{isloggedin}}</h2><br>
   <form>
-    <input type="text" name="user" placeholder="Username">
-    <input type="password" name="pass" placeholder="Password">
-    <input routerLink="/hourInsert" type="submit" class="login login-submit" name="submit">
+    <input type="text" name="user" [(ngModel)]="user.emailAddress" placeholder="Username">
+    <input type="password" name="pass" [(ngModel)]="user.password" placeholder="Password">
+    <input (click)="login()" type="submit" class="login login-submit" name="submit">
   </form>
 
   <div class="login-help">
@@ -23,5 +23,3 @@
 
 
 </body>
-
-</html>
