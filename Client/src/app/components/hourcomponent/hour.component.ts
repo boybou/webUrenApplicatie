@@ -19,11 +19,14 @@ export class Hour{
     console.log("in send hour")
     this.hour.hour_employee_number = 1;
     let uri = "/api/hour/inserthour";
-    this.api.post(uri,this.hour).subscribe(
-      error =>{
-        console.log(error)
+    this.api.post(uri,this.hour).subscribe(data =>{
+        console.log("verzonden");
+    }
+      ,error =>{
+        console.log("error")
       }
     );
+    this.hour = new IncompleteHour();
 
   }
 }
