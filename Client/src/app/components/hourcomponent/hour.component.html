@@ -12,33 +12,33 @@
     <div class="row">
         <div class="column">
             <label for="customer">Klant</label>
-            <input type="text" id="customer" name="customer" placeholder="Klant naam..">
+            <input [(ngModel)]="hour.hour_client" type="text" id="customer" name="customer" placeholder="Klant naam..">
 
             <label for="project">Project</label>
-            <input type="text" id="project" name="project" placeholder="Project naam..">
+            <input [(ngModel)]="hour.hour_project_name" type="text" id="project" name="project" placeholder="Project naam..">
 
             <label for="subject">Onderwerp</label>
-            <input type="text" id="subject" name="subject" placeholder="Onderwerp naam..">
+            <input [(ngModel)]="hour.hour_subproject_name" type="text" id="subject" name="subject" placeholder="Onderwerp naam..">
 
             <label for="comment">Commentaar</label>
-            <textarea id="comment" name="comment" placeholder="Scrhijf commentaar.." style="height:200px"></textarea>
+            <textarea  [(ngModel)]="hour.hour_comments" id="comment" name="comment" placeholder="Scrhijf commentaar.." style="height:200px"></textarea>
         </div>
 
         <div class="column">
                 <label for="date">Datum</label>
-                <input type="text" id="date" name="date" placeholder="Voer datum in..">
-    
+                <input [(ngModel)]="hour.hour_date" type="text" id="date" name="date" placeholder="Voer datum in..">
+
                 <label for="beginTime">Begintijd</label>
-                <input type="text" id="beginTime" name="beginTime" placeholder="Voer begin tijd in..">
+                <input [(ngModel)]="hour.startTime" type="text" id="beginTime" name="beginTime" placeholder="Voer begin tijd in..">
 
                 <label for="endTime">Eindtijd</label>
-                <input type="text" id="endTime" name="endTime" placeholder="Voer eind tijd in..">
-                <br> <br> <br>  <br> <br> <br>  <br> <br> <br>  <br> <br> 
-                
-                <input type="submit" value="Submit" id="submitButton">
+                <input [(ngModel)]="hour.endTime" type="text" id="endTime" name="endTime" placeholder="Voer eind tijd in..">
+                <br> <br> <br>  <br> <br> <br>  <br> <br> <br>  <br> <br>
+
+                <input (click)="sendHour()" type="submit" value="Submit" id="submitButton">
         </div>
     </div>
-  
+
   </form>
 </div>
 

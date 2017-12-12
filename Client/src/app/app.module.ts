@@ -16,8 +16,10 @@ import { HourapprovalComponent } from './components/hourapproval/hourapproval.co
 import { ExportComponent } from './components/export/export.component';
 import { HouroveriewComponent } from './components/houroveriew/houroveriew.component';
 import { UserinfoComponent } from './components/userinfo/userinfo.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule, HttpHeaders} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
+import {AuthorisationService} from "./shared/authorisation.service";
+import {ApiService} from "./shared/api.service";
 
 
 const appRoutes: Routes = [
@@ -56,7 +58,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FormsModule
   ],
-  providers: [Authorization],
+  providers: [Authorization,AuthorisationService,ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

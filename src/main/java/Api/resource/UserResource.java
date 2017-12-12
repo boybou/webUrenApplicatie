@@ -75,6 +75,7 @@ public class UserResource
     @JsonView(View.Private.class)
     public User authenticate(@Auth User authenticator)
     {
+        System.out.println("TESTETE");
         return authenticator;
     }
 }

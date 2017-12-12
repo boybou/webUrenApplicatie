@@ -2,16 +2,15 @@ package Api.resource;
 
 import Api.View;
 import Api.model.Hour;
+import Api.model.IncompleteHour;
 import Api.service.HourService;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.validation.Valid;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 
@@ -33,6 +32,14 @@ public class HourResource {
     @RolesAllowed("GUEST")
     public ArrayList<Hour> retrieve(@PathParam("id") int id){
         return service.get(id);
+    }
+
+    @POST
+    @Path("/inserthour")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void insertHour(@Valid IncompleteHour incompleteHour){
+        System.out.println("TESTETE");
+        System.out.println(incompleteHour.hour_project_name);
     }
 }
 
