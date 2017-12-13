@@ -4,6 +4,7 @@ import {HttpHeaders} from "@angular/common/http";
 
 export class AuthorisationService{
   public static header:HttpHeaders = new HttpHeaders();
+  public static employeeNumber:number;
   constructor(){
 
   }

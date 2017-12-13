@@ -1,6 +1,6 @@
 package Api.service;
 
-import Api.model.User;
+import Api.model.LoginData;
 
 import javax.ws.rs.ForbiddenException;
 import javax.ws.rs.NotFoundException;
@@ -17,9 +17,9 @@ public class BaseService<T>
         return model;
     }
 
-    public void assertSelf(User user1, User user2)
+    public void assertSelf(LoginData loginData1, LoginData loginData2)
     {
-        if (!user1.equals(user2))
+        if (!loginData1.equals(loginData2))
         {
             throw new ForbiddenException();
         }

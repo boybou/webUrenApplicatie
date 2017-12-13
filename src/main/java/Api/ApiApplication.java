@@ -1,6 +1,6 @@
 package Api;
 
-import Api.model.User;
+import Api.model.LoginData;
 import Api.persistence.DatabaseConnector;
 import Api.service.AuthenticationService;
 import com.google.inject.Module;
@@ -72,7 +72,7 @@ public class ApiApplication extends Application<ApiConfiguration> {
         ApiUnauthorizedHandler unauthorizedHandler = guiceBundle.getInjector().getInstance(ApiUnauthorizedHandler.class);
 
         environment.jersey().register(new AuthDynamicFeature(
-                new BasicCredentialAuthFilter.Builder<User>()
+                new BasicCredentialAuthFilter.Builder<LoginData>()
                         .setAuthenticator(authenticationService)
                         .setAuthorizer(authenticationService)
                         .setRealm("SUPER SECRET STUFF")
@@ -81,7 +81,7 @@ public class ApiApplication extends Application<ApiConfiguration> {
         );
 
         environment.jersey().register(RolesAllowedDynamicFeature.class);
-        environment.jersey().register(new AuthValueFactoryProvider.Binder<>(User.class));
+        environment.jersey().register(new AuthValueFactoryProvider.Binder<>(LoginData.class));
     }
 
     private void configureClientFilter(Environment environment)

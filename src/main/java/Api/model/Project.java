@@ -5,9 +5,9 @@ package Api.model;
  * This model represents the projects
  */
 public class Project {
-    String project_Name;
-    int project_Number;
-    String project_client_name;
+    private String project_Name;
+    private int project_Number;
+    private String project_client_name;
 
 
 

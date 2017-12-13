@@ -4,7 +4,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {IncompleteHour} from "../../models/IncompleteHour";
 import {Hour} from "../hourcomponent/hour.component";
 import {Observable} from "rxjs/Observable";
-import {User} from "../../models/User";
+import {LoginData} from "../../models/LoginData";
 import {Router} from "@angular/router";
 import {AuthorisationService} from "../../shared/authorisation.service";
 import {ApiService} from "../../shared/api.service";
@@ -17,7 +17,8 @@ import {ApiService} from "../../shared/api.service";
 })
 
 export class Login {
-  user: User = new User();
+  private emailAddress:string;
+  private password:string;
 
   public anyArray: any[];
   public isloggedin:boolean = false;
@@ -29,8 +30,14 @@ export class Login {
 
   login(){
       let uri = "/api/users/me";
-      this.auth.setHeader(this.user.emailAddress,this.user.password);
-      this.api.get<User>(uri).subscribe(data => {
+      this.auth.setHeader(this.emailAddress,this.password);
+      this.api.get<LoginData>(uri).subscribe(data => {
+        let loginData:LoginData = data;
+        console.log(data.password);
+        console.log(loginData.password);
+
+        AuthorisationService.employeeNumber = loginData.employeeNumber;
+        console.log(AuthorisationService.employeeNumber);
         this.isloggedin = true;
         if(this.isloggedin) {
           this.router.navigate(['/hourOverview'])

@@ -1,14 +1,14 @@
 package Api.model;
 
 public class IncompleteHour {
-    public String hour_client;
-    public String hour_project_name;
-    public String hour_subproject_name;
-    public int hour_employee_number;
-    public String startTime;
-    public String endTime;
-    public String hour_comments;
-    public String hour_date;
+    private String hour_client;
+    private String hour_project_name;
+    private String hour_subproject_name;
+    private int hour_employee_number;
+    private String startTime;
+    private String endTime;
+    private String hour_comments;
+    private String hour_date;
 
     public String getHour_client() {
         return hour_client;
