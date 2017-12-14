@@ -9,11 +9,11 @@
 
 <body>
 <div class="login-card">
-  <h2>Log-in{{isloggedin}}</h2><br>
+  <h2>Log-in{{isLoggedIn}}</h2><br>
   <form>
     <input type="text" name="loginData" [(ngModel)]="emailAddress" placeholder="Username">
     <input type="password" name="pass" [(ngModel)]="password" placeholder="Password">
-    <input (click)="login()" type="submit" class="login login-submit" name="submit">
+    <input (click)="loginButton()" type="submit" class="login login-submit" name="submit">
   </form>
 
   <div class="login-help">

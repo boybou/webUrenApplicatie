@@ -20,6 +20,7 @@ import {HttpClientModule, HttpHeaders} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {AuthorisationService} from "./shared/authorisation.service";
 import {ApiService} from "./shared/api.service";
+import {CookieService} from "ngx-cookie-service";
 
 
 const appRoutes: Routes = [
@@ -58,7 +59,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FormsModule
   ],
-  providers: [Authorization,AuthorisationService,ApiService],
+  providers: [Authorization,AuthorisationService,ApiService,CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

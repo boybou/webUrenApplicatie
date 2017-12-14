@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Authorization } from '../sharedComponent/authorization.serve'
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {IncompleteHour} from "../../models/IncompleteHour";
@@ -16,38 +16,39 @@ import {ApiService} from "../../shared/api.service";
   styleUrls: ['./login.component.css']
 })
 
-export class Login {
+export class Login{
   private emailAddress:string;
   private password:string;
-
-  public anyArray: any[];
-  public isloggedin:boolean = false;
-
-
-  constructor(private router: Router,private auth: AuthorisationService, private api: ApiService) {
+    constructor(private router: Router,private auth: AuthorisationService, private api: ApiService) {
   }
 
 
-  login(){
-      let uri = "/api/users/me";
+  loginButton(){
       this.auth.setHeader(this.emailAddress,this.password);
-      this.api.get<LoginData>(uri).subscribe(data => {
-        let loginData:LoginData = data;
-        console.log(data.password);
-        console.log(loginData.password);
-
-        AuthorisationService.employeeNumber = loginData.employeeNumber;
-        console.log(AuthorisationService.employeeNumber);
-        this.isloggedin = true;
-        if(this.isloggedin) {
-          this.router.navigate(['/hourOverview'])
-        }
-      },error =>{
-        console.log("inloggen mislukt");
-      })
-
-
+      this.login();
 
 
   }
+  ngOnInit(){
+    this.auth.retrieveCookie();
+    this.login()
+
+  }
+  private login(){
+    let uri = "/api/users/me";
+    this.api.get<LoginData>(uri).subscribe(data => {
+      let loginData:LoginData = data;
+      AuthorisationService.employeeNumber = loginData.employeeNumber;
+      this.auth.saveCookie();
+      console.log(AuthorisationService.employeeNumber);
+      AuthorisationService.isLoggedIn = true;
+      if(AuthorisationService.isLoggedIn) {
+        this.router.navigate(['/hourOverview'])
+      }
+    },error =>{
+      console.log("inloggen mislukt");
+    })
+  }
+
+
 }
