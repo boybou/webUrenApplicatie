@@ -39,6 +39,7 @@ public class HourResource {
     @GET
     @Path("/{id}")
     @JsonView(View.Public.class)
+    @RolesAllowed({"administrator","Employee"})
     public ArrayList<Hour> retrieve(@PathParam("id") int id){
         return hourService.get(id);
     }

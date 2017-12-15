@@ -40,7 +40,8 @@ public class AuthenticationService implements Authenticator<BasicCredentials, Lo
             loginData.setEmail(login.getEmail());
             loginData.setPassword(login.getPassword());
             loginData.setEmployeeNumber(loginDao.getEmployeeNumberByEmail(login.getEmail()));
-            loginData.setRole("employee");
+            loginData.setRole(emp.getEmployee_Role_Name());
+            System.out.println(emp.getEmployee_Role_Name());
             return Optional.of(loginData);
         }
 
