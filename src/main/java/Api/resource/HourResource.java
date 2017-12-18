@@ -3,12 +3,13 @@ package Api.resource;
 import Api.View;
 import Api.model.Hour;
 import Api.model.IncompleteHour;
-import Api.model.Project;
+import Api.model.LoginData;
 import Api.service.ClientService;
 import Api.service.HourService;
 import Api.service.ProjectService;
 import Api.service.SubProjectService;
 import com.fasterxml.jackson.annotation.JsonView;
+import io.dropwizard.auth.Auth;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
@@ -39,9 +40,17 @@ public class HourResource {
     @GET
     @Path("/{id}")
     @JsonView(View.Public.class)
-    @RolesAllowed({"administrator","Employee"})
-    public ArrayList<Hour> retrieve(@PathParam("id") int id){
-        return hourService.get(id);
+    @RolesAllowed({"administrator"})
+    public ArrayList<Hour> retrieveEmployeeSpecificHours(@PathParam("id") int id){
+        return hourService.getHours(id);
+    }
+
+    @GET
+    @Path("/me")
+    @JsonView(View.Public.class)
+    @RolesAllowed({"Employee"})
+    public ArrayList<Hour> retrievePersonalHours(@Auth LoginData loginData){
+        return hourService.getHours(loginData.getEmployeeNumber());
     }
 
     @POST

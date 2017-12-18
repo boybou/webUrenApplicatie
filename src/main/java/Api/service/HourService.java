@@ -23,7 +23,7 @@ public class HourService extends BaseService<Hour>{
         this.dao = dao;
     }
 
-    public ArrayList<Hour> get(int id){
+    public ArrayList<Hour> getHours(int id){
         return dao.getEmployeeHours(id);
     }
 

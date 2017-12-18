@@ -20,7 +20,7 @@ export class AuthorisationService implements OnInit{
   }
   public retrieveCookie(){
     AuthorisationService.header = AuthorisationService.header.set('Authorization',AppComponent.cookieService.get('header'));
-    AuthorisationService.employeeNumber = Number(AppComponent.cookieService.get('employeeNumber'))
+    AuthorisationService.employeeNumber = Number(AppComponent.cookieService.get('employeeNumber'));
   }
 
   public saveCookie(){

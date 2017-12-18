@@ -36,7 +36,7 @@ public class UserResource
 //    @RolesAllowed("GUEST")
 //    public LoginData retrieve(@PathParam("id") int id)
 //    {
-//        return service.get(id);
+//        return service.getHours(id);
 //    }
 //
 //    @POST
