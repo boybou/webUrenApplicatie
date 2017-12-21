@@ -9,12 +9,11 @@
 
 <div class="container">
   <form action="">
+    <label >
+      <input id="test" checked type="checkbox" name="selectall" value="alldata" (click)="checkifchecked()">
+    </label>Export all tables
     <label>
-      <input type="checkbox" name="wholedatabase" value="alldata" onclick="">
-      <!--<input type="checkbox" name="wholedatabase" value="alldata" onclick="{{ngOnInit().checkdi()}}">-->
-    </label>Export whole database<br>
-    <label>
-      <input type="checkbox" name="onlyselected" value="selecteddata">
+      <input id="test2" type="checkbox" name="onlyselected" value="selecteddata" (click)="checkifchecked()">
     </label>Export selected tables
   </form>
 
