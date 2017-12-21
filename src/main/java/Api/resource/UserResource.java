@@ -70,6 +70,7 @@ public class UserResource
     @JsonView(View.Private.class)
     public LoginData authenticate(@Auth LoginData authenticator)
     {
+        System.out.println(authenticator.getEmail() + "Test");
         return authenticator;
     }
 }

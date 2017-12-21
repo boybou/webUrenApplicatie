@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>CodePen - Log-in</title>
+</head>
+
+<body>
+<div class="login-card">
+  <form>
+
+    <div class="column">
+      <label for="voornaam">Voornaam</label>
+      <input [(ngModel)]="hour.hour_client" type="text" id="voornaam" name="voornaam" placeholder="Voornaam..">
+
+      <label for="achternaam">Achternaam</label>
+      <input [(ngModel)]="hour.hour_project_name" type="text" id="achternaam" name="achternaam" placeholder="Achternaam..">
+
+      <label for="email">Email</label>
+      <input [(ngModel)]="hour.hour_subproject_name" type="text" id="email" name="email" placeholder="E-mail..">
+
+      <label for="wachtwoord">Wachtwoord</label>
+      <input [(ngModel)]="hour.hour_date" type="text" id="wachtwoord" name="wachtwoord" placeholder="Wachtwoord..">
+
+      <label for="wachtwoord2">Wachtwoord herhaling</label>
+      <input [(ngModel)]="hour.startTime" type="text" id="wachtwoord2" name="wachtwoord2" placeholder="Wachtwoord..">
+
+      <input (click)="sendHour()" type="submit" value="Submit" id="submitButton">
+    </div>
+  </form>
+
+</div>
+
+
+</body>
