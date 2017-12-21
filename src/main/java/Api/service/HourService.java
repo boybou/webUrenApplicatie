@@ -1,10 +1,16 @@
 package Api.service;
 
 import Api.model.Hour;
+import Api.model.IncompleteHour;
 import Api.persistence.HourDao;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalDate;
+
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 @Singleton
@@ -17,7 +23,36 @@ public class HourService extends BaseService<Hour>{
         this.dao = dao;
     }
 
-    public ArrayList<Hour> get(int id){
+    public ArrayList<Hour> getHours(int id){
         return dao.getEmployeeHours(id);
+    }
+
+    public void insertHour(IncompleteHour incompleteHour,int subProjectNumber){
+        Time startTime = new Time(Integer.parseInt(incompleteHour.getStartTime().substring(0,2)), Integer.parseInt(incompleteHour.getStartTime().substring(3,5)), 0);
+        Time endTime = new Time(Integer.parseInt(incompleteHour.getEndTime().substring(0,2)), Integer.parseInt(incompleteHour.getEndTime().substring(3,5)), 0);
+
+        dao.insertHour(new Hour(subProjectNumber,incompleteHour.getHour_employee_number(), startTime, endTime, incompleteHour.getHour_comments(), dateParser(incompleteHour.getHour_date())));
+    }
+
+    private Date dateParser(String inputDate){
+        Date date;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(""
+                + "[dd-MM-yyyy]"
+                + "[d-MM-yyyy]"
+                + "[MM-dd-yyyy]"
+                + "[MM-d-yyyy]"
+                + "[MM/dd/yyyy]"
+                + "[MM/d/yyyy]"
+                + "[dd-M-yyyy]"
+                + "[dd-MM-yyyy]"
+                + "[d-M-yyyy]"
+                + "[M-dd-yyyy]"
+                + "[M-d-yyyy]"
+                + "[M/dd/yyyy]"
+                + "[M/d/yyyy]"
+        );
+        LocalDate ld = LocalDate.parse(inputDate,formatter);
+        date = Date.valueOf(ld);
+        return date;
     }
 }

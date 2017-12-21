@@ -1,18 +1,13 @@
 package Api.resource;
 
 import Api.View;
-import Api.model.User;
-import Api.service.UserService;
+import Api.model.LoginData;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.google.inject.Singleton;
 import io.dropwizard.auth.Auth;
 
-import javax.annotation.security.RolesAllowed;
-import javax.inject.Inject;
-import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.Collection;
 
 @Singleton
 @Path("/users")
@@ -30,7 +25,7 @@ public class UserResource
 //    @GET
 //    @JsonView(View.Public.class)
 //    @RolesAllowed("GUEST")
-//    public Collection<User> retrieveAll()
+//    public Collection<LoginData> retrieveAll()
 //    {
 //        return service.getAll();
 //    }
@@ -39,15 +34,15 @@ public class UserResource
 //    @Path("/{id}")
 //    @JsonView(View.Public.class)
 //    @RolesAllowed("GUEST")
-//    public User retrieve(@PathParam("id") int id)
+//    public LoginData retrieve(@PathParam("id") int id)
 //    {
-//        return service.get(id);
+//        return service.getHours(id);
 //    }
 //
 //    @POST
 //    @Consumes(MediaType.APPLICATION_JSON)
 //    @JsonView(View.Protected.class)
-//    public void create(@Valid User user)
+//    public void create(@Valid LoginData user)
 //    {
 //        service.add(user);
 //    }
@@ -57,7 +52,7 @@ public class UserResource
 //    @Consumes(MediaType.APPLICATION_JSON)
 //    @JsonView(View.Protected.class)
 //    @RolesAllowed("GUEST")
-//    public void update(@PathParam("id") int id, @Auth User authenticator, User user)
+//    public void update(@PathParam("id") int id, @Auth LoginData authenticator, LoginData user)
 //    {
 //        service.update(authenticator, id, user);
 //    }
@@ -73,7 +68,7 @@ public class UserResource
     @GET
     @Path("/me")
     @JsonView(View.Private.class)
-    public User authenticate(@Auth User authenticator)
+    public LoginData authenticate(@Auth LoginData authenticator)
     {
         return authenticator;
     }

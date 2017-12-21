@@ -1,5 +1,5 @@
 <ul>
   <li><a href="#webedu">WebEdu</a></li>
-  <li style="float:right"><a class="active" href="#help">Help</a></li>
+  <li *ngIf="getisLoggedIn()" (click)="logout()" style="float:right"><a class="active" >Logout</a></li>
 </ul>
 

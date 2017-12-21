@@ -2,16 +2,20 @@ package Api.resource;
 
 import Api.View;
 import Api.model.Hour;
+import Api.model.IncompleteHour;
+import Api.model.LoginData;
+import Api.service.ClientService;
 import Api.service.HourService;
+import Api.service.ProjectService;
+import Api.service.SubProjectService;
 import com.fasterxml.jackson.annotation.JsonView;
+import io.dropwizard.auth.Auth;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.validation.Valid;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 
@@ -20,19 +24,53 @@ import java.util.ArrayList;
 @Produces(MediaType.APPLICATION_JSON)
 public class HourResource {
 
-    private final HourService service;
+    private final HourService hourService;
+    private final ClientService clientService;
+    private final ProjectService projectService;
+    private final SubProjectService subProjectService;
 
     @Inject
-    public HourResource(HourService service){
-        this.service = service;
+    public HourResource(HourService hourService, ClientService clientService, ProjectService projectService, SubProjectService subProjectService){
+        this.hourService = hourService;
+        this.clientService = clientService;
+        this.projectService = projectService;
+        this.subProjectService = subProjectService;
     }
 
     @GET
     @Path("/{id}")
     @JsonView(View.Public.class)
-    @RolesAllowed("GUEST")
-    public ArrayList<Hour> retrieve(@PathParam("id") int id){
-        return service.get(id);
+    @RolesAllowed({"administrator"})
+    public ArrayList<Hour> retrieveEmployeeSpecificHours(@PathParam("id") int id){
+        return hourService.getHours(id);
+    }
+
+    @GET
+    @Path("/me")
+    @JsonView(View.Public.class)
+    @RolesAllowed({"Employee"})
+    public ArrayList<Hour> retrievePersonalHours(@Auth LoginData loginData){
+        return hourService.getHours(loginData.getEmployeeNumber());
+    }
+
+    @POST
+    @Path("/inserthour")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void insertHour(@Valid IncompleteHour incompleteHour){
+        if(clientService.checkIfClientExitis(incompleteHour.getHour_client()) == false){
+            System.out.println("Creating client because it doesn't exits");
+            clientService.insertClient(incompleteHour.getHour_client());
+        }
+        if(projectService.checkProjectExist(incompleteHour.getHour_project_name()) == false){
+            System.out.println("Creating project because it doesn't exits");
+            projectService.createProject(incompleteHour.getHour_project_name(),incompleteHour.getHour_client());
+        }
+        if (subProjectService.checkIfSubprojectExists(incompleteHour.getHour_subproject_name()) == false) {
+            System.out.println("Creating subproject because it doesn't exits");
+            subProjectService.createSubProject(incompleteHour.getHour_subproject_name(), projectService.getProjectNumber(incompleteHour.getHour_project_name()));
+        }
+
+        hourService.insertHour(incompleteHour,subProjectService.getSubProjectNumber(incompleteHour.getHour_subproject_name()));
     }
 }
 

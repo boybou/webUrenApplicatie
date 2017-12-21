@@ -1,13 +1,11 @@
 package Api.service;
 
-import Api.model.User;
+import Api.model.LoginData;
 
-import javax.inject.Inject;
 import javax.inject.Singleton;
-import java.util.Collection;
 
 @Singleton
-public class UserService extends BaseService<User>
+public class UserService extends BaseService<LoginData>
 {
 
 }

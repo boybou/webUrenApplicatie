@@ -1,7 +1,6 @@
 package Api.persistence;
 
 import Api.model.DatabaseInfo;
-import Api.model.Login;
 import Api.model.LoginData;
 
 import javax.inject.Singleton;
@@ -51,14 +50,16 @@ public class LoginDao implements Dao {
             e.printStackTrace();
         }return null;
     }
-    public Login getLoginData(String email){
+    public LoginData getLoginData(String email){
         ResultSet rs;
         try {
             getLoginData.setString(1,email);
             rs = getLoginData.executeQuery();
             rs.next();
-            Login login = new Login(rs.getString(DatabaseInfo.LoginDataColumnNames.password),rs.getString(DatabaseInfo.LoginDataColumnNames.email));
-            return login;
+            LoginData loginData = new LoginData();
+            loginData.setEmail(rs.getString(DatabaseInfo.LoginDataColumnNames.email));
+            loginData.setPassword(rs.getString(DatabaseInfo.LoginDataColumnNames.password));
+            return loginData;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -76,10 +77,10 @@ public class LoginDao implements Dao {
             e.printStackTrace();
         }return -1;
     }
-    public int getEmployeeNumber(Login login){
+    public int getEmployeeNumber(LoginData loginData){
         ResultSet rs;
         try {
-            getLoginData.setString(1,login.getEmail());
+            getLoginData.setString(1,loginData.getEmail());
             rs = getLoginData.executeQuery();
             rs.next();
             return rs.getInt(DatabaseInfo.LoginDataColumnNames.employeeNumber);
@@ -88,10 +89,10 @@ public class LoginDao implements Dao {
             e.printStackTrace();
         }return -1;
     }
-    public String getPassword(Login login){
+    public String getPassword(LoginData loginData){
         ResultSet rs;
         try {
-            getLoginData.setString(1,login.getEmail());
+            getLoginData.setString(1,loginData.getEmail());
             rs = getLoginData.executeQuery();
             rs.next();
             return rs.getString(DatabaseInfo.LoginDataColumnNames.password);
@@ -100,10 +101,10 @@ public class LoginDao implements Dao {
         }return null;
 
     }
-    public boolean checkEmail(Login login){
+    public boolean checkEmail(LoginData loginData){
         ResultSet rs;
         try {
-            getLoginData.setString(1,login.getEmail());
+            getLoginData.setString(1,loginData.getEmail());
             rs = getLoginData.executeQuery();
             return rs.next();
         } catch (SQLException e) {
@@ -117,7 +118,7 @@ public class LoginDao implements Dao {
         try {
             insertLoginData.setString(1,loginData.getPassword());
             insertLoginData.setString(2,loginData.getEmail());
-            insertLoginData.setInt(3,loginData.getEmployee_number());
+            insertLoginData.setInt(3,loginData.getEmployeeNumber());
             insertLoginData.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -126,7 +127,7 @@ public class LoginDao implements Dao {
 
 //    public String getPasswordByNumber(){
 //        try {
-//            getPasswordByNumber.setInt(1, User.getUserNumber());
+//            getPasswordByNumber.setInt(1, LoginData.getUserNumber());
 //
 //            ResultSet rs = getPasswordByNumber.executeQuery();
 //            rs.next();
