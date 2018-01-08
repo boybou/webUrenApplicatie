@@ -1,33 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-</head>
 <body>
-  <nav class="navbar">
-    <span class="open-slide">
-      <a (click)="openSlideMenu()">
-        <svg width="30" height="30">
-            <path d="M0,5 30,5" stroke="#fff" stroke-width="5"/>
-            <path d="M0,14 30,14" stroke="#fff" stroke-width="5"/>
-            <path d="M0,23 30,23" stroke="#fff" stroke-width="5"/>
-        </svg>
-      </a>
-    </span>
-
-  </nav>
-
-  <div id="side-menu" class="side-nav">
-    <a id="closeButton" class="btn-close" (click)="closeSlideMenu()">&times;</a>
-    <a routerLink="/hourOverview"> Uren Overzicht</a>
-    <a routerLink="/hourInsert">Uren Invoeren</a>
-    <a routerLink="/userInfo">Gegevens</a>
-    <a routerLink="/hourApproval">Uren Goedkeuren</a>
-    <a routerLink="/accountManagement">Accountbeheer</a>
-    <a routerLink="/export">Exporteren</a>
-    <a routerLink="/statistics">Statistieken</a>
+<div>
+  <div class="sidenav">
+    <a routerLink="/" id="logo"></a>
+    <a routerLink="/hourInsert" id="hourOverview" autofocus>Schema</a>
+    <a routerLink="/personalData" id="personalData">Gebruiker</a>
+    <a  routerLink="/hourApproval" id="hourApprove">Uren Goedkeuren</a>
+    <a  routerLink="/accountManagement" id="accountManagement">Accountbeheer</a>
+    <a routerLink="/statistics" id="statistics">Statistieken</a>
   </div>
+
+</div>
 </body>
-</html>
