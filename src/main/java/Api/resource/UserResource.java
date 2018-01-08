@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.google.inject.Singleton;
 import io.dropwizard.auth.Auth;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
@@ -68,6 +69,7 @@ public class UserResource
     @GET
     @Path("/me")
     @JsonView(View.Private.class)
+    @RolesAllowed({"Employee","administrator"})
     public LoginData authenticate(@Auth LoginData authenticator)
     {
         return authenticator;

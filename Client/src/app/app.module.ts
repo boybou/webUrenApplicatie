@@ -22,6 +22,7 @@ import {AuthorisationService} from "./shared/authorisation.service";
 import {ApiService} from "./shared/api.service";
 import {CookieService} from "ngx-cookie-service";
 import { HomeHeaderComponent } from './components/home-header/home-header.component';
+import { PendingHourComponent } from './components/pending-hour/pending-hour.component';
 
 
 const appRoutes: Routes = [
@@ -53,6 +54,7 @@ const appRoutes: Routes = [
     HouroveriewComponent,
     ExportComponent,
     UserinfoComponent,
+    PendingHourComponent
     HomeHeaderComponent
   ],
   imports: [

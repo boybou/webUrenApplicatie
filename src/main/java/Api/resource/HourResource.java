@@ -48,7 +48,7 @@ public class HourResource {
     @GET
     @Path("/me")
     @JsonView(View.Public.class)
-    @RolesAllowed({"Employee"})
+    @RolesAllowed({"Employee","administrator"})
     public ArrayList<Hour> retrievePersonalHours(@Auth LoginData loginData){
         return hourService.getHours(loginData.getEmployeeNumber());
     }
@@ -72,5 +72,24 @@ public class HourResource {
 
         hourService.insertHour(incompleteHour,subProjectService.getSubProjectNumber(incompleteHour.getHour_subproject_name()));
     }
+    @GET
+    @Path("/pendinghours")
+    @RolesAllowed({"administrator"})
+    public ArrayList<Hour> getPendingHours(){
+        return hourService.getPendingHours();
+    }
+    @GET
+    @Path("/approveHour{id}")
+    @RolesAllowed({"administrator"})
+    public void approveHour(@PathParam("id") int id){
+        hourService.approveHour(id);
+    }
+    @GET
+    @Path("/disapproveHour{id}")
+    @RolesAllowed({"administrator"})
+    public void disapproveHour(@PathParam("id") int id){
+        hourService.disapproveHour(id);
+    }
+
 }
 

@@ -55,4 +55,13 @@ public class HourService extends BaseService<Hour>{
         date = Date.valueOf(ld);
         return date;
     }
+    public ArrayList<Hour> getPendingHours(){
+        return dao.getAllPendingHours();
+    }
+    public void approveHour(int hourId){
+        dao.changeHourState(hourId,"approved");
+    }
+    public void disapproveHour(int hourId){
+        dao.changeHourState(hourId,"disapproved");
+    }
 }
