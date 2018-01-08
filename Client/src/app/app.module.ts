@@ -21,6 +21,7 @@ import {FormsModule} from "@angular/forms";
 import {AuthorisationService} from "./shared/authorisation.service";
 import {ApiService} from "./shared/api.service";
 import {CookieService} from "ngx-cookie-service";
+import { HomeHeaderComponent } from './components/home-header/home-header.component';
 
 
 const appRoutes: Routes = [
@@ -51,7 +52,8 @@ const appRoutes: Routes = [
     HourapprovalComponent,
     HouroveriewComponent,
     ExportComponent,
-    UserinfoComponent
+    UserinfoComponent,
+    HomeHeaderComponent
   ],
   imports: [
     HttpClientModule,
