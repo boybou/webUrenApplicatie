@@ -54,7 +54,7 @@ const appRoutes: Routes = [
     HouroveriewComponent,
     ExportComponent,
     UserinfoComponent,
-    PendingHourComponent
+    PendingHourComponent,
     HomeHeaderComponent
   ],
   imports: [
