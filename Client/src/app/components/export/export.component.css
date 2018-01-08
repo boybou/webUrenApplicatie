@@ -1,13 +1,10 @@
 * {
   box-sizing: border-box;
 }
-body{
+.container{
   position: absolute;
   top: 15%;
   left: 30%;
-}
-
-.container {
   width: 800px;
   border-radius: 5px;
   background-color: #f2f2f2;
