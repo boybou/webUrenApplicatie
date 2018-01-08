@@ -1,0 +1,60 @@
+body {
+  font-family: "Lato", sans-serif;
+  margin: 0px;
+  background-color: #f5f4f4;
+}
+ul {
+  list-style-type: none;
+  height: 93px;
+  margin: 0;
+  padding: 0;
+  margin-left: 140px;
+  overflow: hidden;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: grey;
+  text-align: center;
+  padding: 14px 16px;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+#userButton{
+  background-image: url("../images/userIcon2.png");
+  margin-right: 0px;
+  float: right;
+  margin-top: 20px;
+  background-size: 50px;
+  border: none;
+  width: 50px;
+  height: 50px;
+  background-repeat: no-repeat;
+}
+
+#userName h3{
+  margin-top: 10px;
+  font-size: 15px;
+  color: grey;
+  text-align: center;
+}
+
+#userName{
+  margin-top: 20px;
+}
+
+#logout{
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+#logout:hover{
+  color : darkgray;
+}
