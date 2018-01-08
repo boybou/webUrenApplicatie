@@ -69,6 +69,10 @@ body {
   background-image: url("../images/statistics.png");
 }
 
+#hourInput{
+  background-image: url("../images/hourInput.png");
+}
+
 #logo{
   background-image: url("../images/WebEdu.png");
   background-size: 120px 20px;
