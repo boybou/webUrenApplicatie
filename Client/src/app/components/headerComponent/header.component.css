@@ -1,33 +1,48 @@
-body{
-    border: none;
-    margin: none;
+body {
+  font-family: "Lato", sans-serif;
+  margin: 0px;
+  background-color: #f5f4f4;
 }
 ul {
-    font-family: 'Roboto', sans-serif;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    overflow: hidden;
-    background-color: #333;
+  list-style-type: none;
+  height: 93px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #ffffff;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.13);
 }
 
 li {
-    float: left;
+  float: left;
+
 }
 
 li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+  display: block;
+  color: grey;
+  text-align: center;
+  padding: 72px 32px 32px 32px;
+  font-size: 20px;
+  text-decoration: none;
+}
+#logo{
+  background-image: url("../images/WebEdu.png");
+  background-size: 120px 20px;
+  background-position: center;
+  background-color: #27719c;
+  padding: 40px 32px 32px 32px;
+  background-repeat: no-repeat;
+  color: transparent;
 }
 
-li a:hover:not(.active) {
-    background-color: #111;
+#login{
+  float: right;
+  margin-top: 30px;
+  text-align: center;
+  padding-right: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
 }
 
-.active {
-    background-color: #4d90fe;
-}
+
