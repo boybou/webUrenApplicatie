@@ -11,7 +11,8 @@ body {
 
 .login-card {
   padding: 40px;
-  width: 274px;
+  width: 340px;
+  height: 380px;
   background-color: #F7F7F7;
   margin: 200px auto 10px;
   border-radius: 2px;
@@ -67,40 +68,22 @@ body {
   font-weight: 700;
   height: 36px;
   padding: 0 8px;
-/* border-radius: 3px; */
-/* -webkit-loginData-select: none;
-  loginData-select: none; */
+  padding-top: 10px;
+
 }
 
 .login-submit {
-  /* border: 1px solid #3079ed; */
   border: 0px;
   color: #fff;
   text-shadow: 0 1px rgba(0,0,0,0.1);
-  background-color: #4d90fe;
-  /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
+  background-color: #27719c;
+  height: 50px;
 }
 
 .login-submit:hover {
-  /* border: 1px solid #2f5bb7; */
   border: 0px;
   text-shadow: 0 1px rgba(0,0,0,0.3);
-  background-color: #357ae8;
-  /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
-}
-
-.login-card a {
-  text-decoration: none;
-  color: #666;
-  font-weight: 400;
-  text-align: center;
-  display: inline-block;
-  opacity: 0.6;
-  transition: opacity ease 0.5s;
-}
-
-.login-card a:hover {
-  opacity: 1;
+  background-color: #31809c;
 }
 
 .login-help {
@@ -108,3 +91,4 @@ body {
   text-align: center;
   font-size: 12px;
 }
+
