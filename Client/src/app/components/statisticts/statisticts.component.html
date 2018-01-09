@@ -5,15 +5,17 @@
   <!--TODO: haal het uit de models en weergeef het in het overzicht tab-->
 
 
+
   <div class="dropdown">
-    <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+    <button class="dropbtn">Dropdown</button>
     <div id="myDropdown" class="dropdown-content">
-      <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-      <a href="#about">About</a>
-      <a href="#base">Base</a>
-      <a href="#blog">Blog</a>
+      <p (click)="add('werknemer')" class="clicks">Werknemer</p>
+      <p (click)="add('project')" class="clicks">Project</p>
+      <p (click)="add('subproject')" class="clicks">SubProject</p>
     </div>
   </div>
+
+
 
   <!--<form action="/action_page.php">-->
     <!--<div class="row">-->
