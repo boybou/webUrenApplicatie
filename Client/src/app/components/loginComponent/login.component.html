@@ -9,15 +9,15 @@
 
 <body>
 <div class="login-card">
-  <h2>Log-in{{isLoggedIn}}</h2><br>
+  <h2>WebEdu Inloggen{{isLoggedIn}}</h2><br>
   <form>
     <input type="text" name="loginData" [(ngModel)]="emailAddress" placeholder="Username">
     <input type="password" name="pass" [(ngModel)]="password" placeholder="Password">
-    <input (click)="loginButton()" type="submit" class="login login-submit" name="submit">
+    <input (click)="loginButton()" type="submit" class="login login-submit" id="loginButton" name="submit">
   </form>
 
-  <div class="login-help">
-    <a href="#">Register</a> • <a href="#">Forgot Password</a>
+  <div id="wrong password" style="visibility: hidden; color: red; text-align: center">
+    <p>Inlog gegevens incorrect</p>
   </div>
 </div>
 

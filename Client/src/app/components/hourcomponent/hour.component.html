@@ -24,14 +24,14 @@
         </div>
 
         <div class="column">
-                <label for="date">Datum</label>
-                <input [(ngModel)]="hour.hour_date" type="text" id="date" name="date" placeholder="Voer datum in..">
+                <label for="date">Datum</label><br>
+                <input type="date" [(ngModel)]="hour.hour_date" id="date" name="date" placeholder="Voer datum in.."><br>
 
-                <label for="beginTime">Begintijd</label>
-                <input [(ngModel)]="hour.startTime" type="text" id="beginTime" name="beginTime" placeholder="Voer begin tijd in..">
+                <label for="beginTime">Begintijd</label><br>
+                <input [(ngModel)]="hour.startTime" type="time" id="beginTime" name="beginTime" placeholder="Voer begin tijd in.."><br>
 
-                <label for="endTime">Eindtijd</label>
-                <input [(ngModel)]="hour.endTime" type="text" id="endTime" name="endTime" placeholder="Voer eind tijd in..">
+                <label for="endTime">Eindtijd</label><br>
+                <input [(ngModel)]="hour.endTime" type="time" id="endTime" name="endTime" placeholder="Voer eind tijd in.."><br>
                 <br> <br> <br>  <br> <br> <br>  <br> <br> <br>  <br> <br>
 
                 <input (click)="sendHour()" type="submit" value="Submit" id="submitButton">
