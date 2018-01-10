@@ -9,7 +9,7 @@ export class CalendarDate{
     this.getDayInfo()
   }
   getDayInfo(){
-    let date:Date = new Date(this.year,this.month,this.day)
+    let date:Date = new Date(this.year,this.month-1,this.day)
     this.dayNumber = date.getDay();
     this.dayName = this.getDayName();
   }
@@ -57,6 +57,7 @@ export class CalendarDate{
     }
     this.getDayInfo()
   }
+
   getMonthLenght(month:number,year:number){
       if(month ==2 && year % 4 == 0){
         return 29
@@ -99,6 +100,9 @@ export class CalendarDate{
       }
 
 
+  }
+  public toDateString():string{
+    return this.year + "-" + this.month + "-" + this.day;
   }
 
 

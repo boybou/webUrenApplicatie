@@ -30,7 +30,7 @@ export class WeekComponent implements OnInit {
 
   }
   nextWeek(){
-    let date = new CalendarDate(this.currentWeek[6].year,this.currentWeek[6].month,this.currentWeek[6].day)
+    let date = new CalendarDate(this.currentWeek[6].year,this.currentWeek[6].month,this.currentWeek[6].day);
     while (date.dayNumber != 1){
       date.addDay()
     }
@@ -40,8 +40,8 @@ export class WeekComponent implements OnInit {
     }
   }
   preveiousWeek(){
-    let date = new CalendarDate(this.currentWeek[0].year,this.currentWeek[0].month,this.currentWeek[0].day)
-    date.subtractDay()
+    let date = new CalendarDate(this.currentWeek[0].year,this.currentWeek[0].month,this.currentWeek[0].day);
+    date.subtractDay();
     while (date.dayNumber != 1){
       date.subtractDay()
     }
