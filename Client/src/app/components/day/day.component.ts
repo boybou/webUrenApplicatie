@@ -17,7 +17,7 @@ export class DayComponent implements OnInit {
   }
 
   private generateTitle() {
-    this.dayTitle = this.date.dayName + "\n" + this.date.day + "/" + (this.date.month + 1) + "/" + this.date.year;
+    this.dayTitle = this.date.dayName + "\n" + this.date.day + "/" + (this.date.month) + "/" + this.date.year;
     console.log("Dat titel " + this.dayTitle)
   }
 

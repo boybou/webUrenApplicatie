@@ -1,5 +1,8 @@
 #day{
-
+  padding-left: 30px;
   color: red;
-  float: right;
+  float: left;
+}
+p{
+  padding-left: 200px;
 }
