@@ -12,19 +12,43 @@ export class WeekComponent implements OnInit {
 
   ngOnInit() {
     this.generateWeek();
-    this.currentWeek[0]= new CalendarDate(2018,1,18);
-    this.currentWeek[1]= new CalendarDate(2018,1,10);
   }
 
   private generateWeek() {
-    var date = new Date(2017,11,14);
-    console.log(date)
-    while(date.getDay() != 1){
-      var n = date.getTime();
-      n -= 86400000;
-      date = new Date(n);
+    let today = new Date();
+    let dd = today.getDate();
+    let mm = today.getMonth()+1; //January is 0!
+    let yyyy = today.getFullYear();
+    let date = new CalendarDate(yyyy,mm,dd)
+    while (date.dayNumber != 1){
+      date.subtractDay()
     }
-    console.log(date)
+    for(let i=0;i<7;i++){
+      this.currentWeek[i] = new CalendarDate(date.year,date.month,date.day);
+      date.addDay();
+    }
+
+  }
+  nextWeek(){
+    let date = new CalendarDate(this.currentWeek[6].year,this.currentWeek[6].month,this.currentWeek[6].day);
+    while (date.dayNumber != 1){
+      date.addDay()
+    }
+    for(let i=0;i<7;i++){
+      this.currentWeek[i] = new CalendarDate(date.year,date.month,date.day);
+      date.addDay();
+    }
+  }
+  preveiousWeek(){
+    let date = new CalendarDate(this.currentWeek[0].year,this.currentWeek[0].month,this.currentWeek[0].day);
+    date.subtractDay();
+    while (date.dayNumber != 1){
+      date.subtractDay()
+    }
+    for(let i=0;i<7;i++){
+      this.currentWeek[i] = new CalendarDate(date.year,date.month,date.day);
+      date.addDay();
+    }
   }
 
 }
