@@ -1,5 +1,10 @@
 #day{
+  padding-left: 30px;
+  float: left;
+}
+p{
 
-  color: red;
-  float: right;
+}
+div{
+  padding-left: 300px;
 }

@@ -1,23 +1,37 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {CalendarDate} from "../../models/CalendarDate";
+import {ApiService} from "../../shared/api.service";
+import {UriInof} from "../../models/UriInof";
+import {CompleteHour} from "../../models/CompleteHour";
 
 @Component({
   selector: 'app-day',
   templateUrl: './day.component.html',
   styleUrls: ['./day.component.css']
 })
-export class DayComponent implements OnInit {
+export class DayComponent implements OnChanges {
   @Input('date') date: CalendarDate;
   dayTitle:String;
-  constructor() {
+  private hoursRetrieved:boolean = false;
+  private completeHourList:CompleteHour[] = [];
+  constructor(private api:ApiService) {
+
   }
 
-  ngOnInit(){
+  ngOnChanges(){
     this.generateTitle();
+
+    this.api.get<CompleteHour[]>(UriInof.getHourByDate+this.date.toDateString()).subscribe(date =>{
+      this.completeHourList = date;
+    }, error =>{
+      console.log(error.error+"shit ging terminaal")
+    })
+
+
   }
 
   private generateTitle() {
-    this.dayTitle = this.date.dayName + "\n" + this.date.day + "/" + (this.date.month + 1) + "/" + this.date.year;
+    this.dayTitle = this.date.dayName + "\n" + this.date.day + "/" + (this.date.month) + "/" + this.date.year;
     console.log("Dat titel " + this.dayTitle)
   }
 

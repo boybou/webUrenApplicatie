@@ -1,1 +1,5 @@
-<app-day id="day" *ngFor="let date of currentWeek" [date]="date"></app-day>
+<div>
+  <p (click)="nextWeek()" >next</p>
+  <p (click)="preveiousWeek()">prev</p>
+  <app-day id="day" *ngFor="let date of currentWeek" [date]="date"></app-day>
+</div>

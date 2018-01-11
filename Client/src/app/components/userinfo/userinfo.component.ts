@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+
 
 @Component({
   selector: 'app-userinfo',
@@ -8,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class UserinfoComponent implements OnInit {
 
   constructor() { }
+
 
   ngOnInit() {
   }

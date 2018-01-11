@@ -30,6 +30,9 @@ public class SubProjectService extends BaseService<SubProject> {
             }
         }
     }
+    public SubProject getSubProjectById(int subProjectId){
+        return subProjectDao.getSubProjectById(subProjectId);
+    }
     public void createSubProject(String subProjectName, int subProject_Project_Number){
         SubProject subProject = new SubProject(subProjectName, subProject_Project_Number);
         subProjectDao.insertSubProject(subProject);
