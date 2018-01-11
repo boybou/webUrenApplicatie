@@ -21,8 +21,6 @@ export class PendingHourComponent implements OnInit {
       }
     )
 
-    document.getElementById('card').style.visibility = 'hidden';
-    document.getElementById('deleteMessage').style.visibility = 'visible';
   }
   disapproveHour(){
     let uri = "/api/hour/disapproveHour" + this.hour.id;
@@ -31,8 +29,7 @@ export class PendingHourComponent implements OnInit {
         console.log("iest fout")
       }
     )
-    document.getElementById('card').style.visibility = 'hidden';
-    document.getElementById('deleteMessage').style.visibility = 'visible';
+    document.getElementById('card').parentNode.removeChild(document.getElementById('card'))
   }
 
 }
