@@ -40,4 +40,7 @@ public class ProjectService extends BaseService<Project>{
         return projectDao.getSpecificProject(project_name).getProject_Number();
 
     }
+    public Project getProjectById(int projectId){
+        return projectDao.getProjectById(projectId);
+    }
 }

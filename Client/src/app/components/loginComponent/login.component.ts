@@ -40,7 +40,6 @@ export class Login{
       let loginData:LoginData = data;
       AuthorisationService.employeeNumber = loginData.employeeNumber;
       this.auth.saveCookie();
-      console.log(AuthorisationService.employeeNumber);
       AuthorisationService.isLoggedIn = true;
       if(AuthorisationService.isLoggedIn) {
         this.router.navigate(['/hourOverview'])

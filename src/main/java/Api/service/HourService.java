@@ -1,5 +1,6 @@
 package Api.service;
 
+import Api.model.CompleteHour;
 import Api.model.Hour;
 import Api.model.IncompleteHour;
 import Api.persistence.HourDao;
@@ -23,7 +24,7 @@ public class HourService extends BaseService<Hour>{
         this.dao = dao;
     }
 
-    public ArrayList<Hour> get(int id){
+    public ArrayList<Hour> getHours(int id){
         return dao.getEmployeeHours(id);
     }
 
@@ -50,9 +51,28 @@ public class HourService extends BaseService<Hour>{
                 + "[M-d-yyyy]"
                 + "[M/dd/yyyy]"
                 + "[M/d/yyyy]"
+                + "[yyyy-MM-dd]"
+                + "[yyyy-M-dd]"
+                + "[yyyy-M-d]"
+                + "[yyyy-MM-d]"
         );
         LocalDate ld = LocalDate.parse(inputDate,formatter);
         date = Date.valueOf(ld);
         return date;
     }
+    public ArrayList<Hour> getPendingHours(){
+        return dao.getAllPendingHours();
+    }
+    public void approveHour(int hourId){
+        dao.changeHourState(hourId,"approved");
+    }
+    public void disapproveHour(int hourId){
+        dao.changeHourState(hourId,"disapproved");
+    }
+
+    public ArrayList<Hour> getCompleteHoursByDate(String date) {
+        return dao.getHourByDate(dateParser(date));
+
+    }
+
 }

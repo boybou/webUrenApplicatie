@@ -20,6 +20,7 @@ public class SubProjectDao implements Dao {
     private PreparedStatement updateSubProjectName;
     private PreparedStatement getSubProjectTable;
     private PreparedStatement getSpecificSubProject;
+    private PreparedStatement getSubprojectById;
 
 
 
@@ -34,9 +35,22 @@ public class SubProjectDao implements Dao {
             updateSubProjectName = ConnectionHolder.getConnection().prepareStatement("UPDATE "+DatabaseInfo.subprojectTableName+" SET "+DatabaseInfo.SubprojectColumnNames.name+" = ? WHERE "+DatabaseInfo.SubprojectColumnNames.number+" = ?;");
             getSubProjectTable = ConnectionHolder.getConnection().prepareStatement("SELECT * FROM "+DatabaseInfo.subprojectTableName+" s  JOIN "+DatabaseInfo.projectTableName+" p ON s."+DatabaseInfo.SubprojectColumnNames.projectNumber+" = p."+DatabaseInfo.ProjectColumnNames.number+" WHERE p."+DatabaseInfo.ProjectColumnNames.name+" = ?");
             getSpecificSubProject = ConnectionHolder.getConnection().prepareStatement("SELECT * FROM "+DatabaseInfo.subprojectTableName+" WHERE "+DatabaseInfo.SubprojectColumnNames.name+" = ?;");
+            getSubprojectById = ConnectionHolder.getConnection().prepareStatement("SELECT * FROM "+DatabaseInfo.subprojectTableName+" WHERE "+DatabaseInfo.SubprojectColumnNames.number+" = ?;");
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public SubProject getSubProjectById(int subprojectId){
+        try {
+            getSubprojectById.setInt(1, subprojectId);
+            ResultSet rs = getSubprojectById.executeQuery();
+            rs.next();
+            return new SubProject(rs.getString(DatabaseInfo.SubprojectColumnNames.name), rs.getInt(DatabaseInfo.SubprojectColumnNames.projectNumber), rs.getInt(DatabaseInfo.SubprojectColumnNames.number));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void insertSubProject(SubProject subProject){

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.google.inject.Singleton;
 import io.dropwizard.auth.Auth;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
@@ -36,7 +37,7 @@ public class UserResource
 //    @RolesAllowed("GUEST")
 //    public LoginData retrieve(@PathParam("id") int id)
 //    {
-//        return service.get(id);
+//        return service.getHours(id);
 //    }
 //
 //    @POST
@@ -68,6 +69,7 @@ public class UserResource
     @GET
     @Path("/me")
     @JsonView(View.Private.class)
+    @RolesAllowed({"Employee","administrator"})
     public LoginData authenticate(@Auth LoginData authenticator)
     {
         System.out.println(authenticator.getEmail() + "Test");

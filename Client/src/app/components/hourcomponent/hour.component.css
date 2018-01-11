@@ -16,7 +16,22 @@ input[type=text], select, textarea {
     margin-bottom: 16px;
     resize: vertical;
     font-family: 'Roboto', sans-serif;
-   
+
+
+}
+#beginTime, #endTime{
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  color: gray;
+
 }
 
 input[type=submit] {
@@ -57,4 +72,17 @@ input[type=submit]:hover {
 
 #submitButton{
     margin-left: 75%;
+}
+
+#date{
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+  font-family: 'Roboto', sans-serif;
+  color: gray;
 }

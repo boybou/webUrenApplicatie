@@ -21,6 +21,11 @@ import {FormsModule} from "@angular/forms";
 import {AuthorisationService} from "./shared/authorisation.service";
 import {ApiService} from "./shared/api.service";
 import {CookieService} from "ngx-cookie-service";
+import { HomeHeaderComponent } from './components/home-header/home-header.component';
+import { PendingHourComponent } from './components/pending-hour/pending-hour.component';
+import {WeekComponent} from "./components/week/week.component";
+import {DayComponent} from "./components/day/day.component";
+import {HourComponent} from "./components/hour/hour.component";
 import { PasswordChangerComponent } from './components/password-changer/password-changer.component';
 
 
@@ -52,6 +57,12 @@ const appRoutes: Routes = [
     HourapprovalComponent,
     HouroveriewComponent,
     ExportComponent,
+    UserinfoComponent,
+    PendingHourComponent,
+    HomeHeaderComponent,
+    WeekComponent,
+    DayComponent,
+    HourComponent
     UserinfoComponent,
     PasswordChangerComponent
   ],

@@ -1,4 +1,13 @@
-<custom-header></custom-header>
-<side-menu *ngIf="getisLoggedIn()"></side-menu>
-<router-outlet></router-outlet>
+
+<custom-header *ngIf="!getisLoggedIn()"></custom-header>
+<div>
+  <app-home-header *ngIf="getisLoggedIn()"></app-home-header>
+</div>
+<div id="side-menu">
+  <side-menu *ngIf="getisLoggedIn()"></side-menu>
+</div>
+<div style="padding-right: 20px">
+  <router-outlet></router-outlet>
+</div>
+
 
