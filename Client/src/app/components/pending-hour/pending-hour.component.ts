@@ -16,25 +16,23 @@ export class PendingHourComponent implements OnInit {
   approveHour(){
     let uri = "/api/hour/approveHour" + this.hour.id;
     this.api.get(uri).subscribe(data =>{
-      this.deleteThisElement()
     },error =>{
       console.log("iest fout")
       }
     )
 
-
+    document.getElementById('card').style.visibility = 'hidden';
+    document.getElementById('deleteMessage').style.visibility = 'visible';
   }
   disapproveHour(){
     let uri = "/api/hour/disapproveHour" + this.hour.id;
     this.api.get(uri).subscribe(data =>{
-        this.deleteThisElement()
       },error =>{
         console.log("iest fout")
       }
     )
-  }
-  deleteThisElement(){
-    document.getElementById("pending").parentNode.removeChild(document.getElementById("pending"));
+    document.getElementById('card').style.visibility = 'hidden';
+    document.getElementById('deleteMessage').style.visibility = 'visible';
   }
 
 }

@@ -50,6 +50,8 @@ public class HourService extends BaseService<Hour>{
                 + "[M-d-yyyy]"
                 + "[M/dd/yyyy]"
                 + "[M/d/yyyy]"
+                + "[dd/MM/yyyy]"
+                + "[yyyy/MM/dd]"
         );
         LocalDate ld = LocalDate.parse(inputDate,formatter);
         date = Date.valueOf(ld);
