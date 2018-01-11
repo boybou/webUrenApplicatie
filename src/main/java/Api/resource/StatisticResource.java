@@ -4,6 +4,7 @@ import Api.View;
 import Api.model.Hour;
 import Api.model.IncompleteHour;
 import Api.model.LoginData;
+import Api.model.Statistic;
 import Api.service.ClientService;
 import Api.service.HourService;
 import Api.service.ProjectService;
@@ -20,7 +21,7 @@ import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 
 @Singleton
-@Path("/hour")
+@Path("/statistics")
 @Produces(MediaType.APPLICATION_JSON)
 public class StatisticResource {
 
@@ -90,6 +91,12 @@ public class StatisticResource {
     public void disapproveHour(@PathParam("id") int id){
         hourService.disapproveHour(id);
     }
+
+    @POST
+    @Path("/sendStatistics")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"administrator"})
+    public void makeStatistic( Statistic statistic){}
 
 }
 

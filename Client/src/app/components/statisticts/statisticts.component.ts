@@ -20,16 +20,15 @@ export class StatistictsComponent{
 
     console.log("in send statistics");
 
-    // this.hour.hour_employee_number = AuthorisationService.employeeNumber;
-    // let uri = "/api/hour/inserthour";
-    // this.api.post(uri,this.hour).subscribe(data =>{
-    //     console.log("verzonden");
-    //     this.hour = new IncompleteHour();
-    //   }
-    //   ,error =>{
-    //     console.log(error.error,error.name,error.status)
-    //   }
-    // );
+    let uri = "/api/statistics/sendStatistics";
+    this.api.post(uri,this.statistic).subscribe(data =>{
+        console.log("verzonden");
+        this.statistic = new StatisticsModel();
+      }
+      ,error =>{
+        console.log(error.error,error.name,error.status)
+      }
+    );
 
 
   }
