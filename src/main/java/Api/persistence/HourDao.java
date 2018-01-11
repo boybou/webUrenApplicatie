@@ -6,6 +6,7 @@ import Api.model.Project;
 import Api.model.SubProject;
 
 import javax.inject.Singleton;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,6 +24,7 @@ public class HourDao implements Dao{
     private PreparedStatement getProjectHours;
     private PreparedStatement getSubProjectHours;
     private PreparedStatement getEmployeeHours;
+    private PreparedStatement getHourByDate;
 
 
     public HourDao(){
@@ -44,6 +46,7 @@ public class HourDao implements Dao{
             getSubProjectHours = ConnectionHolder.getConnection().prepareStatement("SELECT * FROM "+DatabaseInfo.hourTableName+" WHERE "+DatabaseInfo.HourColumnNames.subprojectNumber+" = ?;");
             getEmployeeHours = ConnectionHolder.getConnection().prepareStatement(
                     "SELECT * FROM "+DatabaseInfo.hourTableName+" WHERE "+DatabaseInfo.HourColumnNames.employeeNumber+"=?;");
+            getHourByDate = ConnectionHolder.getConnection().prepareStatement("SELECT * FROM " + DatabaseInfo.hourTableName + " WHERE " + DatabaseInfo.HourColumnNames.date + " = ?;");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -59,7 +62,19 @@ public class HourDao implements Dao{
         }
 
     }
-
+    public ArrayList<Hour> getHourByDate(Date date){
+        ArrayList<Hour> dateHours = new ArrayList<Hour>();
+        try {
+            getHourByDate.setDate(1,date);
+            ResultSet rs = getHourByDate.executeQuery();
+            while(rs.next()){
+                dateHours.add(new Hour(rs.getString(DatabaseInfo.HourColumnNames.approved),rs.getInt(DatabaseInfo.HourColumnNames.subprojectNumber),rs.getInt(DatabaseInfo.HourColumnNames.employeeNumber),rs.getTime(DatabaseInfo.HourColumnNames.starttime),rs.getTime(DatabaseInfo.HourColumnNames.endtime),rs.getTime(DatabaseInfo.HourColumnNames.amountOfHours),rs.getString(DatabaseInfo.HourColumnNames.comments),rs.getDate(DatabaseInfo.HourColumnNames.date),rs.getInt(DatabaseInfo.HourColumnNames.id)));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return dateHours;
+    }
     public void insertHour(Hour hour){
         try {
             insertHour.setString(1, hour.getHour_approved());
