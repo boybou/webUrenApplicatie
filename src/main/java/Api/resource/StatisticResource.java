@@ -96,7 +96,11 @@ public class StatisticResource {
     @Path("/sendStatistics")
     @Consumes(MediaType.APPLICATION_JSON)
     @RolesAllowed({"administrator"})
-    public void makeStatistic( Statistic statistic){}
+    public void makeStatistic( Statistic inputStatisitic)
+    {
+        Statistic statistic  = inputStatisitic;
+        System.out.println(statistic.getProject());
+    }
 
 }
 
