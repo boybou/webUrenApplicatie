@@ -5,10 +5,7 @@ import Api.model.Hour;
 import Api.model.IncompleteHour;
 import Api.model.LoginData;
 import Api.model.Statistic;
-import Api.service.ClientService;
-import Api.service.HourService;
-import Api.service.ProjectService;
-import Api.service.SubProjectService;
+import Api.service.*;
 import com.fasterxml.jackson.annotation.JsonView;
 import io.dropwizard.auth.Auth;
 
@@ -29,13 +26,15 @@ public class StatisticResource {
     private final ClientService clientService;
     private final ProjectService projectService;
     private final SubProjectService subProjectService;
+    private final StatisticService statisticService;
 
     @Inject
-    public StatisticResource(HourService hourService, ClientService clientService, ProjectService projectService, SubProjectService subProjectService){
+    public StatisticResource(HourService hourService, ClientService clientService, ProjectService projectService, SubProjectService subProjectService, StatisticService statisticService){
         this.hourService = hourService;
         this.clientService = clientService;
         this.projectService = projectService;
         this.subProjectService = subProjectService;
+        this.statisticService = statisticService;
     }
 
     @GET
@@ -100,6 +99,7 @@ public class StatisticResource {
     {
         Statistic statistic  = inputStatisitic;
         System.out.println(statistic.getProject());
+        statisticService.fillStatisticModel();
     }
 
 }
