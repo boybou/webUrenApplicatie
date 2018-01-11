@@ -5,45 +5,45 @@
   <!--TODO: haal het uit de models en weergeef het in het overzicht tab-->
 
 
+  <form action="/action_page.php">
+      <div class="row">
+        <div class="column">
+        <label for="employee">Werknemer</label>
+        <input [(ngModel)]="statistic.werknemerChecked" type="checkbox" id="employeeCheck" name="werknemer">
+          <input [(ngModel)]="statistic.werknemer" type="text" id="employee" name="employee" placeholder="Werknemer naam..">
 
-  <div class="dropdown">
-    <button class="dropbtn">Dropdown</button>
-    <div id="myDropdown" class="dropdown-content">
-      <p (click)="add('werknemer')" class="clicks">Werknemer</p>
-      <p (click)="add('project')" class="clicks">Project</p>
-      <p (click)="add('subproject')" class="clicks">SubProject</p>
+        <br><br>
+
+          <label for="project">Project</label>
+        <input [(ngModel)]="statistic.projectChecked" type="checkbox" id="projectCheck" name="project">
+          <input [(ngModel)]="statistic.project" type="text" id="project" name="project" placeholder="Project naam..">
+
+          <br><br>
+
+        <label for="subject">Onderwerp</label>
+        <input [(ngModel)]="statistic.subprojectChecked" type="checkbox" id="subjectCheck" name="subject">
+          <input [(ngModel)]="statistic.subproject" type="text" id="subject" name="subject" placeholder="Onderwerp naam..">
+
+      </div>
+
+
+      <div class="column">
+        <label for="bDate">Start Datum</label><br>
+        <input lang="NL" type="date" [(ngModel)]="statistic.bDate" id="bDate" name="date" placeholder="Voer datum in.."><br>
+
+        <label for="eDate">Eind Datum</label><br>
+        <input type="date" [(ngModel)]="statistic.eDate" id="eDate" name="date" placeholder="Voer datum in.."><br>
+
+
+        <input (click)="sendStatistics()" type="submit" value="Submit" id="submitButton">
+      </div>
     </div>
-  </div>
+
+  </form>
 
 
-  <!--<form action="/action_page.php">-->
-    <!--<div class="row">-->
-      <!--<div class="column">-->
-        <!--<label for="customer">Klant</label>-->
-        <!--<input [(ngModel)]="hour.hour_client" type="text" id="customer" name="customer" placeholder="Klant naam..">-->
 
-        <!--<label for="project">Project</label>-->
-        <!--<input [(ngModel)]="hour.hour_project_name" type="text" id="project" name="project" placeholder="Project naam..">-->
 
-      <!--</div>-->
 
-      <!--<div class="column">-->
-        <!--<label for="Bdate">Vanaf...</label>-->
-        <!--<br> <br>-->
-        <!--&lt;!&ndash;<input [(ngModel)]="hour.hour_date" type="text" id="Bddate" name="date" placeholder="Voer datum in..">&ndash;&gt;-->
-        <!--<input id="Bdate" type="date" placeholder="Voer datum in..">-->
-        <!--<br> <br>-->
-        <!--<label for="Edate">Tot...</label>-->
-        <!--<br> <br>-->
-        <!--&lt;!&ndash;<input [(ngModel)]="hour.hour_date" type="text" id="Edate" name="date" placeholder="Voer datum in..">&ndash;&gt;-->
-        <!--<input id="Edate" type="date" placeholder="Voer datum in..">-->
-
-        <!--<br> <br> <br>  <br> <br> <br>  <br> <br> <br>  <br> <br>-->
-
-        <!--<input (click)="sendHour()" type="submit" value="Submit" id="submitButton">-->
-      <!--</div>-->
-    <!--</div>-->
-
-  <!--</form>-->
 
 </div>
