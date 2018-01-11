@@ -9,6 +9,7 @@ export class UserinfoComponent implements OnInit {
 
   constructor() { }
 
+
   ngOnInit() {
   }
 
