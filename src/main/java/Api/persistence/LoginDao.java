@@ -20,6 +20,7 @@ public class LoginDao implements Dao {
     private PreparedStatement getPasswordByNumber;
     private PreparedStatement getUserIdByEmail;
     private PreparedStatement getUserEmail;
+    private PreparedStatement setPassword;
 
     public  LoginDao() {
         preparedStatements();
@@ -33,6 +34,7 @@ public class LoginDao implements Dao {
             getPasswordByNumber = ConnectionHolder.getConnection().prepareStatement("SELECT "+DatabaseInfo.LoginDataColumnNames.password+" FROM "+DatabaseInfo.loginDataTableName+" WHERE "+DatabaseInfo.LoginDataColumnNames.employeeNumber+" = ?;");
             getUserIdByEmail = ConnectionHolder.getConnection().prepareStatement("SELECT * FROM "+DatabaseInfo.loginDataTableName+" WHERE "+DatabaseInfo.LoginDataColumnNames.email+" = ?;");
             getUserEmail = ConnectionHolder.getConnection().prepareStatement("SELECT "+DatabaseInfo.LoginDataColumnNames.email+" FROM "+DatabaseInfo.loginDataTableName+" WHERE "+DatabaseInfo.LoginDataColumnNames.employeeNumber+" = ?;");
+            setPassword = ConnectionHolder.getConnection().prepareStatement("UPDATE " +DatabaseInfo.loginDataTableName+" SET "+DatabaseInfo.LoginDataColumnNames.password+"= ? WHERE "+DatabaseInfo.LoginDataColumnNames.employeeNumber+" =?;");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -120,6 +122,17 @@ public class LoginDao implements Dao {
             insertLoginData.setString(2,loginData.getEmail());
             insertLoginData.setInt(3,loginData.getEmployeeNumber());
             insertLoginData.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setPassword(LoginData loginData){
+
+        try{
+            setPassword.setString(1, loginData.getPassword());
+            setPassword.setInt(2, loginData.getEmployeeNumber());
+            insertLoginData.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
         }

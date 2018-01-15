@@ -2,9 +2,12 @@ package Api.resource;
 
 import Api.View;
 import Api.model.LoginData;
+import Api.service.UserService;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import io.dropwizard.auth.Auth;
+import javax.validation.Valid;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
@@ -15,13 +18,13 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 public class UserResource
 {
-//    private final UserService service;
-//
-//    @Inject
-//    public UserResource(UserService service)
-//    {
-//        this.service = service;
-//    }
+    private final UserService service;
+
+    @Inject
+    public UserResource(UserService service)
+    {
+        this.service = service;
+    }
 //
 //    @GET
 //    @JsonView(View.Public.class)
@@ -75,4 +78,14 @@ public class UserResource
         System.out.println(authenticator.getEmail() + "Test");
         return authenticator;
     }
+
+    @POST
+    @Path("/test")
+    @JsonView(View.Private.class)
+    @RolesAllowed({"Employee","administrator"})
+    public void updatePassword(@Valid LoginData updatePassword)
+    {
+        this.service.setPassword(updatePassword);
+    }
+
 }
