@@ -27,6 +27,8 @@ import {WeekComponent} from "./components/week/week.component";
 import {DayComponent} from "./components/day/day.component";
 import {HourComponent} from "./components/hour/hour.component";
 import { PasswordChangerComponent } from './components/password-changer/password-changer.component';
+import { UserinfoWachtwoordComponent } from './components/userinfo-wachtwoord/userinfo-wachtwoord.component';
+import { UserPasswordComponent } from './components/user-password/user-password.component';
 
 
 const appRoutes: Routes = [
@@ -62,9 +64,11 @@ const appRoutes: Routes = [
     HomeHeaderComponent,
     WeekComponent,
     DayComponent,
-    HourComponent
+    HourComponent,
     UserinfoComponent,
-    PasswordChangerComponent
+    PasswordChangerComponent,
+    UserinfoWachtwoordComponent,
+    UserPasswordComponent
   ],
   imports: [
     HttpClientModule,

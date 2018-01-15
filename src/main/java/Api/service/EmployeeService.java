@@ -11,7 +11,6 @@ import javax.inject.Inject;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-@Singleton
 public class EmployeeService extends BaseService<Employee>{
 
     private final EmployeeDao dao;

@@ -31,7 +31,7 @@ public class EmployeeResource {
     @JsonView(View.Public.class)
     @RolesAllowed({"administrator","Employee"})
     public Employee getCurrentEmployee(@Auth LoginData loginData){
-        return employeeService.getEmployee(loginData.getEmployeeNumber());
+        return employeeService.selectSpecificEmployee(loginData.getEmployeeNumber());
     }
 
 
