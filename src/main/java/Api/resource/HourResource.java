@@ -75,7 +75,7 @@ public class HourResource {
             System.out.println("Creating project because it doesn't exits");
             projectService.createProject(incompleteHour.getHour_project_name(),incompleteHour.getHour_client());
         }
-        if (subProjectService.checkIfSubprojectExists(incompleteHour.getHour_subproject_name()) == false) {
+        if (!subProjectService.checkIfSubprojectExists(incompleteHour.getHour_subproject_name())) {
             System.out.println("Creating subproject because it doesn't exits");
             subProjectService.createSubProject(incompleteHour.getHour_subproject_name(), projectService.getProjectNumber(incompleteHour.getHour_project_name()));
         }

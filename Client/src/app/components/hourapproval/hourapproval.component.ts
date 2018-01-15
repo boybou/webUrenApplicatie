@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Hour} from "../../models/Hour";
 import {ApiService} from "../../shared/api.service";
+import {CompleteHour} from "../../models/CompleteHour";
 
 @Component({
   selector: 'app-hourapproval',

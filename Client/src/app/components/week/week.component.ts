@@ -7,7 +7,10 @@ import {CalendarDate} from "../../models/CalendarDate";
   styleUrls: ['./week.component.css']
 })
 export class WeekComponent implements OnInit {
+
   currentWeek:CalendarDate[] = [];
+
+
   constructor() { }
 
   ngOnInit() {
