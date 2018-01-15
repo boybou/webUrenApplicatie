@@ -28,11 +28,13 @@ public class EmployeeResource {
     }
 
     @POST
-    @Path("/insertemployee")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void insertEmployee(Employee employee){
-        System.out.println("in employee login " + employee.getEmployee_Firstname());
+    public void insertEmployee(CompleteUser completeUser){
+
+        Employee employee = new Employee(completeUser.getEmployee_Firstname(),completeUser.getEmployee_Lastname(),completeUser.getEmployee_Type_Name(),completeUser.getEmployee_Role_Name());
         employeeService.insertEmployee(employee);
+        Employee employeeWithId = employeeService.selectEmployee(employee);
+        System.out.println("ID = " + employeeWithId);
     }
 
 

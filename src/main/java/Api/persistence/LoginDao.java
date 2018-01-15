@@ -114,7 +114,7 @@ public class LoginDao implements Dao {
 
     }
     public void insertInlogData(LoginData loginData){
-
+        System.out.println("In login data");
         try {
             insertLoginData.setString(1,loginData.getPassword());
             insertLoginData.setString(2,loginData.getEmail());

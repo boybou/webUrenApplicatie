@@ -1,7 +1,11 @@
 package Api.resource;
 
 import Api.View;
+import Api.model.CompleteUser;
+import Api.model.Employee;
 import Api.model.LoginData;
+import Api.service.EmployeeService;
+import Api.service.HourService;
 import Api.service.UserService;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.google.inject.Singleton;
@@ -19,21 +23,36 @@ import javax.ws.rs.core.MediaType;
 public class UserResource
 {
     private final UserService userService;
+    private final EmployeeService employeeService;
 
     @Inject
-    public UserResource(UserService userService){
-
+    public UserResource(UserService userService,EmployeeService employeeService){
+        this.employeeService = employeeService;
         this.userService = userService;
     }
 
 
+//    @POST
+//    @Path("/insertlogindata")
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    public void insertLoginData(LoginData loginData){
+////        loginData.setEmployeeNumber(this.employeeService.selectEmployee();
+//        System.out.println("In logindata " + loginData.getEmployeeNumber());
+//        System.out.println("in recoursce login " + loginData.getEmail());
+//        userService.insertLogindata(loginData);
+//    }
     @POST
-    @Path("/insertLoginData")
+    @Path("/insertlogindata")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void insertLoginData(LoginData loginData){
-        System.out.println("In logindata");
-        System.out.println("in recoursce login " + loginData.getEmail());
-        userService.insertLogindata(loginData);
+    public void insertLoginData(CompleteUser completeUser){
+
+        System.out.println(completeUser.getEmployee_Firstname());
+        System.out.println(completeUser.getPassword());
+        Employee employee = new Employee(completeUser.getEmployee_Firstname(),completeUser.getEmployee_Lastname(),completeUser.getEmployee_Type_Name(),completeUser.getEmployee_Role_Name());
+        employeeService.insertEmployee(employee);
+        Employee employeeWithId = employeeService.selectEmployee(employee);
+        System.out.println("ID = " + employeeWithId.getEmployee_Employee_number());
+        userService.insertLogindata(new LoginData(completeUser.getEmail(),completeUser.getPassword(),employeeWithId.getEmployee_Employee_number(),completeUser.getEmployee_Role_Name()));
     }
     @GET
     @Path("/me")

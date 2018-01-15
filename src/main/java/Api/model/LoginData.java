@@ -29,6 +29,21 @@ public class LoginData implements Principal {
     @JsonView(View.Private.class)
     private String role;
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public LoginData(String password, String email, int employeeNumber, String role) {
+        this.password = password;
+        this.email = email;
+        this.employeeNumber = employeeNumber;
+        this.role = role;
+    }
+
     public LoginData(){
 
     }
@@ -56,13 +71,6 @@ public class LoginData implements Principal {
         this.email = email;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 
     @Override
     public String getName() {
@@ -72,6 +80,7 @@ public class LoginData implements Principal {
     public boolean hasRole(String roleName){
         return this.role.equals(roleName);
     }
+
 
 
 }

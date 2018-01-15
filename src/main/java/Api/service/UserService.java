@@ -18,4 +18,8 @@ public class UserService extends BaseService<LoginData>
     public void insertLogindata(LoginData loginData) {
         dao.insertInlogData(loginData);
     }
+
+    public int getEmployeeNumberByEmail(String employeeEmail){
+        return dao.getEmployeeNumberByEmail(employeeEmail);
+    }
 }
