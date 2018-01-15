@@ -1,9 +1,6 @@
 package Api.persistence;
 
-import Api.model.DatabaseInfo;
-import Api.model.Hour;
-import Api.model.Project;
-import Api.model.SubProject;
+import Api.model.*;
 
 import javax.inject.Singleton;
 import java.sql.Date;
@@ -24,6 +21,7 @@ public class HourDao implements Dao{
     private PreparedStatement getProjectHours;
     private PreparedStatement getSubProjectHours;
     private PreparedStatement getEmployeeHours;
+    private PreparedStatement getEmployeeHourstotall;
     private PreparedStatement getHourByDate;
 
 
@@ -46,6 +44,8 @@ public class HourDao implements Dao{
             getSubProjectHours = ConnectionHolder.getConnection().prepareStatement("SELECT * FROM "+DatabaseInfo.hourTableName+" WHERE "+DatabaseInfo.HourColumnNames.subprojectNumber+" = ?;");
             getEmployeeHours = ConnectionHolder.getConnection().prepareStatement(
                     "SELECT * FROM "+DatabaseInfo.hourTableName+" WHERE "+DatabaseInfo.HourColumnNames.employeeNumber+"=?;");
+            getEmployeeHourstotall = ConnectionHolder.getConnection().prepareStatement(
+                    "SELECT * FROM "+DatabaseInfo.hourTableName+" WHERE "+DatabaseInfo.HourColumnNames.employeeNumber+"=? AND hour_approved = 'approved';");
             getHourByDate = ConnectionHolder.getConnection().prepareStatement("SELECT * FROM " + DatabaseInfo.hourTableName + " WHERE " + DatabaseInfo.HourColumnNames.date + " = ?;");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -113,6 +113,19 @@ public class HourDao implements Dao{
         try {
             getEmployeeHours.setInt(1, employee);
             rs = getEmployeeHours.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("middle");
+        return makeHourList(rs);
+    }
+
+    public ArrayList<Hour> getEmployeeHourstotall(int employee)
+    {
+        ResultSet rs = null;
+        try {
+            getEmployeeHourstotall.setInt(1, employee);
+            rs = getEmployeeHourstotall.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
         }

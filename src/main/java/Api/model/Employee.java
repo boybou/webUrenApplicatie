@@ -13,6 +13,12 @@ public class Employee {
     String employee_Role_Name;
     Boolean employee_Active;
 
+    public Employee (String employee_Firstname, String employee_Lastname)
+    {
+        this.employee_Firstname = employee_Firstname;
+        this.employee_Lastname = employee_Lastname;
+    }
+
 
     public Employee(String employee_Firstname, String employee_Lastname, String employee_Type_Name, String employee_Role_Name) {
         this.employee_Firstname = employee_Firstname;

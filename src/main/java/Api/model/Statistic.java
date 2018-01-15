@@ -2,11 +2,11 @@ package Api.model;
 
 public class Statistic {
 
-    public String werknemer;
-    public String project;
-    public String subproject;
-    public String bDate;
-    public String eDate;
+    private String werknemer;
+    private String project;
+    private String subproject;
+    private String bDate;
+    private String eDate;
 
 
     public String getWerknemer() {
