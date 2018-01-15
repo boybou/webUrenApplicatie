@@ -54,7 +54,6 @@ public class EmployeeDao implements Dao {
 
     public String insertEmployee(Employee employee) {
 
-        //giving hard coded data to our test statement
         try {
 
             insertEmployee.setString(1, employee.getEmployee_Firstname());

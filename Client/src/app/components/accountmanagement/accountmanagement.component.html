@@ -1,0 +1,33 @@
+<body>
+<div class="container">
+  <form action="/action_page.php">
+    <div class="row">
+      <div class="column">
+        <label for="firstname">voornaam</label>
+        <input [(ngModel)]="employee.employee_Firstname" type="text" id="firstname" name="firstname" placeholder="Voornaam">
+
+        <label for="lastname">achternaam</label>
+        <input [(ngModel)]="employee.employee_Lastname" type="text" id="lastname" name="lastname" placeholder="Achternaam">
+
+        <label for="type">type</label>
+        <input [(ngModel)]="employee.employee_Type_Name" type="text" id="type" name="type" placeholder="Type">
+
+        <label for="role">rol naam</label>
+        <textarea  [(ngModel)]="employee.employee_Role_Name" id="role" name="role" placeholder="Role" ></textarea>
+      </div>
+        <div class="column">
+          <label for="email">email</label>
+          <input [(ngModel)]="loginData.email" type="text" id="email" name="email" placeholder="email">
+
+          <label for="password">wachtwoord</label>
+          <input [(ngModel)]="loginData.password" type="text" id="password" name="password" placeholder="Wachtwoord">
+
+          <label for="checkPW">controle wachtwoord</label>
+          <input [(ngModel)]="checkPassword" type="text" id="checkPW" name="checkPW" placeholder="Controle password">
+          <br> <br> <br>  <br> <br> <br>  <br> <br> <br>  <br> <br>
+        <input (click)="insertUser()" type="submit" value="Voeg toe" id="submitButton">
+      </div>
+    </div>
+  </form>
+</div>
+</body>

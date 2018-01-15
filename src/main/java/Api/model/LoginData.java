@@ -14,12 +14,11 @@ import java.security.Principal;
  */
 public class LoginData implements Principal {
     @NotEmpty
-    @Length(min = 8)
+    @Length(min = 6)
     @JsonView(View.Protected.class)
     private String password;
 
     @NotEmpty
-    @Email
     @JsonView(View.Public.class)
     private String email;
 
@@ -30,6 +29,9 @@ public class LoginData implements Principal {
     @JsonView(View.Private.class)
     private String role;
 
+    public LoginData(){
+
+    }
     public String getPassword() {
         return password;
     }
