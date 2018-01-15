@@ -12,7 +12,8 @@ import {CompleteHour} from "../../models/CompleteHour";
 export class DayComponent implements OnChanges {
   @Input('date') date: CalendarDate;
 
-  dayTitle:String;
+  weekDay:String;
+  dateOfWeek: string;
 
   private hoursRetrieved:boolean = false;
   private completeHourList:CompleteHour[] = [];
@@ -34,8 +35,8 @@ export class DayComponent implements OnChanges {
   }
 
   private generateTitle() {
-    this.dayTitle = this.date.dayName + "\n" + this.date.day + "/" + (this.date.month) + "/" + this.date.year;
-    console.log("Dat titel " + this.dayTitle)
+    this.weekDay = this.date.dayName;
+    this.dateOfWeek = this.date.day + "/" + (this.date.month) + "/" + this.date.year;
   }
 
 }

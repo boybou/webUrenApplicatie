@@ -1,13 +1,16 @@
-<div class="red" *ngIf="completeHour.hour_approved == red">
-  <p>{{completeHour.hour_project_name}}{{completeHour.hour_approved}} {{completeHour.hour_subproject_name}}{{completeHour.hour_comments}}{{completeHour.hour_client_name}}
+<div *ngIf="completeHour.hour_approved == red">
+  <p class="red">{{completeHour.hour_approved}}</p>
+  <p>{{completeHour.hour_project_name}} {{completeHour.hour_subproject_name}}{{completeHour.hour_comments}}{{completeHour.hour_client_name}}
     <br>{{completeHour.startTime}}-{{completeHour.endTime}}</p>
 </div>
-<div class="green" *ngIf="completeHour.hour_approved == green">
-  <p>{{completeHour.hour_project_name}}{{completeHour.hour_approved}} {{completeHour.hour_subproject_name}}{{completeHour.hour_comments}}{{completeHour.hour_client_name}}
+<div *ngIf="completeHour.hour_approved == green">
+  <p class="green">{{completeHour.hour_approved}}</p>
+  <p>{{completeHour.hour_project_name}}{{completeHour.hour_subproject_name}}{{completeHour.hour_comments}}{{completeHour.hour_client_name}}
     <br>{{completeHour.startTime}}-{{completeHour.endTime}}</p>
 </div>
-<div class="yellow" *ngIf="completeHour.hour_approved == yellow">
-  <p>{{completeHour.hour_project_name}}{{completeHour.hour_approved}} {{completeHour.hour_subproject_name}}{{completeHour.hour_comments}}{{completeHour.hour_client_name}}
+<div *ngIf="completeHour.hour_approved == yellow">
+  <p class="yellow">{{completeHour.hour_approved}}</p>
+  <p>{{completeHour.hour_project_name}} {{completeHour.hour_subproject_name}}{{completeHour.hour_comments}}{{completeHour.hour_client_name}}
     <br>{{completeHour.startTime}}-{{completeHour.endTime}}</p>
 </div>
 
