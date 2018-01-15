@@ -17,3 +17,17 @@
 #changePassword:hover{
   background-color: #31809c;
 }
+
+#submitButton{
+  padding: 10px;
+  border: 2px #31809c solid;
+  border-radius: 2px;
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  background-color: #27719c;
+
+}
+
+#submitButton:hover{
+  background-color: #31809c;
+}
