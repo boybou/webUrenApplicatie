@@ -35,12 +35,12 @@ public class UserResource
         System.out.println("in recoursce login " + loginData.getEmail());
         userService.insertLogindata(loginData);
     }
-//    @GET
-//    @Path("/me")
-//    @JsonView(View.Private.class)
-//    @RolesAllowed({"Employee","administrator"})
-//    public LoginData authenticate(@Auth LoginData authenticator)
-//    {
-//        return authenticator;
-//    }
+    @GET
+    @Path("/me")
+    @JsonView(View.Private.class)
+    @RolesAllowed({"Employee","administrator"})
+    public LoginData authenticate(@Auth LoginData authenticator)
+    {
+        return authenticator;
+    }
 }
