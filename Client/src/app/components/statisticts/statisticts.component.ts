@@ -3,6 +3,9 @@ import {IncompleteHour} from "../../models/IncompleteHour";
 import {ApiService} from "../../shared/api.service";
 import {AuthorisationService} from "../../shared/authorisation.service";
 import {StatisticsModel} from "../../models/StatisticsModel";
+import {StatisticReturn} from "../../models/StatisticReturn";
+import {applySourceSpanToExpressionIfNeeded} from "@angular/compiler/src/output/output_ast";
+
 
 @Component({
   selector: 'app-statisticts',
@@ -12,6 +15,7 @@ import {StatisticsModel} from "../../models/StatisticsModel";
 export class StatistictsComponent{
 
   public statistic:StatisticsModel = new StatisticsModel();
+  public statisticReturn:StatisticReturn;
   constructor(private api:ApiService) {
 
   }
@@ -31,8 +35,20 @@ export class StatistictsComponent{
     );
 
 
+    this.retreiveStatistics()
+
+
   }
 
+  retreiveStatistics()
+  {
+    console.log("getStatistics");
+
+    let uri = "/api/statistics/getStatistics";
+    this.api.get<StatisticReturn>(uri).subscribe(data =>{
+      this.statisticReturn = data;
+    })
+  }
 
 
 

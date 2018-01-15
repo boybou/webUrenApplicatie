@@ -35,7 +35,7 @@ public class ProjectDao implements Dao {
             insertProject = ConnectionHolder.getConnection().prepareStatement("insert into "+ DatabaseInfo.projectTableName+" ("+DatabaseInfo.ProjectColumnNames.name+","+DatabaseInfo.ProjectColumnNames.clientName+" ) values (?,?)");
             checkProjectExist = ConnectionHolder.getConnection().prepareStatement("select * from "+DatabaseInfo.projectTableName+" where "+DatabaseInfo.ProjectColumnNames.name+"=(?)");
             selectAllProjects = ConnectionHolder.getConnection().prepareStatement("select * from "+DatabaseInfo.projectTableName+"");
-            getSpecificProject = ConnectionHolder.getConnection().prepareStatement("SELECT * FROM "+DatabaseInfo.projectTableName+" WHERE "+DatabaseInfo.ProjectColumnNames.name+" = ?;");
+            getSpecificProject = ConnectionHolder.getConnection().prepareStatement("SELECT * FROM "+DatabaseInfo.projectTableName+" WHERE "+DatabaseInfo.ProjectColumnNames.name+" =?;");
             getProjectById = ConnectionHolder.getConnection().prepareStatement("SELECT * FROM " + DatabaseInfo.projectTableName + " WHERE " +DatabaseInfo.ProjectColumnNames.number+" = ?;");
 
         } catch (SQLException e) {

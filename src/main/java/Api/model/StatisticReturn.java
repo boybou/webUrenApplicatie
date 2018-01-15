@@ -1,11 +1,12 @@
 package Api.model;
 
-public class statisticReturn {
+public class StatisticReturn {
 
     private String employee;
     private String project;
     private String subproject;
-    private double hours;
+    private int hours;
+    private int minutes;
 
     public String getEmployee() {
         return employee;
@@ -35,9 +36,12 @@ public class statisticReturn {
         return hours;
     }
 
-    public void setHours(double hours) {
+    public void setHours(int hours) {
         this.hours = hours;
     }
 
 
+    public void setMinutes(int minutes) {
+        this.minutes = minutes;
+    }
 }
