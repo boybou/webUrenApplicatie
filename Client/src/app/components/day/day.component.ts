@@ -11,9 +11,12 @@ import {CompleteHour} from "../../models/CompleteHour";
 })
 export class DayComponent implements OnChanges {
   @Input('date') date: CalendarDate;
+
   dayTitle:String;
+
   private hoursRetrieved:boolean = false;
   private completeHourList:CompleteHour[] = [];
+
   constructor(private api:ApiService) {
 
   }

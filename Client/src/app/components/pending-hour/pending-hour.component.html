@@ -1,6 +1,21 @@
-<p id="pending">
-  pending-hour works!
-  {{hour.hour_comments}}
-  <a (click)="approveHour()">approve</a>
-  <a (click)="disapproveHour()">disapprove</a>
-</p>
+
+  <div class="card" id="card" style="border: 1px lightgray solid; border-radius: 8px; padding-bottom: 0px;">
+    <div class="card-header">
+      <p>{{hour.hour_date}} {{hour.hour_comments}} </p>
+    </div>
+    <div class="card-block">
+      <p class="card-text">{{hour.hour_project_name}}</p>
+      <p class="card-text">{{hour.hour_subproject_name}}</p>
+      <p class="card-text">{{hour.hour_comments}}</p>
+      <button class="standardButton" (click)="approveHour()">Approve</button>
+      <button class="standardButton" (click)="disapproveHour()">Disapprove</button>
+    </div>
+  </div>
+
+  <!--<div class="card" id="deleteMessage" style="visibility: hidden">-->
+    <!--<div class="card-block">-->
+      <!--<p>Verzoek succesvol verwerkt</p>-->
+    <!--</div>-->
+  <!--</div>-->
+
+

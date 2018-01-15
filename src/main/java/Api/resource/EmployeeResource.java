@@ -23,16 +23,27 @@ public class EmployeeResource {
 
     @Inject
     public EmployeeResource(EmployeeService employeeService){
+
         this.employeeService = employeeService;
     }
 
-    @GET
-    @Path("/me")
-    @JsonView(View.Public.class)
-    @RolesAllowed({"administrator","Employee"})
-    public Employee getCurrentEmployee(@Auth LoginData loginData){
-        return employeeService.selectSpecificEmployee(loginData.getEmployeeNumber());
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void insertEmployee(CompleteUser completeUser){
+
+        Employee employee = new Employee(completeUser.getEmployee_Firstname(),completeUser.getEmployee_Lastname(),completeUser.getEmployee_Type_Name(),completeUser.getEmployee_Role_Name());
+        employeeService.insertEmployee(employee);
+        Employee employeeWithId = employeeService.selectEmployee(employee);
+        System.out.println("ID = " + employeeWithId);
     }
+
+    @GET
+    @Path("/{id}")
+    @JsonView(View.Private.class)
+    public Employee retreiveEmployee(@PathParam("id") int id){
+        return this.employeeService.selectSpecificEmployee(id);
+    }
+
 
 
 }

@@ -1,5 +1,6 @@
 package Api.service;
 
+import Api.model.Employee;
 import Api.model.LoginData;
 import Api.persistence.HourDao;
 import Api.persistence.LoginDao;
@@ -19,4 +20,12 @@ public class UserService extends BaseService<LoginData>
     public void setPassword(LoginData loginData){
         this.dao.setPassword(loginData);
     }
+    public void insertLogindata(LoginData loginData) {
+        dao.insertInlogData(loginData);
+    }
+
+    public int getEmployeeNumberByEmail(String employeeEmail){
+        return dao.getEmployeeNumberByEmail(employeeEmail);
+    }
+
 }

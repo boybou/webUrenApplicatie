@@ -1,37 +1,77 @@
-<!DOCTYPE html>
-<html>
 
-<head>
 
-  <meta charset="UTF-8">
-  <title>Account Management</title>
-</head>
+<div class="container">
+  <div class="divider">
+    <h4> ADMIN PANEEL </h4>
+    <hr size="20" noshade>
+  </div>
 
-<body>
-<div class="login-card">
-  <form>
 
-    <div class="column">
-      <label for="voornaam">Voornaam</label>
-      <input [(ngModel)]="hour.hour_client" type="text" id="voornaam" name="voornaam" placeholder="Voornaam..">
 
-      <label for="achternaam">Achternaam</label>
-      <input [(ngModel)]="hour.hour_project_name" type="text" id="achternaam" name="achternaam" placeholder="Achternaam..">
-
-      <label for="email">Email</label>
-      <input [(ngModel)]="hour.hour_subproject_name" type="text" id="email" name="email" placeholder="E-mail..">
-
-      <label for="wachtwoord">Wachtwoord</label>
-      <input [(ngModel)]="hour.hour_date" type="text" id="wachtwoord" name="wachtwoord" placeholder="Wachtwoord..">
-
-      <label for="wachtwoord2">Wachtwoord herhaling</label>
-      <input [(ngModel)]="hour.startTime" type="text" id="wachtwoord2" name="wachtwoord2" placeholder="Wachtwoord..">
-
-      <input (click)="createUser()" type="submit" value="Toevoegen" id="submitButton">
+  <nav class="navbar navbar-default" id="nav">
+    <div class="container-fluid">
+      <ul class="nav navbar-nav" style="padding-left: 28%;">
+        <li (click)="setIsAddAccount()"><a>Account Toevoegen</a></li>
+        <li (click)="setIsChangePassword()"><a >Wachtwoord Aanpassen</a></li>
+      </ul>
     </div>
-  </form>
+  </nav>
 
 </div>
 
+<div class="container" *ngIf="isAddAccount">
+  <form action="/action_page.php">
+    <div class="row">
+      <div class="column">
+        <label for="firstname">voornaam</label>
+        <input [(ngModel)]="completeUser.employee_Firstname" type="text" id="firstname" name="firstname" placeholder="Voornaam">
 
-</body>
+        <label for="lastname">achternaam</label>
+        <input [(ngModel)]="completeUser.employee_Lastname" type="text" id="lastname" name="lastname" placeholder="Achternaam">
+
+        <label for="type">type</label>
+        <input [(ngModel)]="completeUser.employee_Type_Name" type="text" id="type" name="type" placeholder="Type">
+
+        <label for="role">rol naam</label>
+        <textarea  [(ngModel)]="completeUser.employee_Role_Name" id="role" name="role" placeholder="Role" ></textarea>
+      </div>
+        <div class="column">
+          <label for="email">email</label>
+          <input [(ngModel)]="completeUser.email" type="text" id="email" name="email" placeholder="email">
+
+          <label for="password">wachtwoord</label>
+          <input [(ngModel)]="completeUser.password" type="password" class="form-control" id="password" name="password" placeholder="Wachtwoord">
+
+          <label for="checkPW">controle wachtwoord</label>
+          <input [(ngModel)]="checkPassword" type="password" class="form-control" id="checkPW" name="checkPW" placeholder="Controle password">
+        <input (click)="insertUser()" type="submit" value="Voeg toe" id="submitButton" style="margin-top: 13%; float: right">
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="container" *ngIf="isChangePassword">
+ <form>
+   <div>
+     <label >Emailadres</label>
+     <input type="text" class="form-control"  name="Emailadres" placeholder="Emailadres">
+    </div>
+   <div>
+     <label >Wachtwoord</label>
+     <input type="password" class="form-control" name="wachtwoord" placeholder="Wachtwoord">
+   </div>
+   <div>
+     <label >Herhaal Wachtwoord</label>
+     <input type="password" class="form-control"  name="herhaalWachtwoord" placeholder="Herhaal Wachtwoord">
+   </div>
+   <div>
+     <p id="errorMessage" style="color: red; visibility: hidden;">{{errorMessage}}</p>
+     <p id="infoMessage" style="color: green; visibility: hidden">Wachtwoord geweizigd</p>
+   </div>
+   <div style="float: right; margin-right: 100px">
+     <input  type="submit" value="Pas Aan" id="editedButton">
+   </div>
+ </form>
+</div>
+
+

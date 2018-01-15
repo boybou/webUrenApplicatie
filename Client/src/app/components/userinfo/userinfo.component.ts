@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import {ApiService} from "../../shared/api.service";
 import {Router} from "@angular/router";
 import {AuthorisationService} from "../../shared/authorisation.service";
-import {ApiService} from "../../shared/api.service";
 import {Employee} from "../../models/Employee";
-import {LoginData} from "../../models/LoginData";
+
 
 @Component({
   selector: 'app-userinfo',
@@ -11,22 +11,28 @@ import {LoginData} from "../../models/LoginData";
   styleUrls: ['./userinfo.component.css']
 })
 export class UserinfoComponent implements OnInit {
-  public employee: Employee;
-  public loginData: LoginData;
-  constructor(private api: ApiService) {
 
-  }
+  private emp : Employee;
+  private email : string;
+
+  constructor(private api : ApiService, private rout : Router, private auth : AuthorisationService) { }
+
 
   ngOnInit() {
-    let uri: string = '/api/employee/me';
-    let uri2: string = '/api/users/me';
-    this.api.get<Employee>(uri).subscribe(data => {
-      this.employee = data;
-    }, error => {console.log('Ophalen mislukt.')});
-
-    this.api.get<LoginData>(uri2).subscribe(data => {
-      this.loginData = data;
-    },  error => {console.log('Ophalen mislukt.')});
+    this.email = AuthorisationService.email;
+    this.getUserInformation();
   }
 
+  private getUserInformation(){
+    let uri = "/api/employee/" + AuthorisationService.employeeNumber;
+    this.api.get<Employee>(uri).subscribe(data =>{
+        console.log("employee data ", data)
+        let employee = data;
+        this.emp = employee;
+      }
+      ,error =>{
+        console.log(error.error,error.name,error.status)
+      }
+    );
+  }
 }

@@ -4,10 +4,39 @@
   <hr size="20" noshade>
 
   <ul class="list-group" style="font-size: 15px;">
-    <li class="list-group-item">Naam: Vincent Spijkers</li>
-    <li class="list-group-item">Email: VincentEmail</li>
-    <li class="list-group-item">Rol: Werknemer</li>
-    <li class="list-group-item">Extern/Intern: Intern</li>
-    <li><button mat-raised-button (click)="openDialog()">Pick one</button></li>
+    <li class="list-group-item">Naam: {{emp.employee_Firstname}} {{emp.employee_Lastname}}</li>
+    <li class="list-group-item">Email: {{email}}</li>
+    <li class="list-group-item">Rol: {{emp.employee_Role_Name}}</li>
+    <li class="list-group-item">Extern/Intern: {{emp.employee_Type_Name}}</li>
+    <li style="list-style: none; padding-top: 20px"><button id="changePassword" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Verander Wachtwoord</button></li>
   </ul>
+
+  <div class="modal fade"  id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Verander Wachtwoord</h4>
+        </div>
+        <div class="modal-body">
+          <form>
+            <label>Oud Wachtwoord</label>
+            <input type="password" placeholder="Oud Wachtwoord" class="form-control">
+            <label>Nieuw Wachtwoord</label>
+            <input type="password" placeholder="Nieuw Wachtwoord" class="form-control">
+            <label>Herhaal Nieuw Wachtwoord</label>
+            <input type="password" placeholder="Herhaald Wachtwoord" class="form-control">
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="submitButton" class="btn btn-default" data-dismiss="modal">Verander</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </div>
+
+

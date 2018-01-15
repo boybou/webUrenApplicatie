@@ -2,7 +2,6 @@ package Api.resource;
 
 import Api.View;
 import Api.model.LoginData;
-import Api.service.UserService;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;

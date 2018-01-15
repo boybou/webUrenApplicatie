@@ -1,0 +1,12 @@
+TODO
+- refractoring code alsin methodes front end public en private zetten
+- refractoring crud uri names
+- Error messages toevoegen
+- Dropdowns fixen uren invoeren
+- Styling calander
+- fixing calader
+- Namen front end components
+- souts removen TERMINAAL (vooral die van boy)
+- Styling account toevoegen 
+- backend user ophalen user gegevens
+- Statistics?

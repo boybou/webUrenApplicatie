@@ -70,9 +70,9 @@ public class HourService extends BaseService<Hour>{
         dao.changeHourState(hourId,"disapproved");
     }
 
-    public ArrayList<Hour> getCompleteHoursByDate(String date) {
+    public ArrayList<Hour> getCompleteHoursByDate(String date)
+    {
         return dao.getHourByDate(dateParser(date));
-
     }
 
 }
