@@ -26,11 +26,6 @@ public class StatisticService {
     {
         this.statisticReturn = statisticReturn;
 
-        System.out.println(statistic.getProject());
-        System.out.println(statistic.getWerknemer());
-        System.out.println(statistic.getSubproject());
-        System.out.println(statistic.geteDate());
-        System.out.println(statistic.getbDate());
 
         if(statistic.getProject() != null && statistic.getSubproject() == null && statistic.getWerknemer() == null)
         {

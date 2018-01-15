@@ -12,7 +12,7 @@ import {applySourceSpanToExpressionIfNeeded} from "@angular/compiler/src/output/
   templateUrl: './statisticts.component.html',
   styleUrls: ['./statisticts.component.css']
 })
-export class StatistictsComponent{
+export class StatisticsComponent{
 
   public statistic:StatisticsModel = new StatisticsModel();
   public statisticReturn:StatisticReturn;
@@ -47,11 +47,24 @@ export class StatistictsComponent{
     let uri = "/api/statistics/getStatistics";
     this.api.get<StatisticReturn>(uri).subscribe(data =>{
       this.statisticReturn = data;
-    })
+    });
+
+    this.fillP();
+
   }
 
 
 
+
+  fillP()
+  {
+
+    document.getElementById('fillp').innerHTML  = "Werknemer: "+this.statisticReturn.employee+"<br>" +
+      "Project: "+this.statisticReturn.project+"<br>" +
+      "Subproject: "+this.statisticReturn.subproject+"<br>" +
+      "Uren: "+this.statisticReturn.hours+"<br>" +
+      "Minuten: "+this.statisticReturn.minutes+"<br>";
+  }
 
 
 

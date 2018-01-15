@@ -48,9 +48,17 @@ public class StatisticResource {
     @RolesAllowed({"administrator"})
     public void makeStatistic( Statistic inputStatistic)
     {
+//        statisticreset();
         statistic = inputStatistic;
         statisticService.fillStatisticModel(statistic, statisticReturn);
         System.out.println(statisticReturn.getProject());
+    }
+
+    void statisticreset()
+    {
+        statistic.setProject("-");
+        statistic.setSubproject("-");
+        statistic.setWerknemer("-");
     }
 
 }

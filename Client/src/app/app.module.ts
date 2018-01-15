@@ -11,7 +11,7 @@ import {SideMenu} from './components/sideMenu/sidemenu.component';
 import { Authorization } from './components/sharedComponent/authorization.serve';
 import { HomeComponent } from './components/home/home.component';
 import { AccountmanagementComponent } from './components/accountmanagement/accountmanagement.component';
-import { StatistictsComponent } from './components/statisticts/statisticts.component';
+import { StatisticsComponent } from './components/statisticts/statisticts.component';
 import { HourapprovalComponent } from './components/hourapproval/hourapproval.component';
 import { ExportComponent } from './components/export/export.component';
 import { HouroveriewComponent } from './components/houroveriew/houroveriew.component';
@@ -33,7 +33,7 @@ const appRoutes: Routes = [
   {path: 'login', component: Login},
   {path: 'hourInsert', component: Hour},
   {path: 'accountManagement', component: AccountmanagementComponent},
-  {path: 'statistics', component: StatistictsComponent},
+  {path: 'statistics', component: StatisticsComponent},
   {path: 'hourApproval', component: HourapprovalComponent},
   {path: 'export', component: ExportComponent},
   {path: 'hourOverview', component: HouroveriewComponent},
@@ -52,7 +52,7 @@ const appRoutes: Routes = [
     SideMenu,
     HomeComponent,
     AccountmanagementComponent,
-    StatistictsComponent,
+    StatisticsComponent,
     HourapprovalComponent,
     HouroveriewComponent,
     ExportComponent,
