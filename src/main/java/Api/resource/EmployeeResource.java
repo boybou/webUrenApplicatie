@@ -35,6 +35,14 @@ public class EmployeeResource {
         employeeService.insertEmployee(employee);
     }
 
+    @GET
+    @Path("/{id}")
+    @JsonView(View.Private.class)
+    public Employee retreiveEmployee(@PathParam("id") int id){
+        return this.employeeService.selectSpecificEmployee(id);
+    }
+
+
 
 }
 
