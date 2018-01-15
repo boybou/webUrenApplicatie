@@ -9,7 +9,7 @@ import {CompleteHour} from "../../models/CompleteHour";
   templateUrl: './day.component.html',
   styleUrls: ['./day.component.css']
 })
-export class DayComponent implements OnChanges {
+export class DayComponent implements OnInit {
   @Input('date') date: CalendarDate;
 
   dayTitle:String;
@@ -21,11 +21,12 @@ export class DayComponent implements OnChanges {
 
   }
 
-  ngOnChanges(){
+  ngOnInit(){
     this.generateTitle();
 
-    this.api.get<CompleteHour[]>(UriInof.getHourByDate+this.date.toDateString()).subscribe(date =>{
+    this.api.get<CompleteHour[]>(UriInof.getHourByDate+this.date.toDateString()).toPromise().then(date =>{
       this.completeHourList = date;
+      this.hoursRetrieved = true;
     }, error =>{
       console.log(error.error+"shit ging terminaal")
     })
@@ -37,6 +38,7 @@ export class DayComponent implements OnChanges {
     this.dayTitle = this.date.dayName + "\n" + this.date.day + "/" + (this.date.month) + "/" + this.date.year;
     console.log("Dat titel " + this.dayTitle)
   }
+
 
 }
 
