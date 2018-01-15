@@ -1,5 +1,25 @@
-<body>
+
+
 <div class="container">
+  <div class="divider">
+    <h4> ADMIN PANEEL </h4>
+    <hr size="20" noshade>
+  </div>
+
+
+
+  <nav class="navbar navbar-default" id="nav">
+    <div class="container-fluid">
+      <ul class="nav navbar-nav" style="padding-left: 28%;">
+        <li (click)="setIsAddAccount()"><a>Account Toevoegen</a></li>
+        <li (click)="setIsChangePassword()"><a >Wachtwoord Aanpassen</a></li>
+      </ul>
+    </div>
+  </nav>
+
+</div>
+
+<div class="container" *ngIf="isAddAccount">
   <form action="/action_page.php">
     <div class="row">
       <div class="column">
@@ -20,14 +40,38 @@
           <input [(ngModel)]="loginData.email" type="text" id="email" name="email" placeholder="email">
 
           <label for="password">wachtwoord</label>
-          <input [(ngModel)]="loginData.password" type="text" id="password" name="password" placeholder="Wachtwoord">
+          <input [(ngModel)]="loginData.password" type="password" class="form-control" id="password" name="password" placeholder="Wachtwoord">
 
           <label for="checkPW">controle wachtwoord</label>
-          <input [(ngModel)]="checkPassword" type="text" id="checkPW" name="checkPW" placeholder="Controle password">
-          <br> <br> <br>  <br> <br> <br>  <br> <br> <br>  <br> <br>
-        <input (click)="insertUser()" type="submit" value="Voeg toe" id="submitButton">
+          <input [(ngModel)]="checkPassword" type="password" class="form-control" id="checkPW" name="checkPW" placeholder="Controle password">
+        <input (click)="insertUser()" type="submit" value="Voeg toe" id="submitButton" style="margin-top: 13%; float: right">
       </div>
     </div>
   </form>
 </div>
-</body>
+
+<div class="container" *ngIf="isChangePassword">
+ <form>
+   <div>
+     <label >Emailadres</label>
+     <input type="text" class="form-control"  name="Emailadres" placeholder="Emailadres">
+    </div>
+   <div>
+     <label >Wachtwoord</label>
+     <input type="password" class="form-control" name="wachtwoord" placeholder="Wachtwoord">
+   </div>
+   <div>
+     <label >Herhaal Wachtwoord</label>
+     <input type="password" class="form-control"  name="herhaalWachtwoord" placeholder="Herhaal Wachtwoord">
+   </div>
+   <div>
+     <p id="errorMessage" style="color: red; visibility: hidden;">{{errorMessage}}</p>
+     <p id="infoMessage" style="color: green; visibility: hidden">Wachtwoord geweizigd</p>
+   </div>
+   <div style="float: right; margin-right: 100px">
+     <input  type="submit" value="Pas Aan" id="editedButton">
+   </div>
+ </form>
+</div>
+
+

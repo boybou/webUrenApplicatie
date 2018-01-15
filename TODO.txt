@@ -1,6 +1,7 @@
 TODO
 - refractoring code alsin methodes front end public en private zetten
-- refractoring crud uri names 
+- refractoring crud uri names
+- Error messages toevoegen
 - Dropdowns fixen uren invoeren
 - Styling calander
 - fixing calader
