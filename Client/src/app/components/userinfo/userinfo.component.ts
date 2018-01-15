@@ -1,5 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {ApiService} from "../../shared/api.service";
+import {Router} from "@angular/router";
 import {AuthorisationService} from "../../shared/authorisation.service";
 import {Employee} from "../../models/Employee";
 
@@ -11,21 +12,23 @@ import {Employee} from "../../models/Employee";
 })
 export class UserinfoComponent implements OnInit {
 
+  private emp : Employee;
+  private email : string;
 
-  private employee : Employee;
-
-  constructor(private api:ApiService) { }
+  constructor(private api : ApiService, private rout : Router, private auth : AuthorisationService) { }
 
 
   ngOnInit() {
+    this.email = AuthorisationService.email;
     this.getUserInformation();
   }
 
   private getUserInformation(){
-    console.log("in send hour");
-    let uri = "/api/users/" + AuthorisationService.employeeNumber;
+    let uri = "/api/employee/" + AuthorisationService.employeeNumber;
     this.api.get<Employee>(uri).subscribe(data =>{
-        let employee
+        console.log("employee data ", data)
+        let employee = data;
+        this.emp = employee;
       }
       ,error =>{
         console.log(error.error,error.name,error.status)

@@ -3,6 +3,7 @@ package Api.service;
 import Api.model.Employee;
 import Api.model.LoginData;
 import Api.persistence.EmployeeDao;
+import Api.persistence.LoginDao;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -10,16 +11,14 @@ import javax.inject.Singleton;
 @Singleton
 public class UserService extends BaseService<LoginData>
 {
-    private EmployeeDao dao;
+    private final LoginDao dao;
 
     @Inject
-    public UserService(EmployeeDao dao){
+    public UserService(LoginDao dao){
         this.dao = dao;
     }
-
-
-    public Employee getEmployeeById(int id) {
-        return dao.selectSpecificEmployee(id);
+    public void insertLogindata(LoginData loginData) {
+        dao.insertInlogData(loginData);
     }
 
 }
