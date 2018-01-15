@@ -4,10 +4,10 @@
   <hr size="20" noshade>
 
   <ul class="list-group" style="font-size: 15px;">
-    <li class="list-group-item">Naam: Vincent Spijkers</li>
-    <li class="list-group-item">Email: VincentEmail</li>
-    <li class="list-group-item">Rol: Werknemer</li>
-    <li class="list-group-item">Extern/Intern: Intern</li>
+    <li class="list-group-item">Naam: {{emp.employee_Firstname}} {{emp.employee_Lastname}}</li>
+    <li class="list-group-item">Email: {{email}}</li>
+    <li class="list-group-item">Rol: {{emp.employee_Role_Name}}</li>
+    <li class="list-group-item">Extern/Intern: {{emp.employee_Type_Name}}</li>
     <li style="list-style: none; padding-top: 20px"><button id="changePassword">Verander Wachtwoord</button></li>
   </ul>
 </div>

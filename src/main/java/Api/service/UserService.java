@@ -1,6 +1,8 @@
 package Api.service;
 
+import Api.model.Employee;
 import Api.model.LoginData;
+import Api.persistence.EmployeeDao;
 import Api.persistence.LoginDao;
 
 import javax.inject.Inject;
@@ -22,4 +24,7 @@ public class UserService extends BaseService<LoginData>
     public int getEmployeeNumberByEmail(String employeeEmail){
         return dao.getEmployeeNumberByEmail(employeeEmail);
     }
+
 }
+
+

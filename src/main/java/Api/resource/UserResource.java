@@ -16,12 +16,12 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
 
 @Singleton
 @Path("/users")
 @Produces(MediaType.APPLICATION_JSON)
-public class UserResource
-{
+public class UserResource {
     private final UserService userService;
     private final EmployeeService employeeService;
 
@@ -32,15 +32,6 @@ public class UserResource
     }
 
 
-//    @POST
-//    @Path("/insertlogindata")
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    public void insertLoginData(LoginData loginData){
-////        loginData.setEmployeeNumber(this.employeeService.selectEmployee();
-//        System.out.println("In logindata " + loginData.getEmployeeNumber());
-//        System.out.println("in recoursce login " + loginData.getEmail());
-//        userService.insertLogindata(loginData);
-//    }
     @POST
     @Path("/insertlogindata")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -54,12 +45,13 @@ public class UserResource
         System.out.println("ID = " + employeeWithId.getEmployee_Employee_number());
         userService.insertLogindata(new LoginData(completeUser.getEmail(),completeUser.getPassword(),employeeWithId.getEmployee_Employee_number(),completeUser.getEmployee_Role_Name()));
     }
+
     @GET
     @Path("/me")
     @JsonView(View.Private.class)
-    @RolesAllowed({"Employee","administrator"})
-    public LoginData authenticate(@Auth LoginData authenticator)
-    {
+    @RolesAllowed({"Employee", "administrator"})
+    public LoginData authenticate(@Auth LoginData authenticator) {
         return authenticator;
     }
+
 }

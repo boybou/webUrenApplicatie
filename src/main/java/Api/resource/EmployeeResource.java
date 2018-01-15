@@ -37,6 +37,14 @@ public class EmployeeResource {
         System.out.println("ID = " + employeeWithId);
     }
 
+    @GET
+    @Path("/{id}")
+    @JsonView(View.Private.class)
+    public Employee retreiveEmployee(@PathParam("id") int id){
+        return this.employeeService.selectSpecificEmployee(id);
+    }
+
+
 
 }
 
