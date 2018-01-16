@@ -46,6 +46,19 @@ public class UserResource {
         userService.insertLogindata(new LoginData(completeUser.getEmail(),completeUser.getPassword(),employeeWithId.getEmployee_Employee_number(),completeUser.getEmployee_Role_Name()));
     }
 
+    @POST
+    @Path("/updateLoginData")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void updateLoginData(LoginData loginData){
+       this.userService.updateLoginData(loginData);
+    }
+    @GET
+    @Path("/getLoginData{email}")
+    @RolesAllowed({"administrator"})
+    public LoginData getLoginData(@PathParam("email") String email){
+        return userService.getLoginData(email);
+    }
+
     @GET
     @Path("/me")
     @JsonView(View.Private.class)

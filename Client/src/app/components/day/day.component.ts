@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {CalendarDate} from "../../models/CalendarDate";
 import {ApiService} from "../../shared/api.service";
-import {UriInof} from "../../models/UriInof";
+import {UriInof} from "../../models/UriInfo";
 import {CompleteHour} from "../../models/CompleteHour";
 
 @Component({

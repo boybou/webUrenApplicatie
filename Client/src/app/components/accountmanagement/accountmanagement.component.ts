@@ -3,6 +3,8 @@ import {Employee} from "../../models/Employee";
 import {LoginData} from "../../models/LoginData";
 import {ApiService} from "../../shared/api.service";
 import {CompleteUser} from "../../models/CompleteUser";
+import {PasswordcheckerService} from "../../shared/PasswordChecker.service";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-accountmanagement',
@@ -17,8 +19,16 @@ export class AccountmanagementComponent implements OnInit {
   private isAddAccount : boolean = true;
   private isChangePassword : boolean = false;
   private errorMessage : string;
+  private emailAlreadyInDB : string = "Dit email adres is al gebruikt";
+  private emailToUpdate: string;
+  private passwordToUpdate: string;
+  private checkPasswordToUpdate: string;
+
 
   completeUser:CompleteUser;
+  succesMessage: string;
+  errorMessageNewUser: string;
+  succesMessageNewUser: string;
   constructor(private api:ApiService) { }
 
   ngOnInit() {
@@ -26,13 +36,42 @@ export class AccountmanagementComponent implements OnInit {
   }
 
   public insertUser() {
-    console.log("in insert user")
+    console.log("email is" + this.checkEmailExists(this.completeUser.email));
+    if(this.checkEmailExists(this.completeUser.email)){
+      console.log("AlreadyEmail")
+      this.errorMessage = this.emailAlreadyInDB;
+    }else{
+     console.log("nog geen email")
+    }
+
     this.completeUser.employee_Active = true;
-    console.log("insert user " + this.completeUser.employee_Firstname);
-    let uri = "/api/users/insertlogindata";
-    this.api.post(uri,this.completeUser).subscribe();
+
+    // let message = this.pwChecker.checkPassword(this.completeUser.password,this.checkPassword)
+    // if(message == this.pwChecker.succesfull){
+    // let uri = "/api/users/insertlogindata";
+    // this.api.post(uri,this.completeUser).subscribe();
+
+    // }
+
 
   }
+
+  private checkEmailExists(email: string) {
+    let uri = "/api/users/getLoginData" + email;
+    this.api.get<LoginData>(uri).subscribe( data =>{
+      let testLoginData:LoginData = data;
+      if(testLoginData != null){
+        console.log("True");
+        return true;
+      }else{
+        console.log("False");
+        return false;
+      }
+
+    });
+
+  }
+
 
   public setIsAddAccount(){
     this.isAddAccount = true;
@@ -57,5 +96,13 @@ export class AccountmanagementComponent implements OnInit {
   }
 
   public changePassword(){
+    let loginData:LoginData = new LoginData;
+    loginData.password = this.passwordToUpdate;
+    loginData.email = this.emailToUpdate;
+    let uri = "/api/users/updateLoginData"
+    this.api.post(uri,loginData).subscribe();
+
   }
+
+
 }

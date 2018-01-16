@@ -44,6 +44,10 @@
 
           <label for="checkPW">controle wachtwoord</label>
           <input [(ngModel)]="checkPassword" type="password" class="form-control" id="checkPW" name="checkPW" placeholder="Controle password">
+          <div>
+            <p id="errorMessageNewUser" style="color: red;">{{errorMessageNewUser}}</p>
+            <p id="infoMessageNewUser" style="color: green;">{{succesMessageNewUser}}</p>
+          </div>
         <input (click)="insertUser()" type="submit" value="Voeg toe" id="submitButton" style="margin-top: 13%; float: right">
       </div>
     </div>
@@ -54,22 +58,22 @@
  <form>
    <div>
      <label >Emailadres</label>
-     <input type="text" class="form-control"  name="Emailadres" placeholder="Emailadres">
+     <input [(ngModel)]="emailToUpdate" type="text" class="form-control"  name="Emailadres" placeholder="Emailadres">
     </div>
    <div>
      <label >Wachtwoord</label>
-     <input type="password" class="form-control" name="wachtwoord" placeholder="Wachtwoord">
+     <input [(ngModel)]="passwordToUpdate" type="password" class="form-control" name="wachtwoord" placeholder="Wachtwoord">
    </div>
    <div>
      <label >Herhaal Wachtwoord</label>
-     <input type="password" class="form-control"  name="herhaalWachtwoord" placeholder="Herhaal Wachtwoord">
+     <input [(ngModel)]="checkPasswordToUpdate" type="password" class="form-control"  name="herhaalWachtwoord" placeholder="Herhaal Wachtwoord">
    </div>
    <div>
-     <p id="errorMessage" style="color: red; visibility: hidden;">{{errorMessage}}</p>
-     <p id="infoMessage" style="color: green; visibility: hidden">Wachtwoord geweizigd</p>
+     <p id="errorMessage" style="color: red;">{{errorMessage}}</p>
+     <p id="infoMessage" style="color: green;">{{succesMessage}}</p>
    </div>
    <div style="float: right; margin-right: 100px">
-     <input  type="submit" value="Pas Aan" id="editedButton">
+     <input (click)="changePassword()"  type="submit" value="Pas Aan" id="editedButton">
    </div>
  </form>
 </div>
