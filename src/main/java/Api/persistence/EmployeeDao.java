@@ -52,9 +52,8 @@ public class EmployeeDao implements Dao {
 
     }
 
-    public String insertEmployee(Employee employee) {
+    public int insertEmployee(Employee employee) {
 
-        //giving hard coded data to our test statement
         try {
 
             insertEmployee.setString(1, employee.getEmployee_Firstname());
@@ -65,12 +64,13 @@ public class EmployeeDao implements Dao {
 
             insertEmployee.executeUpdate();
 
-            return "Inserted succesfully";
+
+            return selectEmployee(employee).getEmployee_Employee_number();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return "Inserted failed";
+        return -1;
 
     }
 

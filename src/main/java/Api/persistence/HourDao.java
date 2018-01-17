@@ -99,7 +99,15 @@ public class HourDao implements Dao{
         try {
             ResultSet rs = getAllPendingHours.executeQuery();
             while(rs.next()){
-                pendingHours.add(new Hour(rs.getString(DatabaseInfo.HourColumnNames.approved),rs.getInt(DatabaseInfo.HourColumnNames.subprojectNumber),rs.getInt(DatabaseInfo.HourColumnNames.employeeNumber),rs.getTime(DatabaseInfo.HourColumnNames.starttime),rs.getTime(DatabaseInfo.HourColumnNames.endtime),rs.getTime(DatabaseInfo.HourColumnNames.amountOfHours),rs.getString(DatabaseInfo.HourColumnNames.comments),rs.getDate(DatabaseInfo.HourColumnNames.date),rs.getInt(DatabaseInfo.HourColumnNames.id)));
+                pendingHours.add(new Hour(rs.getString(DatabaseInfo.HourColumnNames.approved),
+                        rs.getInt(DatabaseInfo.HourColumnNames.subprojectNumber),
+                        rs.getInt(DatabaseInfo.HourColumnNames.employeeNumber),
+                        rs.getTime(DatabaseInfo.HourColumnNames.starttime),
+                        rs.getTime(DatabaseInfo.HourColumnNames.endtime),
+                        rs.getTime(DatabaseInfo.HourColumnNames.amountOfHours),
+                        rs.getString(DatabaseInfo.HourColumnNames.comments),
+                        rs.getDate(DatabaseInfo.HourColumnNames.date),
+                        rs.getInt(DatabaseInfo.HourColumnNames.id)));
             }
         } catch (SQLException e) {
             e.printStackTrace();

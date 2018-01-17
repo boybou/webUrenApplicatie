@@ -75,7 +75,7 @@ public class HourResource {
             System.out.println("Creating project because it doesn't exits");
             projectService.createProject(incompleteHour.getHour_project_name(),incompleteHour.getHour_client());
         }
-        if (subProjectService.checkIfSubprojectExists(incompleteHour.getHour_subproject_name()) == false) {
+        if (!subProjectService.checkIfSubprojectExists(incompleteHour.getHour_subproject_name())) {
             System.out.println("Creating subproject because it doesn't exits");
             subProjectService.createSubProject(incompleteHour.getHour_subproject_name(), projectService.getProjectNumber(incompleteHour.getHour_project_name()));
         }
@@ -106,6 +106,7 @@ public class HourResource {
     public ArrayList<CompleteHour> hoursToCompleteHour(ArrayList<Hour> hourList){
         ArrayList<CompleteHour> completeHoursList = new ArrayList<CompleteHour>();
         for(Hour hour : hourList){
+            System.out.println("BELANGRIJKK!!!!!!!!!!!!!" + subProjectService.getSubProjectById(hour.getHour_subproject_number()).getSubProject_Number());
             completeHoursList.add(new CompleteHour(hour.getHour_approved(),hour.getHour_subproject_number(),
                     hour.getHour_employee_number(),hour.getStartTime(),hour.getEndTime(),hour.getHour_amount_of_hours(),
                     hour.getHour_comments(),hour.getHour_date(),hour.getId(),
@@ -114,7 +115,14 @@ public class HourResource {
                     employeeService.selectSpecificEmployee(hour.getHour_employee_number()).getEmployee_Firstname(),
                     employeeService.selectSpecificEmployee(hour.getHour_employee_number()).getEmployee_Lastname(),
                     projectService.getProjectById(subProjectService.getSubProjectById(hour.getHour_subproject_number()).getSubProject_Number()).getProject_client_name()));
-            System.out.println(subProjectService.getSubProjectById(hour.getHour_subproject_number()).getSubProject_Name()+projectService.getProjectById(subProjectService.getSubProjectById(hour.getHour_subproject_number()).getSubProject_Number()).getProject_Name());
+            System.out.println(hour.getHour_approved()+hour.getHour_subproject_number()+
+                    hour.getHour_employee_number()+hour.getStartTime()+hour.getEndTime()+hour.getHour_amount_of_hours()+
+                    hour.getHour_comments()+hour.getHour_date()+hour.getId()+
+                    projectService.getProjectById(subProjectService.getSubProjectById(hour.getHour_subproject_number()).getSubProject_Number()).getProject_Name()+
+                    subProjectService.getSubProjectById(hour.getHour_subproject_number()).getSubProject_Name()+
+                    employeeService.selectSpecificEmployee(hour.getHour_employee_number()).getEmployee_Firstname()+
+                    employeeService.selectSpecificEmployee(hour.getHour_employee_number()).getEmployee_Lastname()+
+                    projectService.getProjectById(subProjectService.getSubProjectById(hour.getHour_subproject_number()).getSubProject_Number()).getProject_client_name());
         }
         return completeHoursList;
     }

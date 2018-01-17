@@ -57,4 +57,5 @@ li a {
 
 #logout:hover{
   color : darkgray;
+  cursor:pointer;
 }

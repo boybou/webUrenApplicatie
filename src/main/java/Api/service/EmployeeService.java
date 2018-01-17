@@ -17,4 +17,14 @@ public class EmployeeService extends BaseService<Employee> {
     public Employee selectSpecificEmployee(int employeeId){
         return dao.selectSpecificEmployee(employeeId);
     }
+
+    public int insertEmployee(Employee employee) {
+        int id = dao.insertEmployee(employee);
+        System.out.println("id in service is " + id);
+        return id;
+    }
+
+    public Employee selectEmployee(Employee employee) {
+        return dao.selectEmployee(employee);
+    }
 }
