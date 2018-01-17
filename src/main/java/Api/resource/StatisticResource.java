@@ -51,9 +51,13 @@ public class StatisticResource {
 
     void statisticreset()
     {
-        statisticReturn.setProject("-");
-        statisticReturn.setSubproject("-");
-        statisticReturn.setEmployee("-");
+        statisticReturn.setProject(null);
+        statisticReturn.setSubproject(null);
+        statisticReturn.setEmployee(null);
+//        statistic.setSubproject(null);
+//        statistic.setProject(null);
+//        statistic.setWerknemer(null);
+
     }
 
 }
