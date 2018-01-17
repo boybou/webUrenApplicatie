@@ -24,12 +24,7 @@ public class StatisticResource {
 
     @Inject
     public StatisticResource(
-//            HourService hourService, ClientService clientService, ProjectService projectService, SubProjectService subProjectService,
             StatisticService statisticService){
-//        this.hourService = hourService;
-//        this.clientService = clientService;
-//        this.projectService = projectService;
-//        this.subProjectService = subProjectService;
         this.statisticService = statisticService;
     }
 
@@ -48,7 +43,7 @@ public class StatisticResource {
     @RolesAllowed({"administrator"})
     public void makeStatistic( Statistic inputStatistic)
     {
-//        statisticreset();
+        statisticreset();
         statistic = inputStatistic;
         statisticService.fillStatisticModel(statistic, statisticReturn);
         System.out.println(statisticReturn.getProject());
@@ -56,9 +51,9 @@ public class StatisticResource {
 
     void statisticreset()
     {
-        statistic.setProject("-");
-        statistic.setSubproject("-");
-        statistic.setWerknemer("-");
+        statisticReturn.setProject("-");
+        statisticReturn.setSubproject("-");
+        statisticReturn.setEmployee("-");
     }
 
 }

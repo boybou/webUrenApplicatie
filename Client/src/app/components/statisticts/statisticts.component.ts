@@ -59,11 +59,10 @@ export class StatisticsComponent{
   fillP()
   {
 
-    document.getElementById('fillp').innerHTML  = "Werknemer: "+this.statisticReturn.employee+"<br>" +
-      "Project: "+this.statisticReturn.project+"<br>" +
-      "Subproject: "+this.statisticReturn.subproject+"<br>" +
-      "Uren: "+this.statisticReturn.hours+"<br>" +
-      "Minuten: "+this.statisticReturn.minutes+"<br>";
+    console.log(this.statisticReturn.project);
+    console.log(this.statisticReturn.subproject);
+    console.log(this.statisticReturn.hours);
+    console.log(this.statisticReturn.minutes);
   }
 
 

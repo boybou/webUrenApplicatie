@@ -29,7 +29,6 @@ public class StatisticService {
 
         if(statistic.getProject() != null && statistic.getSubproject() == null && statistic.getWerknemer() == null)
         {
-//            make statement in dao that gets all the ours from the statistic.getprojectn
             int pjNumber = pjDao.getSpecificProject(statistic.getProject()).getProject_Number();
 
             Project project = new Project(pjNumber);
@@ -44,10 +43,6 @@ public class StatisticService {
 //            make statement in doa that gets all the ours from the statistic.getsubproject
         }
 
-        if (statistic.getProject() != null && statistic.getSubproject() != null && statistic.getWerknemer() != null)
-        {
-//            make statement in doa that gets all the ours from the statistic.getsubproject from a specific employee
-        }
 
         if (statistic.getProject() != null && statistic.getSubproject() == null && statistic.getWerknemer() != null)
         {
@@ -57,9 +52,7 @@ public class StatisticService {
         if (statistic.getProject() == null && statistic.getSubproject() == null && statistic.getWerknemer() != null)
         {
 //            make statement in doa that gets all the ours from the statistic.employee
-            String[] voorachternaam = statistic.getWerknemer().split("\\s+");
-            Employee employee = new Employee(voorachternaam[0], voorachternaam[1]);
-            int employeeNumber = emDao.selectEmployee(employee).getEmployee_Employee_number();
+            int employeeNumber = getEmployeeNumber(statistic);
             hourstotall = hourDao.getEmployeeHourstotall(employeeNumber);
 
             statisticReturn.setEmployee(statistic.getWerknemer());
@@ -70,9 +63,18 @@ public class StatisticService {
         }
         if (statistic.getProject() == null && statistic.getSubproject() != null && statistic.getWerknemer() != null)
         {
-//            make statement in doa that gets all the ours from the statistic.subproject from a specific employee
+            int employeeNumber = getEmployeeNumber(statistic);
+
+
         }
 
+    }
+
+    public int getEmployeeNumber(Statistic statistic)
+    {
+        String[] voorachternaam = statistic.getWerknemer().split("\\s+");
+        Employee employee = new Employee(voorachternaam[0], voorachternaam[1]);
+        return emDao.selectEmployee(employee).getEmployee_Employee_number();
     }
 
     public void fillHours()
