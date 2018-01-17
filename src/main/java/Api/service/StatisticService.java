@@ -1,10 +1,7 @@
 package Api.service;
 
 import Api.model.*;
-import Api.persistence.EmployeeDao;
-import Api.persistence.HourDao;
-import Api.persistence.ProjectDao;
-import Api.persistence.StatisticDao;
+import Api.persistence.*;
 import org.joda.time.Hours;
 
 import java.lang.reflect.Array;
@@ -16,9 +13,12 @@ public class StatisticService {
     StatisticDao stDao = new StatisticDao();
     EmployeeDao emDao = new EmployeeDao();
     HourDao hourDao = new HourDao();
-    ArrayList<Hour> hourstotall;
     ProjectDao pjDao = new ProjectDao();
+    SubProjectDao spDao = new SubProjectDao();
     StatisticReturn statisticReturn;
+    ArrayList<Hour> hourstotall;
+
+
 
 
 
@@ -40,13 +40,28 @@ public class StatisticService {
 
         if (statistic.getProject() != null && statistic.getSubproject() != null && statistic.getWerknemer() == null)
         {
-//            make statement in doa that gets all the ours from the statistic.getsubproject
+            SubProject subproject = spDao.getSpecificSubProject(statistic.getSubproject());
+            hourstotall = hourDao.getSubProjectHours(subproject);
+            statisticReturn.setSubproject(statistic.getSubproject());
+            fillHours();
+
+        }
+
+        if (statistic.getProject() == null && statistic.getSubproject() != null && statistic.getWerknemer() == null)
+        {
+            SubProject subproject = spDao.getSpecificSubProject(statistic.getSubproject());
+            hourstotall = hourDao.getSubProjectHours(subproject);
+            statisticReturn.setSubproject(statistic.getSubproject());
+            fillHours();
+
         }
 
 
         if (statistic.getProject() != null && statistic.getSubproject() == null && statistic.getWerknemer() != null)
         {
-//            make statement in doa that gets all the ours from the statistic.getproject from a specific employee
+//            int pjNumber = pjDao.getSpecificProject(statistic.getProject()).getProject_Number();
+//            Project project = new Project(pjNumber);
+//            TODO: maak een mooie join in de database
         }
 
         if (statistic.getProject() == null && statistic.getSubproject() == null && statistic.getWerknemer() != null)
@@ -64,6 +79,13 @@ public class StatisticService {
         if (statistic.getProject() == null && statistic.getSubproject() != null && statistic.getWerknemer() != null)
         {
             int employeeNumber = getEmployeeNumber(statistic);
+            SubProject subproject = spDao.getSpecificSubProject(statistic.getSubproject());
+
+            hourstotall = hourDao.getSubProjectHoursEMP(subproject, employeeNumber);
+            statisticReturn.setEmployee(statistic.getWerknemer());
+            statisticReturn.setSubproject(statistic.getSubproject());
+            fillHours();
+
 
 
         }

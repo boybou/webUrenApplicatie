@@ -20,6 +20,7 @@ public class HourDao implements Dao{
     private PreparedStatement changeHourState;
     private PreparedStatement getProjectHours;
     private PreparedStatement getSubProjectHours;
+    private PreparedStatement getSubProjectHoursEMP;
     private PreparedStatement getEmployeeHours;
     private PreparedStatement getEmployeeHourstotall;
     private PreparedStatement getHourByDate;
@@ -42,6 +43,8 @@ public class HourDao implements Dao{
                             "ON h."+DatabaseInfo.HourColumnNames.subprojectNumber+" = s."+DatabaseInfo.SubprojectColumnNames.number+" " +
                             "WHERE s."+DatabaseInfo.SubprojectColumnNames.projectNumber+" = ?;");
             getSubProjectHours = ConnectionHolder.getConnection().prepareStatement("SELECT * FROM "+DatabaseInfo.hourTableName+" WHERE "+DatabaseInfo.HourColumnNames.subprojectNumber+" = ?;");
+            getSubProjectHoursEMP = ConnectionHolder.getConnection().prepareStatement(
+                    "SELECT * FROM "+DatabaseInfo.hourTableName+" WHERE "+DatabaseInfo.HourColumnNames.subprojectNumber+" = ? AND "+DatabaseInfo.HourColumnNames.employeeNumber+" = ?;");
             getEmployeeHours = ConnectionHolder.getConnection().prepareStatement(
                     "SELECT * FROM "+DatabaseInfo.hourTableName+" WHERE "+DatabaseInfo.HourColumnNames.employeeNumber+"=?;");
             getEmployeeHourstotall = ConnectionHolder.getConnection().prepareStatement(
@@ -147,6 +150,19 @@ public class HourDao implements Dao{
         try {
             getSubProjectHours.setInt(1, subProject.getSubProject_Project_Number());
             rs = getSubProjectHours.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return makeHourList(rs);
+    }
+    public ArrayList<Hour> getSubProjectHoursEMP(SubProject subProject, int employee)
+    {
+        ResultSet rs = null;
+        try {
+            getSubProjectHoursEMP.setInt(1, subProject.getSubProject_Project_Number());
+            getSubProjectHoursEMP.setInt(2, employee);
+            rs = getSubProjectHoursEMP.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
         }
