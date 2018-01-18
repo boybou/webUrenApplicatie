@@ -7,6 +7,7 @@ export class PasswordcheckerService {
   public noCaptial:string = "Password does not contain a capital";
   public noNumber:string = "Password does not contain a number";
   public succesfull:string = "Action is succesfull";
+
   constructor() {
   }
 
