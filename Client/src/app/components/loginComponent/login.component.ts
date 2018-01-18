@@ -8,6 +8,8 @@ import {LoginData} from "../../models/LoginData";
 import {Router} from "@angular/router";
 import {AuthorisationService} from "../../shared/authorisation.service";
 import {ApiService} from "../../shared/api.service";
+import {Employee} from "../../models/Employee";
+import {UriInof} from "../../models/UriInof";
 
 
 @Component({
@@ -44,6 +46,9 @@ export class Login{
       if(AuthorisationService.isLoggedIn) {
         this.router.navigate(['/hourOverview'])
       }
+      this.api.get<Employee>(UriInof.getEmployee(loginData.employeeNumber)).subscribe(data =>{
+        AuthorisationService.role = data.employee_Role_Name;
+      })
     },error =>{
       console.log("inloggen mislukt");
     })
