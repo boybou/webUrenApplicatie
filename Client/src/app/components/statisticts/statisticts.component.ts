@@ -58,11 +58,16 @@ export class StatisticsComponent{
 
   fillP()
   {
+    console.log(this.statisticReturn.employee);
 
-    console.log(this.statisticReturn.project);
-    console.log(this.statisticReturn.subproject);
-    console.log(this.statisticReturn.hours);
-    console.log(this.statisticReturn.minutes);
+    // console.log(this.statisticReturn.project);
+    // if(this.statisticReturn.project != null)
+    // {
+    //   document.getElementById("projectR").innerText = this.statisticReturn.project;
+    // }
+    // console.log(this.statisticReturn.subproject);
+    // console.log(this.statisticReturn.hours);
+    // console.log(this.statisticReturn.minutes);
   }
 
 
