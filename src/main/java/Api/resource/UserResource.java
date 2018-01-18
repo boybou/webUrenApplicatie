@@ -43,14 +43,15 @@ public class UserResource {
         employeeService.insertEmployee(employee);
         Employee employeeWithId = employeeService.selectEmployee(employee);
         System.out.println("ID = " + employeeWithId.getEmployee_Employee_number());
-        userService.insertLogindata(new LoginData(completeUser.getEmail(),completeUser.getPassword(),employeeWithId.getEmployee_Employee_number(),completeUser.getEmployee_Role_Name()));
+        userService.insertLogindata(new LoginData(completeUser.getPassword(),completeUser.getEmail(),employeeWithId.getEmployee_Employee_number(),completeUser.getEmployee_Role_Name()));
     }
 
     @POST
     @Path("/updateLoginData")
     @Consumes(MediaType.APPLICATION_JSON)
     public void updateLoginData(LoginData loginData){
-       this.userService.updateLoginData(loginData);
+        System.out.println("IN login data resrouce" + loginData.getEmail() + loginData.getPassword());
+        this.userService.updateLoginData(loginData);
     }
     @GET
     @Path("/getLoginData{email}")

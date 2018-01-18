@@ -1,5 +1,4 @@
 
-
 <div class="container">
   <div class="divider">
     <h4> ADMIN PANEEL </h4>
@@ -35,19 +34,19 @@
         <label for="role">rol naam</label>
         <textarea  [(ngModel)]="completeUser.employee_Role_Name" id="role" name="role" placeholder="Role" ></textarea>
       </div>
-        <div class="column">
-          <label for="email">email</label>
-          <input [(ngModel)]="completeUser.email" type="text" id="email" name="email" placeholder="email">
+      <div class="column">
+        <label for="email">email</label>
+        <input [(ngModel)]="completeUser.email" type="text" id="email" name="email" placeholder="email">
 
-          <label for="password">wachtwoord</label>
-          <input [(ngModel)]="completeUser.password" type="password" class="form-control" id="password" name="password" placeholder="Wachtwoord">
+        <label for="password">wachtwoord</label>
+        <input [(ngModel)]="completeUser.password" type="password" class="form-control" id="password" name="password" placeholder="Wachtwoord">
 
-          <label for="checkPW">controle wachtwoord</label>
-          <input [(ngModel)]="checkPassword" type="password" class="form-control" id="checkPW" name="checkPW" placeholder="Controle password">
-          <div>
-            <p id="errorMessageNewUser" style="color: red;">{{errorMessageNewUser}}</p>
-            <p id="infoMessageNewUser" style="color: green;">{{succesMessageNewUser}}</p>
-          </div>
+        <label for="checkPW">controle wachtwoord</label>
+        <input [(ngModel)]="checkPassword" type="password" class="form-control" id="checkPW" name="checkPW" placeholder="Controle password">
+        <div>
+          <p id="errorMessageNewUser" style="color: red;">{{errorMessageNewUser}}</p>
+          <p id="infoMessageNewUser" style="color: green;">{{succesMessageNewUser}}</p>
+        </div>
         <input (click)="insertUser()" type="submit" value="Voeg toe" id="submitButton" style="margin-top: 13%; float: right">
       </div>
     </div>
@@ -55,27 +54,25 @@
 </div>
 
 <div class="container" *ngIf="isChangePassword">
- <form>
-   <div>
-     <label >Emailadres</label>
-     <input [(ngModel)]="emailToUpdate" type="text" class="form-control"  name="Emailadres" placeholder="Emailadres">
+  <form>
+    <div>
+      <label >Emailadres</label>
+      <input [(ngModel)]="emailToUpdate" type="text" class="form-control"  name="Emailadres" placeholder="Emailadres">
     </div>
-   <div>
-     <label >Wachtwoord</label>
-     <input [(ngModel)]="passwordToUpdate" type="password" class="form-control" name="wachtwoord" placeholder="Wachtwoord">
-   </div>
-   <div>
-     <label >Herhaal Wachtwoord</label>
-     <input [(ngModel)]="checkPasswordToUpdate" type="password" class="form-control"  name="herhaalWachtwoord" placeholder="Herhaal Wachtwoord">
-   </div>
-   <div>
-     <p id="errorMessage" style="color: red;">{{errorMessage}}</p>
-     <p id="infoMessage" style="color: green;">{{succesMessage}}</p>
-   </div>
-   <div style="float: right; margin-right: 100px">
-     <input (click)="changePassword()"  type="submit" value="Pas Aan" id="editedButton">
-   </div>
- </form>
+    <div>
+      <label >Wachtwoord</label>
+      <input [(ngModel)]="passwordToUpdate" type="password" class="form-control" name="wachtwoord" placeholder="Wachtwoord">
+    </div>
+    <div>
+      <label >Herhaal Wachtwoord</label>
+      <input [(ngModel)]="checkPasswordToUpdate" type="password" class="form-control"  name="herhaalWachtwoord" placeholder="Herhaal Wachtwoord">
+    </div>
+    <div>
+      <p id="errorMessage" style="color: red;">{{errorMessage}}</p>
+      <p id="infoMessage" style="color: green;">{{succesMessage}}</p>
+    </div>
+    <div style="float: right; margin-right: 100px">
+      <input (click)="changePassword()"  type="submit" value="Pas Aan" id="editedButton">
+    </div>
+  </form>
 </div>
-
-

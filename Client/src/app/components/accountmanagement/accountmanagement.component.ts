@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import {Employee} from "../../models/Employee";
 import {LoginData} from "../../models/LoginData";
@@ -19,40 +20,44 @@ export class AccountmanagementComponent implements OnInit {
   private isAddAccount : boolean = true;
   private isChangePassword : boolean = false;
   private errorMessage : string;
-  private emailAlreadyInDB : string = "Dit email adres is al gebruikt";
   private emailToUpdate: string;
   private passwordToUpdate: string;
   private checkPasswordToUpdate: string;
-
-
   completeUser:CompleteUser;
   succesMessage: string;
   errorMessageNewUser: string;
   succesMessageNewUser: string;
-  constructor(private api:ApiService) { }
+  constructor(private api:ApiService, private pwChecker:PasswordcheckerService) { }
 
   ngOnInit() {
     this.completeUser = new CompleteUser();
+
   }
 
   public insertUser() {
     console.log("email is" + this.checkEmailExists(this.completeUser.email));
     if(this.checkEmailExists(this.completeUser.email)){
       console.log("AlreadyEmail")
-      this.errorMessage = this.emailAlreadyInDB;
+
     }else{
-     console.log("nog geen email")
+      console.log("nog geen email")
     }
 
     this.completeUser.employee_Active = true;
 
-    // let message = this.pwChecker.checkPassword(this.completeUser.password,this.checkPassword)
-    // if(message == this.pwChecker.succesfull){
-    // let uri = "/api/users/insertlogindata";
-    // this.api.post(uri,this.completeUser).subscribe();
-
-    // }
-
+    let message = this.pwChecker.checkPassword(this.completeUser.password,this.checkPassword)
+    console.log(message);
+    if(message == this.pwChecker.succesfull){
+      console.log("Succes")
+      let uri = "/api/users/insertlogindata";
+      this.api.post(uri,this.completeUser).subscribe();
+      this.errorMessageNewUser = "";
+      this.succesMessageNewUser = this.pwChecker.succesfull;
+    }else{
+      console.log("fail")
+      this.errorMessageNewUser = message;
+      this.succesMessageNewUser = "";
+    }
 
   }
 
@@ -96,11 +101,21 @@ export class AccountmanagementComponent implements OnInit {
   }
 
   public changePassword(){
+    console.log("in change password")
+    console.log(this)
     let loginData:LoginData = new LoginData;
     loginData.password = this.passwordToUpdate;
     loginData.email = this.emailToUpdate;
+    let message = this.pwChecker.checkPassword(this.passwordToUpdate,this.checkPasswordToUpdate);
+    if(message == this.pwChecker.succesfull){
     let uri = "/api/users/updateLoginData"
     this.api.post(uri,loginData).subscribe();
+    this.errorMessage = "";
+    this.succesMessage = message;
+    }else {
+      this.errorMessage = message;
+      this.succesMessage = "";
+    }
 
   }
 

@@ -58,10 +58,10 @@ public class LoginDao implements Dao {
             getLoginData.setString(1,email);
             rs = getLoginData.executeQuery();
             if (rs.next()){
-            LoginData loginData = new LoginData();
-            loginData.setEmail(rs.getString(DatabaseInfo.LoginDataColumnNames.email));
-            loginData.setPassword(rs.getString(DatabaseInfo.LoginDataColumnNames.password));
-            return loginData;
+                LoginData loginData = new LoginData();
+                loginData.setEmail(rs.getString(DatabaseInfo.LoginDataColumnNames.email));
+                loginData.setPassword(rs.getString(DatabaseInfo.LoginDataColumnNames.password));
+                return loginData;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -130,6 +130,7 @@ public class LoginDao implements Dao {
 
     public void updateLoginData(LoginData loginData) {
         try {
+            System.out.println("in update logindata " + loginData.getPassword() + loginData.getEmail());
             updateLoginData.setString(1,loginData.getPassword());
             updateLoginData.setString(2,loginData.getEmail());
             updateLoginData.executeUpdate();
@@ -152,4 +153,3 @@ public class LoginDao implements Dao {
 //    }
 
 }
-

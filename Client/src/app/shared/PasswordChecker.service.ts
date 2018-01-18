@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class PasswordcheckerService {
-  constructor(public noMatch:string = "Passwords do not match",
-  public notLongEnough:string = "Password is not long enough",
-  public noCaptial:string = "Password does not contain an captial letter",
-  public noNumber:string = "Password does not contain an number",
-  public succesfull:string = "User toegevoegd") {
+  public noMatch:string = "Passwords do not match";
+  public noLength:string = "Password is not long enough";
+  public noCaptial:string = "Password does not contain a capital";
+  public noNumber:string = "Password does not contain a number";
+  public succesfull:string = "Action is succesfull";
+  constructor() {
   }
 
   public checkPassword(password: string, checkPassword: string) {
@@ -15,10 +16,10 @@ export class PasswordcheckerService {
     console.log((this.passwordHasCaptial(password)))
     console.log((this.passwordHasNumber(password)))
     if(password != checkPassword){
-      return this.noMatch;
+      return this.noMatch
     }
     if (!(password.length > 6)) {
-      return this.notLongEnough;
+      return this.noLength
     }
     if (!(this.passwordHasCaptial(password))) {
       return this.noCaptial
@@ -55,5 +56,4 @@ export class PasswordcheckerService {
     }
     return false;
   }
-
 }
