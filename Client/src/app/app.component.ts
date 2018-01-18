@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Authorization } from './components/sharedComponent/authorization.serve'
 import {CookieService} from "ngx-cookie-service";
 import {AuthorisationService} from "./shared/authorisation.service";
+import {PasswordcheckerService} from "./shared/PasswordChecker.service";
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import {AuthorisationService} from "./shared/authorisation.service";
 })
 export class AppComponent {
   public static cookieService:CookieService;
-  constructor(cookieService:CookieService,private auth:AuthorisationService){
+  constructor(cookieService:CookieService,private auth:AuthorisationService ){
     AppComponent.cookieService = cookieService;
 
   }

@@ -26,6 +26,8 @@ import { PendingHourComponent } from './components/pending-hour/pending-hour.com
 import {WeekComponent} from "./components/week/week.component";
 import {DayComponent} from "./components/day/day.component";
 import {HourComponent} from "./components/hour/hour.component";
+import {PasswordcheckerService} from "./shared/PasswordChecker.service";
+
 
 
 const appRoutes: Routes = [
@@ -69,7 +71,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FormsModule
   ],
-  providers: [Authorization,AuthorisationService,ApiService,CookieService],
+  providers: [Authorization,AuthorisationService,ApiService,CookieService,PasswordcheckerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
