@@ -4,9 +4,9 @@
     <a routerLink="/hourOverview" id="hourOverview" autofocus>Schema</a>
     <a routerLink="/hourInsert" id="hourInput" autofocus>Uren Invoeren</a>
     <a routerLink="/userInfo" id="personalData">Gebruiker</a>
-    <a  routerLink="/hourApproval" id="hourApprove">Uren Goedkeuren</a>
-    <a  routerLink="/accountManagement" id="accountManagement">Accountbeheer</a>
-    <a routerLink="/statistics" id="statistics">Statistieken</a>
+    <a  routerLink="/hourApproval" id="hourApprove" *ngIf="isAdmin()">Uren Goedkeuren</a>
+    <a  routerLink="/accountManagement" id="accountManagement" *ngIf="isAdmin()">Accountbeheer</a>
+    <a routerLink="/statistics" id="statistics" *ngIf="isAdmin()">Statistieken</a>
   </div>
 </div>
 

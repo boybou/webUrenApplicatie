@@ -10,6 +10,7 @@ export class AuthorisationService implements OnInit{
   }
 
   public static header:HttpHeaders = new HttpHeaders();
+  public static role:string = "";
   public static employeeNumber:number;
   public static isLoggedIn:boolean = false;
   public static email : string;
@@ -24,15 +25,18 @@ export class AuthorisationService implements OnInit{
     AuthorisationService.header = AuthorisationService.header.set('Authorization',AppComponent.cookieService.get('header'));
     AuthorisationService.employeeNumber = Number(AppComponent.cookieService.get('employeeNumber'));
     AuthorisationService.email = AppComponent.cookieService.get('email');
+    AuthorisationService.role = AppComponent.cookieService.get('role');
   }
 
   public saveCookie(){
+    AppComponent.cookieService.set('role',AuthorisationService.role);
     AppComponent.cookieService.set('email', AuthorisationService.email);
     AppComponent.cookieService.set('header',AuthorisationService.header.get('Authorization'));
     AppComponent.cookieService.set('employeeNumber',String(AuthorisationService.employeeNumber));
   }
   public logout(){
     AppComponent.cookieService.deleteAll();
+    AuthorisationService.role = "";
     AuthorisationService.header = new HttpHeaders();
     AuthorisationService.employeeNumber = null;
     AuthorisationService.isLoggedIn = false;
