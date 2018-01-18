@@ -42,7 +42,6 @@ export class PasswordcheckerService {
       }
     }
     return false;
-
   }
 
   private passwordHasNumber(password: string) {
