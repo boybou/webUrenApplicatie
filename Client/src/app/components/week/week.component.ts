@@ -30,6 +30,7 @@ export class WeekComponent implements OnInit {
       this.currentWeek[i] = new CalendarDate(date.year,date.month,date.day);
       date.addDay();
     }
+    console.log()
 
   }
   nextWeek(){

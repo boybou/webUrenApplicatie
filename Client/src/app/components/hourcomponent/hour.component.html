@@ -26,13 +26,13 @@
         <div class="column">
                 <label for="date">Datum</label><br>
                 <input type="date" [(ngModel)]="hour.hour_date" id="date" name="date" placeholder="Voer datum in.."><br>
-                <input id="dateFormat" type="date" value="3333-11-22">
                 <label for="beginTime">Begintijd</label><br>
                 <input [(ngModel)]="hour.startTime" type="time" id="beginTime" name="beginTime" placeholder="Voer begin tijd in.."><br>
 
                 <label for="endTime">Eindtijd</label><br>
                 <input [(ngModel)]="hour.endTime" type="time" id="endTime" name="endTime" placeholder="Voer eind tijd in.."><br>
                 <br> <br> <br>  <br> <br> <br>  <br> <br> <br>  <br> <br>
+          <input id="dateFormat" type="date" value="3333-11-22" style="visibility: hidden">
 
                 <input (click)="sendHour()" type="submit" value="Submit" id="submitButton">
         </div>
