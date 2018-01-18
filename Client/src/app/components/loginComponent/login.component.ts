@@ -9,7 +9,8 @@ import {Router} from "@angular/router";
 import {AuthorisationService} from "../../shared/authorisation.service";
 import {ApiService} from "../../shared/api.service";
 import {Employee} from "../../models/Employee";
-import {UriInof} from "../../models/UriInof";
+import {UriInof} from "../../models/UriInfo";
+
 
 
 @Component({
