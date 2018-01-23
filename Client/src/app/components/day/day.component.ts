@@ -25,12 +25,11 @@ export class DayComponent implements OnInit {
   ngOnInit(){
     this.generateTitle();
 
-    this.api.get<CompleteHour[]>(UriInof.getHourByDate+this.date.toDateString()).toPromise().then(date =>{
-      this.completeHourList = date;
-      this.hoursRetrieved = true;
-    }, error =>{
-      console.log(error.error+"shit ging terminaal")
-    })
+
+      this.api.get<CompleteHour[]>(UriInof.getHourByDate(this.date.toDateString())).subscribe(date =>{
+        this.completeHourList = date;
+        this.hoursRetrieved = true;
+      })
 
 
   }

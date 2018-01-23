@@ -38,7 +38,6 @@ public class StatisticResource {
 
 
     @POST
-    @Path("/sendStatistics")
     @Consumes(MediaType.APPLICATION_JSON)
     @RolesAllowed({"administrator"})
     public void makeStatistic( Statistic inputStatistic)

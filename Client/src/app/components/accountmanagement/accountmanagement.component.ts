@@ -6,6 +6,7 @@ import {ApiService} from "../../shared/api.service";
 import {CompleteUser} from "../../models/CompleteUser";
 import {PasswordcheckerService} from "../../shared/PasswordChecker.service";
 import {Observable} from "rxjs/Observable";
+import {UriInof} from "../../models/UriInfo";
 
 @Component({
   selector: 'app-accountmanagement',
@@ -56,8 +57,7 @@ export class AccountmanagementComponent implements OnInit {
       if(message == this.pwChecker.succesfull){
         console.log("Succes")
         this.completeUser.employee_Type_Name = "intern"
-        let uri = "/api/users/insertlogindata";
-        this.api.post(uri,this.completeUser).subscribe();
+        this.api.post(UriInof.insertLoginData,this.completeUser).subscribe();
         this.errorMessageNewUser = "";
         this.succesMessageNewUser = this.pwChecker.succesfull;
       }else{
@@ -85,8 +85,7 @@ export class AccountmanagementComponent implements OnInit {
   }
 
   private checkEmailExists(email: string) {
-    let uri = "/api/users/getLoginData" + email;
-    this.api.get<LoginData>(uri).subscribe( data =>{
+    this.api.get<LoginData>(UriInof.getLoginDataByEmail(email)).subscribe( data =>{
       let testLoginData:LoginData = data;
       if(testLoginData != null){
         console.log("True");
@@ -132,8 +131,7 @@ export class AccountmanagementComponent implements OnInit {
     loginData.email = this.emailToUpdate;
     let message = this.pwChecker.checkPassword(this.passwordToUpdate,this.checkPasswordToUpdate);
     if(message == this.pwChecker.succesfull){
-    let uri = "/api/users/updateLoginData"
-    this.api.post(uri,loginData).subscribe();
+    this.api.put(UriInof.updateLoginData,loginData).subscribe();
     this.errorMessage = "";
     this.succesMessage = message;
     }else {

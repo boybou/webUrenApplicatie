@@ -1,6 +1,8 @@
-<div id="day" *ngIf="hoursRetrieved">
+<div id="day" >
   <h4 style="text-align: center; padding-top: 10px">{{weekDay}}</h4>
   <p style="text-align: center; font-weight: bold">{{dateOfWeek}}</p>
   <hr size="20" noshade>
+  <div *ngIf="hoursRetrieved">
   <app-hour *ngFor="let completeHour of completeHourList" [completeHour]="completeHour" ></app-hour>
+  </div>
 </div>

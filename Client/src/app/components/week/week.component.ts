@@ -8,13 +8,16 @@ import {CalendarDate} from "../../models/CalendarDate";
 })
 export class WeekComponent implements OnInit {
 
+
   currentWeek:CalendarDate[] = [];
 
 
   constructor() { }
 
   ngOnInit() {
+
     this.generateWeek();
+
   }
 
   private generateWeek() {

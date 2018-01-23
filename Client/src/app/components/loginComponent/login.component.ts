@@ -46,8 +46,7 @@ export class Login{
 
       if (this.checkFieldsComplete()){
         console.log("Alle velden ingevuld")
-      let uri = "/api/users/me";
-      this.api.get<LoginData>(uri).subscribe(data => {
+      this.api.get<LoginData>(UriInof.getSelf).subscribe(data => {
         let loginData:LoginData = data;
         AuthorisationService.employeeNumber = loginData.employeeNumber;
         this.auth.saveCookie();

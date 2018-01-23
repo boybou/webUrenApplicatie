@@ -19,7 +19,7 @@ import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 
 @Singleton
-@Path("/users")
+@Path("/user")
 @Produces(MediaType.APPLICATION_JSON)
 public class UserResource {
     private final UserService userService;
@@ -34,8 +34,8 @@ public class UserResource {
 
 
     @POST
-    @Path("/insertlogindata")
     @Consumes(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"administrator"})
     public void insertLoginData(CompleteUser completeUser){
 
         System.out.println(completeUser.getEmployee_Firstname());
@@ -47,15 +47,15 @@ public class UserResource {
         userService.insertLogindata(new LoginData(completeUser.getPassword(),completeUser.getEmail(),employeeWithId.getEmployee_Employee_number(),completeUser.getEmployee_Role_Name()));
     }
 
-    @POST
-    @Path("/updateLoginData")
+    @PUT
     @Consumes(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"administrator","Employee"})
     public void updateLoginData(LoginData loginData){
         System.out.println("IN login data resrouce" + loginData.getEmail() + loginData.getPassword());
         this.userService.updateLoginData(loginData);
     }
     @GET
-    @Path("/getLoginData{email}")
+    @Path("/{email}")
     @RolesAllowed({"administrator"})
     public LoginData getLoginData(@PathParam("email") String email){
         return userService.getLoginData(email);

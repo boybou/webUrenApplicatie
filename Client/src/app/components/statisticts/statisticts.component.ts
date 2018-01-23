@@ -5,6 +5,7 @@ import {AuthorisationService} from "../../shared/authorisation.service";
 import {StatisticsModel} from "../../models/StatisticsModel";
 import {StatisticReturn} from "../../models/StatisticReturn";
 import {applySourceSpanToExpressionIfNeeded} from "@angular/compiler/src/output/output_ast";
+import {UriInof} from "../../models/UriInfo";
 
 
 @Component({
@@ -24,8 +25,7 @@ export class StatisticsComponent{
 
     console.log("in send statistics");
 
-    let uri = "/api/statistics/sendStatistics";
-    this.api.post(uri,this.statistic).subscribe(data =>{
+    this.api.post(UriInof.sendStatistics,this.statistic).subscribe(data =>{
         console.log("verzonden");
         this.statistic = new StatisticsModel();
       }

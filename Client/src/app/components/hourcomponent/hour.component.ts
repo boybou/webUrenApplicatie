@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {ApiService} from "../../shared/api.service";
 import {IncompleteHour} from "../../models/IncompleteHour";
 import {AuthorisationService} from "../../shared/authorisation.service";
+import {UriInof} from "../../models/UriInfo";
 
 @Component({
     selector: 'hour-form',
@@ -23,13 +24,12 @@ export class Hour{
     // if (this.checkFieldsComplete()){
     console.log("in send hour");
     this.hour.hour_employee_number = AuthorisationService.employeeNumber;
-    let uri = "/api/hour/inserthour";
     var inputValue = (<HTMLInputElement>document.getElementById("dateFormat")).value;
     this.hour.date_format = this.parseDateFormat(inputValue);
     console.log(this.hour.date_format);
     console.log("start" + this.hour.startTime)
     console.log("end" + this.hour.endTime)
-    this.api.post(uri,this.hour).subscribe(data =>{
+    this.api.post(UriInof.insertHour,this.hour).subscribe(data =>{
       console.log("in piost")
         console.log("verzonden",this.hour.date_format,this.hour.hour_date);
 
