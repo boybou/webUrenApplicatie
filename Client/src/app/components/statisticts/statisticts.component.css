@@ -115,8 +115,20 @@ input[type=submit]:hover {
   padding: 10px;
 }
 
+
 #submitButton{
-  margin-left: 75%;
+  margin-left: 55%;
+  padding: 10px;
+  width: 150px;
+  border: 2px #31809c solid;
+  border-radius: 2px;
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  background-color: #27719c;
+}
+
+#submitButton:hover{
+  background-color: #31809c;
 }
 
 #date{

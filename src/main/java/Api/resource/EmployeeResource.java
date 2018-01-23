@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class EmployeeResource {
 
     private final EmployeeService employeeService;
+    public static int count = 0;
 
     @Inject
     public EmployeeResource(EmployeeService employeeService){
