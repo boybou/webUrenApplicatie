@@ -32,6 +32,7 @@ public class UserResource {
     }
 
 
+
     @POST
     @Path("/insertlogindata")
     @Consumes(MediaType.APPLICATION_JSON)
