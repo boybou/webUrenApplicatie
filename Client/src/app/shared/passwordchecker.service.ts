@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class PasswordcheckerService {
-  public noMatch:string = "Passwords do not match";
-  public noLength:string = "Password is not long enough";
-  public noCaptial:string = "Password does not contain a capital";
-  public noNumber:string = "Password does not contain a number";
+  public noMatch:string = "Wachtwoorden komen niet overeen";
+  public noLength:string = "Wachtwoord is niet lang genoeg";
+  public noCaptial:string = "Wachtwoord heeft geen hoofdletter";
+  public noNumber:string = "Wachtwoord bevat geen nummer";
   public succesfull:string = "Action is succesfull";
 
   constructor() {

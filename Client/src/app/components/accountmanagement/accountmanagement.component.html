@@ -28,11 +28,13 @@
         <label for="lastname">achternaam</label>
         <input [(ngModel)]="completeUser.employee_Lastname" type="text" id="lastname" name="lastname" placeholder="Achternaam">
 
-        <label for="type">type</label>
-        <input [(ngModel)]="completeUser.employee_Type_Name" type="text" id="type" name="type" placeholder="Type">
-
         <label for="role">rol naam</label>
-        <textarea  [(ngModel)]="completeUser.employee_Role_Name" id="role" name="role" placeholder="Role" ></textarea>
+        <!--<textarea  [(ngModel)]="completeUser.employee_Role_Name" id="role" name="role" placeholder="Role" ></textarea>-->
+        <select [(ngModel)]="completeUser.employee_Role_Name"  name="role" id="role" >
+          <option value="administrator">Administrator</option>
+          <option value="Employee">Medewerker</option>
+
+        </select>
       </div>
       <div class="column">
         <label for="email">email</label>
