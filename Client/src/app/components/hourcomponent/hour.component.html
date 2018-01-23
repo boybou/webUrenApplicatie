@@ -33,7 +33,7 @@
                 <input [(ngModel)]="hour.endTime" type="time" id="endTime" name="endTime" placeholder="Voer eind tijd in.."><br>
                 <br> <br> <br>  <br> <br> <br>  <br> <br> <br>  <br> <br>
           <input id="dateFormat" type="date" value="3333-11-22" style="visibility: hidden">
-
+                <p style="color: red; text-align: center">{{errorMessage}}</p>
                 <input (click)="sendHour()" type="submit" value="Submit" id="submitButton">
         </div>
     </div>
