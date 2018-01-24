@@ -11,7 +11,7 @@ import {CompleteUser} from "../../models/CompleteUser";
 })
 export class AccountmanagementComponent implements OnInit {
 
-  private employee:Employee = new Employee;
+  private employee:Employee = new Employee();
   private loginData:LoginData = new LoginData;
   private checkPassword:string;
   private isAddAccount : boolean = true;

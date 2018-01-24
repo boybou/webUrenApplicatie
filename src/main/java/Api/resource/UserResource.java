@@ -2,6 +2,7 @@ package Api.resource;
 
 import Api.View;
 import Api.model.LoginData;
+import Api.service.UserService;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -84,6 +85,10 @@ public class UserResource
     @RolesAllowed({"Employee","administrator"})
     public void updatePassword(@Valid LoginData updatePassword)
     {
+        System.out.println("In post user");
+        System.out.println(updatePassword.getPassword());
+        System.out.println(updatePassword.getEmail());
+        System.out.println(updatePassword.getEmployeeNumber());
         this.service.setPassword(updatePassword);
     }
 

@@ -14,7 +14,6 @@ import java.security.Principal;
  */
 public class LoginData implements Principal {
     @NotEmpty
-    @Length(min = 6)
     @JsonView(View.Protected.class)
     private String password;
 
@@ -22,7 +21,6 @@ public class LoginData implements Principal {
     @JsonView(View.Public.class)
     private String email;
 
-    @Length(min = 1)
     @JsonView(View.Public.class)
     private int employeeNumber;
 

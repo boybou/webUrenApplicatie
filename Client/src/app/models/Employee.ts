@@ -1,10 +1,10 @@
 export class Employee{
-  constructor(private _employee_Firstname: string,
-              private  _employee_Lastname: string,
-              private  _employee_Type_Name: string,
-              private _employee_Employee_Number: number,
-              private _employee_Role_Name: string,
-              private _employee_Active: boolean){}
+  constructor(private _employee_Firstname?: string,
+              private  _employee_Lastname?: string,
+              private  _employee_Type_Name?: string,
+              private _employee_Employee_Number?: number,
+              private _employee_Role_Name?: string,
+              private _employee_Active?: boolean){}
 
   get employee_Firstname(): string {
     return this._employee_Firstname;

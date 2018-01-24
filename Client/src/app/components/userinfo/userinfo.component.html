@@ -22,15 +22,15 @@
         <div class="modal-body">
           <form>
             <label>Oud Wachtwoord</label>
-            <input type="password" placeholder="Oud Wachtwoord" class="form-control">
-            <label>Nieuw Wachtwoord</label>
-            <input type="password" placeholder="Nieuw Wachtwoord" class="form-control">
+            <input  type="password" placeholder="Oud Wachtwoord" class="form-control">
+            <label for="password">Nieuw Wachtwoord</label>
+            <input [(ngModel)]="loginData.password" type="password" id="password" name="password" placeholder="Nieuw Wachtwoord" class="form-control">
             <label>Herhaal Nieuw Wachtwoord</label>
             <input type="password" placeholder="Herhaald Wachtwoord" class="form-control">
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" id="submitButton" class="btn btn-default" data-dismiss="modal">Verander</button>
+          <input (click)="changePassword()" type="submit" value="Veranderen" id="submitButton">
         </div>
       </div>
 
