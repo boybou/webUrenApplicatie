@@ -29,12 +29,6 @@ public class StatisticResource {
         this.statisticService = statisticService;
     }
 
-//    @GET
-//    @JsonView(View.Public.class)
-//    @RolesAllowed({"administrator"})
-//    public StatisticReturn retrieveStatistics(){
-//        return statisticReturn;
-//    }
 
 
     @GET
@@ -42,7 +36,6 @@ public class StatisticResource {
     @RolesAllowed({"administrator"})
     public StatisticReturn makeStatistic(@PathParam("employee")String employee,@PathParam("project")String project,@PathParam("subproject")String subproject)
     {
-        System.out.println("_____________________________\n"+employee+project+subproject+"_________________________________\n");
         statisticreset();
         statistic = new Statistic();
         if(!employee.equals("undefined")){
@@ -61,18 +54,7 @@ public class StatisticResource {
         System.out.println(statisticReturn.getProject());
         return statisticReturn;
     }
-//    @GET
-//    @Path("/{employee}{project}{subproject}")
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @RolesAllowed({"administrator"})
-//    public StatisticReturn makeStatistic(Statistic inputStatistic)
-//    {
-//        statisticreset();
-//        statistic = new
-//                statisticService.fillStatisticModel(statistic, statisticReturn);
-//        System.out.println(statisticReturn.getProject());
-//        statistic = new Statistic();
-//    }
+
 
     void statisticreset()
     {
