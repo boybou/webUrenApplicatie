@@ -5,6 +5,7 @@ import {AuthorisationService} from "../../shared/authorisation.service";
 import {StatisticsModel} from "../../models/StatisticsModel";
 import {StatisticReturn} from "../../models/StatisticReturn";
 import {applySourceSpanToExpressionIfNeeded} from "@angular/compiler/src/output/output_ast";
+import {StaticUri} from "../../models/StaticUri";
 
 
 @Component({
@@ -46,9 +47,7 @@ export class StatisticsComponent{
   retreiveStatistics()
   {
     console.log("getStatistics");
-
-    let uri = "/api/statistics/"+this.statistic.werknemer+","+this.statistic.project+","+this.statistic.subproject;
-    this.api.get<StatisticReturn>(uri).subscribe(data =>{
+    this.api.get<StatisticReturn>(StaticUri.getStatistics(this.statistic.werknemer,this.statistic.project,this.statistic.subproject)).subscribe(data =>{
       this.statisticReturn = data;
       this.returned = true;
       console.log(data["hours"]);

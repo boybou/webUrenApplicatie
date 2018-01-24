@@ -30,4 +30,7 @@ export class StaticUri{
   public static getEmployee(id:number):string{
     return '/api/employee/'+id;
   }
+  public static getStatistics(employee,project,subproject){
+    return "/api/statistics/"+employee+","+project+","+subproject;
+  }
 }
