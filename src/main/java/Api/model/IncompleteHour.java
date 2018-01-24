@@ -11,6 +11,21 @@ public class IncompleteHour {
     private String hour_date;
     private String date_format;
 
+    public IncompleteHour(String hour_client, String hour_project_name, String hour_subproject_name, int hour_employee_number, String startTime, String endTime, String hour_comments, String hour_date, String date_format) {
+        this.hour_client = hour_client;
+        this.hour_project_name = hour_project_name;
+        this.hour_subproject_name = hour_subproject_name;
+        this.hour_employee_number = hour_employee_number;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.hour_comments = hour_comments;
+        this.hour_date = hour_date;
+        this.date_format = date_format;
+    }
+    public IncompleteHour(){
+
+    }
+
     public String getHour_client() {
         return hour_client;
     }
