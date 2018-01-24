@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Hour} from "../../models/Hour";
 import {ApiService} from "../../shared/api.service";
 import {CompleteHour} from "../../models/CompleteHour";
+import {StaticUri} from "../../models/StaticUri";
 
 @Component({
   selector: 'app-pending-hour',
@@ -15,8 +16,7 @@ export class PendingHourComponent implements OnInit {
   ngOnInit() {
   }
   approveHour(){
-    let uri = "/api/hour/approveHour" + this.hour.id;
-    this.api.get(uri).subscribe(data =>{
+    this.api.put(StaticUri.approveHour(this.hour.id)).subscribe(data =>{
     },error =>{
       console.log("iest fout")
       }
@@ -25,8 +25,7 @@ export class PendingHourComponent implements OnInit {
 
   }
   disapproveHour(){
-    let uri = "/api/hour/disapproveHour" + this.hour.id;
-    this.api.get(uri).subscribe(data =>{
+    this.api.put(StaticUri.disapproveHour(this.hour.id)).subscribe(data =>{
       },error =>{
         console.log("iest fout")
       }

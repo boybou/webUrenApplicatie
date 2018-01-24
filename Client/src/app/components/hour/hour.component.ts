@@ -15,7 +15,7 @@ export class HourComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.completeHour.hour_client_name,this.completeHour.startTime,this.completeHour.endTime)
+    console.log(this.completeHour.hour_project_name,this.completeHour.hour_subproject_name,this.completeHour.hour_client_name)
 
   }
 

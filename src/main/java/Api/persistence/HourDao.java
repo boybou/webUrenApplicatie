@@ -49,7 +49,7 @@ public class HourDao implements Dao{
                     "SELECT * FROM "+DatabaseInfo.hourTableName+" WHERE "+DatabaseInfo.HourColumnNames.employeeNumber+"=?;");
             getEmployeeHourstotall = ConnectionHolder.getConnection().prepareStatement(
                     "SELECT * FROM "+DatabaseInfo.hourTableName+" WHERE "+DatabaseInfo.HourColumnNames.employeeNumber+"=? AND hour_approved = 'approved';");
-            getHourByDate = ConnectionHolder.getConnection().prepareStatement("SELECT * FROM " + DatabaseInfo.hourTableName + " WHERE " + DatabaseInfo.HourColumnNames.date + " = ?;");
+            getHourByDate = ConnectionHolder.getConnection().prepareStatement("SELECT * FROM " + DatabaseInfo.hourTableName + " WHERE " + DatabaseInfo.HourColumnNames.date + " = ? AND "+DatabaseInfo.HourColumnNames.employeeNumber+" = ?;");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -65,10 +65,11 @@ public class HourDao implements Dao{
         }
 
     }
-    public ArrayList<Hour> getHourByDate(Date date){
+    public ArrayList<Hour> getHourByDate(Date date,int employeeId){
         ArrayList<Hour> dateHours = new ArrayList<Hour>();
         try {
             getHourByDate.setDate(1,date);
+            getHourByDate.setInt(2,employeeId);
             ResultSet rs = getHourByDate.executeQuery();
             while(rs.next()){
                 dateHours.add(new Hour(rs.getString(DatabaseInfo.HourColumnNames.approved),rs.getInt(DatabaseInfo.HourColumnNames.subprojectNumber),rs.getInt(DatabaseInfo.HourColumnNames.employeeNumber),rs.getTime(DatabaseInfo.HourColumnNames.starttime),rs.getTime(DatabaseInfo.HourColumnNames.endtime),rs.getTime(DatabaseInfo.HourColumnNames.amountOfHours),rs.getString(DatabaseInfo.HourColumnNames.comments),rs.getDate(DatabaseInfo.HourColumnNames.date),rs.getInt(DatabaseInfo.HourColumnNames.id)));

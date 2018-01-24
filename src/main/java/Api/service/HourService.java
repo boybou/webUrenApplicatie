@@ -87,14 +87,10 @@ public class HourService extends BaseService<Hour>{
         dao.changeHourState(hourId,"disapproved");
     }
 
-    public ArrayList<Hour> getCompleteHoursByDate(String date) {
+    public ArrayList<Hour> getCompleteHoursByDate(String date,int id) {
 
         String dateFormat = "yyyy-MM-dd";
-        System.out.println("SUPERBELANGRIJIK1!!!!!!!!!!!!!!!!!!!!!!" +dateParser(date,dateFormat));
-        for(Hour hour: dao.getHourByDate(dateParser(date,dateFormat))){
-            System.out.println(hour.getHour_subproject_number());
-        }
-        return dao.getHourByDate(dateParser(date,dateFormat));
+        return dao.getHourByDate(dateParser(date,dateFormat),id);
 
     }
 

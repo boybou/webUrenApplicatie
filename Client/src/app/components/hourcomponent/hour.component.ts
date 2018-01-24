@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {ApiService} from "../../shared/api.service";
 import {IncompleteHour} from "../../models/IncompleteHour";
 import {AuthorisationService} from "../../shared/authorisation.service";
+import {StaticUri} from "../../models/StaticUri";
 
 @Component({
     selector: 'hour-form',
@@ -12,29 +13,41 @@ import {AuthorisationService} from "../../shared/authorisation.service";
 export class Hour{
 
   public hour:IncompleteHour = new IncompleteHour();
-
+  private errorMessage:string;
   constructor(private api:ApiService ){
 
   }
   sendHour() {
-    console.log("in send hour");
+    if (this.checkFieldsComplete()){
     this.hour.hour_employee_number = AuthorisationService.employeeNumber;
-    let uri = "/api/hour/inserthour";
     var inputValue = (<HTMLInputElement>document.getElementById("dateFormat")).value;
     this.hour.date_format = this.parseDateFormat(inputValue);
-    console.log(this.hour.date_format);
-    this.api.post(uri,this.hour).subscribe(data =>{
-        console.log("verzonden",this.hour.date_format,this.hour.hour_date);
+    this.api.post(StaticUri.insertHour,this.hour).subscribe(data =>{
         this.hour = new IncompleteHour();
     }
       ,error =>{
-        console.log(error.error,error.name,error.status)
+        console.log("internal server error")
       }
     );
+    this.errorMessage = ""
+    }else{
+      this.errorMessage = "Vul alle velden in"
+
+    }
 
 
   }
-  parseDateFormat(date) {
+
+  private checkFieldsComplete() {
+    if (this.hour.hour_subproject_name != null && this.hour.hour_client != null && this.hour.hour_project_name != null && this.hour.startTime != null && this.hour.endTime && this.hour.hour_comments != null && this.hour.hour_date != null){
+
+      return true
+    }else {
+      return false
+    }
+
+  }
+  private parseDateFormat(date) {
     let dateFormat = "";
     let yearFound = false;
     let monthFound = false;
