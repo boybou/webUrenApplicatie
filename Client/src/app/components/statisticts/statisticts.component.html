@@ -25,14 +25,9 @@
 
 
       <div class="column">
-        <!--<label for="bDate">Start Datum</label><br>-->
-        <!--<input lang="NL" type="date" [(ngModel)]="statistic.bDate" id="bDate" name="date" placeholder="Voer datum in.."><br>-->
-<!---->
-        <!--<label for="eDate">Eind Datum</label><br>-->
-        <!--<input type="date" [(ngModel)]="statistic.eDate" id="eDate" name="date" placeholder="Voer datum in.."><br>-->
 
 
-        <input (click)="sendStatistics()" type="submit" value="Submit" id="submitButton">
+a        <input (click)="sendStatistics()" type="submit" value="Submit" id="submitButton">
       </div>
     </div>
 
@@ -45,31 +40,31 @@
 
 </div>
 
-<div class="container2">
+<div class="container2" *ngIf="returned">
   <div class="row">
     <div class="column">
       <label for="werknemerR">Werknemer</label>
-      <input type="text" id="werknemerR" name="werk" disabled>
+      <input [(ngModel)]="statisticReturn.employee" type="text" id="werknemerR" name="werk" disabled>
 
       <br><br>
 
       <label for="project">Project</label>
-      <input type="text" id="projectR" name="project" disabled>
+      <input [(ngModel)]="statisticReturn.project" type="text" id="projectR" name="project" disabled>
 
       <br><br>
 
       <label for="subject">Onderwerp</label>
-      <input type="text" id="subjectR" name="subject" disabled>
+      <input [(ngModel)]="statisticReturn.subproject" type="text" id="subjectR" name="subject" disabled>
 
       <br><br>
 
       <label for="uren">uren</label>
-      <input type="text" id="uren" name="uren" disabled>
+      <input [(ngModel)]="statisticReturn.hours" type="text" id="uren" name="uren" disabled>
 
       <br><br>
 
       <label for="minuten">minuten</label>
-      <input type="text" id="minuten" name="minuten" disabled>
+      <input [(ngModel)]="statisticReturn.minutes" type="text" id="minuten" name="minuten" disabled>
 
     </div>
   </div>

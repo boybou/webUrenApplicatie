@@ -16,6 +16,7 @@ export class StatisticsComponent{
 
   public statistic:StatisticsModel = new StatisticsModel();
   public statisticReturn:StatisticReturn;
+  public returned:boolean = false;
   constructor(private api:ApiService) {
 
   }
@@ -24,18 +25,20 @@ export class StatisticsComponent{
 
     console.log("in send statistics");
 
-    let uri = "/api/statistics/sendStatistics";
-    this.api.post(uri,this.statistic).subscribe(data =>{
-        console.log("verzonden");
-        this.statistic = new StatisticsModel();
-      }
-      ,error =>{
-        console.log(error.error,error.name,error.status)
-      }
-    );
+    // let uri = "/api/statistics/sendStatistics";
+    // this.api.post(uri,this.statistic).subscribe(data =>{
+    //     console.log("verzonden");
+    //     this.statistic = new StatisticsModel();
+    //     this.retreiveStatistics()
+    //
+    //   }
+    //   ,error =>{
+    //     console.log(error.error,error.name,error.status)
+    //   }
+    // );
+    this.retreiveStatistics();
 
 
-    this.retreiveStatistics()
 
 
   }
@@ -44,12 +47,16 @@ export class StatisticsComponent{
   {
     console.log("getStatistics");
 
-    let uri = "/api/statistics/getStatistics";
+    let uri = "/api/statistics/"+this.statistic.werknemer+","+this.statistic.project+","+this.statistic.subproject;
     this.api.get<StatisticReturn>(uri).subscribe(data =>{
       this.statisticReturn = data;
+      this.returned = true;
+      console.log(data["hours"]);
+      this.fillP();
+      this.statistic = new StatisticsModel();
     });
 
-    this.fillP();
+
 
   }
 
@@ -60,14 +67,13 @@ export class StatisticsComponent{
   {
     console.log(this.statisticReturn.employee);
 
-    // console.log(this.statisticReturn.project);
-    // if(this.statisticReturn.project != null)
-    // {
-    //   document.getElementById("projectR").innerText = this.statisticReturn.project;
-    // }
-    // console.log(this.statisticReturn.subproject);
-    // console.log(this.statisticReturn.hours);
-    // console.log(this.statisticReturn.minutes);
+    console.log(this.statisticReturn.project);
+
+    console.log(this.statisticReturn.subproject);
+    console.log(this.statisticReturn.hours);
+    console.log(this.statisticReturn.minutes);
+
+
   }
 
 

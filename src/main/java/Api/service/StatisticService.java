@@ -15,7 +15,6 @@ public class StatisticService {
     HourDao hourDao = new HourDao();
     ProjectDao pjDao = new ProjectDao();
     SubProjectDao spDao = new SubProjectDao();
-    StatisticReturn statisticReturn;
     ArrayList<Hour> hourstotall;
 
 
@@ -24,7 +23,6 @@ public class StatisticService {
 
     public void fillStatisticModel(Statistic statistic, StatisticReturn statisticReturn)
     {
-        this.statisticReturn = statisticReturn;
 
 
         if(statistic.getProject() != null && statistic.getSubproject() == null && statistic.getWerknemer() == null)
@@ -35,7 +33,7 @@ public class StatisticService {
 
             hourstotall = hourDao.getProjectHours(project);
             statisticReturn.setProject(statistic.getProject());
-            fillHours();
+            fillHours(statisticReturn);
         }
 
         if (statistic.getProject() != null && statistic.getSubproject() != null && statistic.getWerknemer() == null)
@@ -43,7 +41,7 @@ public class StatisticService {
             SubProject subproject = spDao.getSpecificSubProject(statistic.getSubproject());
             hourstotall = hourDao.getSubProjectHours(subproject);
             statisticReturn.setSubproject(statistic.getSubproject());
-            fillHours();
+            fillHours(statisticReturn);
 
         }
 
@@ -52,7 +50,7 @@ public class StatisticService {
             SubProject subproject = spDao.getSpecificSubProject(statistic.getSubproject());
             hourstotall = hourDao.getSubProjectHours(subproject);
             statisticReturn.setSubproject(statistic.getSubproject());
-            fillHours();
+            fillHours(statisticReturn);
 
         }
 
@@ -72,23 +70,38 @@ public class StatisticService {
 
             statisticReturn.setEmployee(statistic.getWerknemer());
 
-            fillHours();
+            fillHours(statisticReturn);
 
 
         }
         if (statistic.getProject() == null && statistic.getSubproject() != null && statistic.getWerknemer() != null)
+    {
+        int employeeNumber = getEmployeeNumber(statistic);
+        SubProject subproject = spDao.getSpecificSubProject(statistic.getSubproject());
+
+        hourstotall = hourDao.getSubProjectHoursEMP(subproject, employeeNumber);
+        statisticReturn.setEmployee(statistic.getWerknemer());
+        statisticReturn.setSubproject(statistic.getSubproject());
+        fillHours(statisticReturn);
+
+
+
+    }
+        if (statistic.getProject() != null && statistic.getSubproject() != null && statistic.getWerknemer() != null)
         {
             int employeeNumber = getEmployeeNumber(statistic);
+            System.out.println("______________check__________");
             SubProject subproject = spDao.getSpecificSubProject(statistic.getSubproject());
 
             hourstotall = hourDao.getSubProjectHoursEMP(subproject, employeeNumber);
             statisticReturn.setEmployee(statistic.getWerknemer());
             statisticReturn.setSubproject(statistic.getSubproject());
-            fillHours();
+            fillHours(statisticReturn);
 
 
 
         }
+
 
     }
 
@@ -99,7 +112,7 @@ public class StatisticService {
         return emDao.selectEmployee(employee).getEmployee_Employee_number();
     }
 
-    public void fillHours()
+    public void fillHours(StatisticReturn statisticReturn)
     {
 
         int totaalHour = 0;
