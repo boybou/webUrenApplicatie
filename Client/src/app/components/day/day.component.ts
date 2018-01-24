@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {CalendarDate} from "../../models/CalendarDate";
 import {ApiService} from "../../shared/api.service";
-import {UriInof} from "../../models/UriInfo";
+import {StaticUri} from "../../models/StaticUri";
 import {CompleteHour} from "../../models/CompleteHour";
 
 @Component({
@@ -26,7 +26,7 @@ export class DayComponent implements OnInit {
     this.generateTitle();
 
 
-      this.api.get<CompleteHour[]>(UriInof.getHourByDate(this.date.toDateString())).subscribe(date =>{
+      this.api.get<CompleteHour[]>(StaticUri.getHourByDate(this.date.toDateString())).subscribe(date =>{
         this.completeHourList = date;
         this.hoursRetrieved = true;
       })

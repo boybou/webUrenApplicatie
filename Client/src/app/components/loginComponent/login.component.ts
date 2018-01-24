@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
 import {AuthorisationService} from "../../shared/authorisation.service";
 import {ApiService} from "../../shared/api.service";
 import {Employee} from "../../models/Employee";
-import {UriInof} from "../../models/UriInfo";
+import {StaticUri} from "../../models/StaticUri";
 
 
 
@@ -46,7 +46,7 @@ export class Login{
 
       if (this.checkFieldsComplete()){
         console.log("Alle velden ingevuld")
-      this.api.get<LoginData>(UriInof.getSelf).subscribe(data => {
+      this.api.get<LoginData>(StaticUri.getSelf).subscribe(data => {
         let loginData:LoginData = data;
         AuthorisationService.employeeNumber = loginData.employeeNumber;
         this.auth.saveCookie();
@@ -54,7 +54,7 @@ export class Login{
         if(AuthorisationService.isLoggedIn) {
           this.router.navigate(['/hourOverview'])
         }
-        this.api.get<Employee>(UriInof.getEmployee(loginData.employeeNumber)).subscribe(data =>{
+        this.api.get<Employee>(StaticUri.getEmployee(loginData.employeeNumber)).subscribe(data =>{
           AuthorisationService.role = data.employee_Role_Name;
         })
     },error =>{

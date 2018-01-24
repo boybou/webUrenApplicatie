@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Hour} from "../../models/Hour";
 import {ApiService} from "../../shared/api.service";
 import {CompleteHour} from "../../models/CompleteHour";
-import {UriInof} from "../../models/UriInfo";
+import {StaticUri} from "../../models/StaticUri";
 
 @Component({
   selector: 'app-hourapproval',
@@ -23,7 +23,7 @@ export class HourapprovalComponent implements OnInit {
   getPendingHours() {
     console.log("in construct")
 
-    this.api.get<Hour[]>(UriInof.getPendingHours).subscribe( data =>{
+    this.api.get<Hour[]>(StaticUri.getPendingHours).subscribe(data =>{
       let temp_hours : Hour[] = data;
       this.hours = temp_hours;
       console.log(this.hours[0].hour_comments);

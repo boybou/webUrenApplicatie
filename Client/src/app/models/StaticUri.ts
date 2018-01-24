@@ -1,4 +1,4 @@
-export class UriInof{
+export class StaticUri{
   public static insertEmployee:string = "/api/employee";
   public static retrieveEmployee(id:number){
     return  "/api/employee/" + id;
@@ -8,7 +8,7 @@ export class UriInof{
   }
   public static retrievePersonalHours:string = "/api/hour/me";
   public static insertHour:string = "/api/hour";
-  public static getPendingHours:string = "/api/hour/pedinghours";
+  public static getPendingHours:string = "/api/hour/pendinghours";
   public static approveHour(id:number){
     return "/api/hour/"+id;
   }

@@ -3,7 +3,7 @@ import {ApiService} from "../../shared/api.service";
 import {Router} from "@angular/router";
 import {AuthorisationService} from "../../shared/authorisation.service";
 import {Employee} from "../../models/Employee";
-import {UriInof} from "../../models/UriInfo";
+import {StaticUri} from "../../models/StaticUri";
 
 
 @Component({
@@ -25,7 +25,7 @@ export class UserinfoComponent implements OnInit {
   }
 
   private getUserInformation(){
-    this.api.get<Employee>(UriInof.getEmployee(AuthorisationService.employeeNumber)).subscribe(data =>{
+    this.api.get<Employee>(StaticUri.getEmployee(AuthorisationService.employeeNumber)).subscribe(data =>{
         console.log("employee data ", data)
         let employee = data;
         this.emp = employee;
