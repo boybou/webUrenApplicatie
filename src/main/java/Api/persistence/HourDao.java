@@ -65,7 +65,7 @@ public class HourDao implements Dao{
         }
 
     }
-    public ArrayList<Hour> getHourByDate(Date date,int employeeId){
+    public synchronized ArrayList<Hour> getHourByDate(Date date,int employeeId){
         ArrayList<Hour> dateHours = new ArrayList<Hour>();
         try {
             getHourByDate.setDate(1,date);
