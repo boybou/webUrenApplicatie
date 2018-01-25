@@ -128,7 +128,6 @@ public class HourDao implements Dao{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("middle");
         return makeHourList(rs);
     }
 
@@ -141,7 +140,6 @@ public class HourDao implements Dao{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("middle");
         return makeHourList(rs);
     }
 

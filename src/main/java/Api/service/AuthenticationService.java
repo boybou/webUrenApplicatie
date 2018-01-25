@@ -30,7 +30,7 @@ public class AuthenticationService implements Authenticator<BasicCredentials, Lo
     {
 
         int userId = loginDao.getEmployeeNumberByEmail(credentials.getUsername());
-        System.out.println(userId);
+
         LoginData login;
         login = loginDao.getLoginData(credentials.getUsername());
         if (login != null && login.getPassword().equals(credentials.getPassword()))
@@ -41,7 +41,6 @@ public class AuthenticationService implements Authenticator<BasicCredentials, Lo
             loginData.setPassword(login.getPassword());
             loginData.setEmployeeNumber(loginDao.getEmployeeNumberByEmail(login.getEmail()));
             loginData.setRole(emp.getEmployee_Role_Name());
-            System.out.println(emp.getEmployee_Role_Name());
             return Optional.of(loginData);
         }
 

@@ -40,7 +40,7 @@ export class AccountmanagementComponent implements OnInit {
     if (this.allNewUserFieldsFilled()){
       this.errorMessageNewUser = "";
       this.succesMessageNewUser = "";
-      console.log(this.completeUser.employee_Role_Name);
+
 
       // console.log("email is" + this.checkEmailExists(this.completeUser.email));
       // if(this.checkEmailExists(this.completeUser.email)){
@@ -53,15 +53,12 @@ export class AccountmanagementComponent implements OnInit {
       this.completeUser.employee_Active = true;
 
       let message = this.pwChecker.checkPassword(this.completeUser.password,this.checkPassword)
-      console.log(message);
       if(message == this.pwChecker.succesfull){
-        console.log("Succes")
         this.completeUser.employee_Type_Name = "intern"
         this.api.post(StaticUri.insertLoginData,this.completeUser).subscribe();
         this.errorMessageNewUser = "";
         this.succesMessageNewUser = this.pwChecker.succesfull;
       }else{
-        console.log("fail")
         this.errorMessageNewUser = message;
         this.succesMessageNewUser = "";
       }
@@ -73,12 +70,9 @@ export class AccountmanagementComponent implements OnInit {
   }
 //
   private allNewUserFieldsFilled() {
-    console.log(this.completeUser.employee_Firstname)
       if(this.completeUser.employee_Firstname == null || this.completeUser.employee_Lastname == null|| this.completeUser.email ==null || this.completeUser.password == null|| this.completeUser == null){
-        console.log("iets is leeg")
         return false;
       }else{
-        console.log("alles is vol")
         return true;
       }
 
@@ -88,10 +82,8 @@ export class AccountmanagementComponent implements OnInit {
     this.api.get<LoginData>(StaticUri.getLoginDataByEmail(email)).subscribe(data =>{
       let testLoginData:LoginData = data;
       if(testLoginData != null){
-        console.log("True");
         return true;
       }else{
-        console.log("False");
         return false;
       }
 
@@ -124,8 +116,6 @@ export class AccountmanagementComponent implements OnInit {
 
   public changePassword(){
     if(this.allChangePasswordFieldsFilled()){
-    console.log("in change password")
-    console.log(this)
     let loginData:LoginData = new LoginData;
     loginData.password = this.passwordToUpdate;
     loginData.email = this.emailToUpdate;

@@ -40,8 +40,6 @@ public class StatisticResource {
         statistic = new Statistic();
         if(!employee.equals("undefined")){
             statistic.setWerknemer(employee);
-            System.out.println("in de if");
-            System.out.println(statistic.getWerknemer());
         }
         if(!project.equals("undefined")){
             statistic.setProject(project);
@@ -51,7 +49,7 @@ public class StatisticResource {
         }
 
         statisticService.fillStatisticModel(statistic, statisticReturn);
-        System.out.println(statisticReturn.getProject());
+
         return statisticReturn;
     }
 

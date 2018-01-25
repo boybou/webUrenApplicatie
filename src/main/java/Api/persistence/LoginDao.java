@@ -44,8 +44,7 @@ public class LoginDao implements Dao {
         try {
             getUserEmail.setInt(1,id);
             rs = getUserEmail.executeQuery();
-            //rs.next();
-            System.out.println(rs.next());
+            rs.next();
             return rs.getString(DatabaseInfo.LoginDataColumnNames.email);
         } catch (SQLException e) {
 
@@ -117,7 +116,7 @@ public class LoginDao implements Dao {
 
     }
     public void insertInlogData(LoginData loginData){
-        System.out.println("In login data");
+
         try {
             insertLoginData.setString(1,loginData.getPassword());
             insertLoginData.setString(2,loginData.getEmail());
@@ -130,7 +129,7 @@ public class LoginDao implements Dao {
 
     public void updateLoginData(LoginData loginData) {
         try {
-            System.out.println("in update logindata " + loginData.getPassword() + loginData.getEmail());
+
             updateLoginData.setString(1,loginData.getPassword());
             updateLoginData.setString(2,loginData.getEmail());
             updateLoginData.executeUpdate();

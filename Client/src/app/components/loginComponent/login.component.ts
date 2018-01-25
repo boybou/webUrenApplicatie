@@ -45,7 +45,7 @@ export class Login{
   private login(){
 
       if (this.checkFieldsComplete()){
-        console.log("Alle velden ingevuld")
+
       this.api.get<LoginData>(StaticUri.getSelf).subscribe(data => {
         let loginData:LoginData = data;
         AuthorisationService.employeeNumber = loginData.employeeNumber;
@@ -58,7 +58,7 @@ export class Login{
           AuthorisationService.role = data.employee_Role_Name;
         })
     },error =>{
-      console.log("inloggen mislukt");
+
       if (this.cookieFlag){
        this.cookieFlag = false;
       }else {
@@ -66,7 +66,7 @@ export class Login{
       }
     })
   }else{
-        console.log("Vul alle velden in")
+
         this.errorMessage = "Vul alle velden in"
 
       }
@@ -75,8 +75,7 @@ export class Login{
   }
 
   private checkFieldsComplete() {
-      console.log(this.emailAddress)
-      console.log(this.password)
+
       if (this.emailAddress != "" && this.password != "" + ""){
         return true
       }else{

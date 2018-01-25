@@ -90,7 +90,6 @@ public class StatisticService {
         if (statistic.getProject() != null && statistic.getSubproject() != null && statistic.getWerknemer() != null)
         {
             int employeeNumber = getEmployeeNumber(statistic);
-            System.out.println("______________check__________");
             SubProject subproject = spDao.getSpecificSubProject(statistic.getSubproject());
 
             hourstotall = hourDao.getSubProjectHoursEMP(subproject, employeeNumber);

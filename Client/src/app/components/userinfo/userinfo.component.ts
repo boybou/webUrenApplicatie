@@ -26,7 +26,6 @@ export class UserinfoComponent implements OnInit {
 
   private getUserInformation(){
     this.api.get<Employee>(StaticUri.getEmployee(AuthorisationService.employeeNumber)).subscribe(data =>{
-        console.log("employee data ", data)
         let employee = data;
         this.emp = employee;
       }

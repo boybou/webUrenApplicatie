@@ -79,11 +79,8 @@ public class EmployeeDao implements Dao {
             ResultSet rs;
             selectSpecificEmployee.setInt(1, id);
             rs = selectSpecificEmployee.executeQuery();
-            //rs.next();
-
-            System.out.println(rs.next());
+            rs.next();
             Employee employee = new Employee(rs.getString(DatabaseInfo.EmployeeColumnNames.firstName), rs.getString(DatabaseInfo.EmployeeColumnNames.lastName), rs.getString(DatabaseInfo.EmployeeColumnNames.typeName), rs.getInt(DatabaseInfo.EmployeeColumnNames.employeeNumber), rs.getString(DatabaseInfo.EmployeeColumnNames.roleName));
-            System.out.println(employee.getEmployee_Firstname());
             return employee;
         } catch (SQLException e) {
             e.printStackTrace();

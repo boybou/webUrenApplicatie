@@ -21,17 +21,13 @@ export class HourapprovalComponent implements OnInit {
     this.getPendingHours()
   }
   getPendingHours() {
-    console.log("in construct")
 
     this.api.get<Hour[]>(StaticUri.getPendingHours).subscribe(data =>{
       let temp_hours : Hour[] = data;
       this.hours = temp_hours;
-      console.log(this.hours[0].hour_comments);
     })
 
   }
-  printhour1(){
-    console.log(this.hours[0].hour_subproject_number + "test");
-  }
+
 
 }

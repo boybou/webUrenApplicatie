@@ -17,7 +17,7 @@ export class HouroveriewComponent implements OnInit {
     let uri = "/api/hour/me";
     this.api.get<Hour[]>(uri).subscribe( data=>{
       let total_hour:Hour[] = data;
-      // console.log(total_hour[0].startTime,total_hour[0].hour_employee_number,total_hour.length);
+
     })
   }
 
