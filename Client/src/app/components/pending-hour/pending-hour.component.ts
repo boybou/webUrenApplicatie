@@ -17,11 +17,12 @@ export class PendingHourComponent implements OnInit {
   }
   approveHour(){
     this.api.put(StaticUri.approveHour(this.hour.id)).subscribe(data =>{
+        document.getElementById('card').parentNode.removeChild(document.getElementById('card'))
     },error =>{
 
       }
     )
-    document.getElementById('card').parentNode.removeChild(document.getElementById('card'))
+
 
   }
   disapproveHour(){

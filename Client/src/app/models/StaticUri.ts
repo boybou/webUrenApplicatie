@@ -10,10 +10,10 @@ export class StaticUri{
   public static insertHour:string = "/api/hour";
   public static getPendingHours:string = "/api/hour/pendinghours";
   public static approveHour(id:number){
-    return "/api/hour/"+id;
+    return "/api/hour/approveHour/"+id;
   }
   public static disapproveHour(id:number){
-    return "/api/hour/"+id;
+    return "/api/hour/disapproveHour/"+id;
   }
   public static sendStatistics:string = "/api/statistics";
   public static updateLoginData:string = "/api/user";
