@@ -9,7 +9,8 @@ export class IncompleteHour
     public startTime?: string,
     public endTime?: string,
     public hour_comments?: string,
-    public hour_date?: string
+    public hour_date?: string,
+    public date_format?: string
   )
   {
 

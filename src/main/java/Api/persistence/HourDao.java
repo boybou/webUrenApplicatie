@@ -1,9 +1,6 @@
 package Api.persistence;
 
-import Api.model.DatabaseInfo;
-import Api.model.Hour;
-import Api.model.Project;
-import Api.model.SubProject;
+import Api.model.*;
 
 import javax.inject.Singleton;
 import java.sql.Date;
@@ -23,7 +20,9 @@ public class HourDao implements Dao{
     private PreparedStatement changeHourState;
     private PreparedStatement getProjectHours;
     private PreparedStatement getSubProjectHours;
+    private PreparedStatement getSubProjectHoursEMP;
     private PreparedStatement getEmployeeHours;
+    private PreparedStatement getEmployeeHourstotall;
     private PreparedStatement getHourByDate;
 
 
@@ -44,9 +43,13 @@ public class HourDao implements Dao{
                             "ON h."+DatabaseInfo.HourColumnNames.subprojectNumber+" = s."+DatabaseInfo.SubprojectColumnNames.number+" " +
                             "WHERE s."+DatabaseInfo.SubprojectColumnNames.projectNumber+" = ?;");
             getSubProjectHours = ConnectionHolder.getConnection().prepareStatement("SELECT * FROM "+DatabaseInfo.hourTableName+" WHERE "+DatabaseInfo.HourColumnNames.subprojectNumber+" = ?;");
+            getSubProjectHoursEMP = ConnectionHolder.getConnection().prepareStatement(
+                    "SELECT * FROM "+DatabaseInfo.hourTableName+" WHERE "+DatabaseInfo.HourColumnNames.subprojectNumber+" = ? AND "+DatabaseInfo.HourColumnNames.employeeNumber+" = ?;");
             getEmployeeHours = ConnectionHolder.getConnection().prepareStatement(
                     "SELECT * FROM "+DatabaseInfo.hourTableName+" WHERE "+DatabaseInfo.HourColumnNames.employeeNumber+"=?;");
-            getHourByDate = ConnectionHolder.getConnection().prepareStatement("SELECT * FROM " + DatabaseInfo.hourTableName + " WHERE " + DatabaseInfo.HourColumnNames.date + " = ?;");
+            getEmployeeHourstotall = ConnectionHolder.getConnection().prepareStatement(
+                    "SELECT * FROM "+DatabaseInfo.hourTableName+" WHERE "+DatabaseInfo.HourColumnNames.employeeNumber+"=? AND hour_approved = 'approved';");
+            getHourByDate = ConnectionHolder.getConnection().prepareStatement("SELECT * FROM " + DatabaseInfo.hourTableName + " WHERE " + DatabaseInfo.HourColumnNames.date + " = ? AND "+DatabaseInfo.HourColumnNames.employeeNumber+" = ?;");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -62,10 +65,11 @@ public class HourDao implements Dao{
         }
 
     }
-    public ArrayList<Hour> getHourByDate(Date date){
+    public ArrayList<Hour> getHourByDate(Date date,int employeeId){
         ArrayList<Hour> dateHours = new ArrayList<Hour>();
         try {
             getHourByDate.setDate(1,date);
+            getHourByDate.setInt(2,employeeId);
             ResultSet rs = getHourByDate.executeQuery();
             while(rs.next()){
                 dateHours.add(new Hour(rs.getString(DatabaseInfo.HourColumnNames.approved),rs.getInt(DatabaseInfo.HourColumnNames.subprojectNumber),rs.getInt(DatabaseInfo.HourColumnNames.employeeNumber),rs.getTime(DatabaseInfo.HourColumnNames.starttime),rs.getTime(DatabaseInfo.HourColumnNames.endtime),rs.getTime(DatabaseInfo.HourColumnNames.amountOfHours),rs.getString(DatabaseInfo.HourColumnNames.comments),rs.getDate(DatabaseInfo.HourColumnNames.date),rs.getInt(DatabaseInfo.HourColumnNames.id)));
@@ -128,12 +132,38 @@ public class HourDao implements Dao{
         return makeHourList(rs);
     }
 
+    public ArrayList<Hour> getEmployeeHourstotall(int employee)
+    {
+        ResultSet rs = null;
+        try {
+            getEmployeeHourstotall.setInt(1, employee);
+            rs = getEmployeeHourstotall.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("middle");
+        return makeHourList(rs);
+    }
+
     public ArrayList<Hour> getSubProjectHours(SubProject subProject)
     {
         ResultSet rs = null;
         try {
             getSubProjectHours.setInt(1, subProject.getSubProject_Project_Number());
             rs = getSubProjectHours.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return makeHourList(rs);
+    }
+    public ArrayList<Hour> getSubProjectHoursEMP(SubProject subProject, int employee)
+    {
+        ResultSet rs = null;
+        try {
+            getSubProjectHoursEMP.setInt(1, subProject.getSubProject_Project_Number());
+            getSubProjectHoursEMP.setInt(2, employee);
+            rs = getSubProjectHoursEMP.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
         }

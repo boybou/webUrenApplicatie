@@ -57,11 +57,12 @@ public class LoginDao implements Dao {
         try {
             getLoginData.setString(1,email);
             rs = getLoginData.executeQuery();
-            rs.next();
-            LoginData loginData = new LoginData();
-            loginData.setEmail(rs.getString(DatabaseInfo.LoginDataColumnNames.email));
-            loginData.setPassword(rs.getString(DatabaseInfo.LoginDataColumnNames.password));
-            return loginData;
+            if (rs.next()){
+                LoginData loginData = new LoginData();
+                loginData.setEmail(rs.getString(DatabaseInfo.LoginDataColumnNames.email));
+                loginData.setPassword(rs.getString(DatabaseInfo.LoginDataColumnNames.password));
+                return loginData;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

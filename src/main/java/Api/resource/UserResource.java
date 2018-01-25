@@ -1,73 +1,67 @@
 package Api.resource;
 
 import Api.View;
+import Api.model.CompleteUser;
+import Api.model.Employee;
 import Api.model.LoginData;
+import Api.service.EmployeeService;
+import Api.service.HourService;
 import Api.service.UserService;
 import com.fasterxml.jackson.annotation.JsonView;
-import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import io.dropwizard.auth.Auth;
+
+import javax.annotation.security.RolesAllowed;
+import javax.inject.Inject;
 import javax.validation.Valid;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
 
 @Singleton
-@Path("/users")
+@Path("/user")
 @Produces(MediaType.APPLICATION_JSON)
-public class UserResource
-{
-    private final UserService service;
+public class UserResource {
+    private final UserService userService;
+    private final EmployeeService employeeService;
 
     @Inject
-    public UserResource(UserService service)
-    {
-        this.service = service;
+    public UserResource(UserService userService,EmployeeService employeeService){
+        this.employeeService = employeeService;
+        this.userService = userService;
     }
-//
-//    @GET
-//    @JsonView(View.Public.class)
-//    @RolesAllowed("GUEST")
-//    public Collection<LoginData> retrieveAll()
-//    {
-//        return service.getAll();
-//    }
-//
-//    @GET
-//    @Path("/{id}")
-//    @JsonView(View.Public.class)
-//    @RolesAllowed("GUEST")
-//    public LoginData retrieve(@PathParam("id") int id)
-//    {
-//        return service.getHours(id);
-//    }
-//
-//    @POST
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @JsonView(View.Protected.class)
-//    public void create(@Valid LoginData user)
-//    {
-//        service.add(user);
-//    }
-//
-//    @PUT
-//    @Path("/{id}")
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @JsonView(View.Protected.class)
-//    @RolesAllowed("GUEST")
-//    public void update(@PathParam("id") int id, @Auth LoginData authenticator, LoginData user)
-//    {
-//        service.update(authenticator, id, user);
-//    }
-//
-//    @DELETE
-//    @Path("/{id}")
-//    @RolesAllowed("ADMIN")
-//    public void delete(@PathParam("id") int id)
-//    {
-//        service.delete(id);
-//    }
+
+
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"administrator"})
+    public void insertLoginData(CompleteUser completeUser){
+
+        System.out.println(completeUser.getEmployee_Firstname());
+        System.out.println(completeUser.getPassword());
+        Employee employee = new Employee(completeUser.getEmployee_Firstname(),completeUser.getEmployee_Lastname(),completeUser.getEmployee_Type_Name(),completeUser.getEmployee_Role_Name());
+        employeeService.insertEmployee(employee);
+        Employee employeeWithId = employeeService.selectEmployee(employee);
+        System.out.println("ID = " + employeeWithId.getEmployee_Employee_number());
+        userService.insertLogindata(new LoginData(completeUser.getPassword(),completeUser.getEmail(),employeeWithId.getEmployee_Employee_number(),completeUser.getEmployee_Role_Name()));
+    }
+
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"administrator","Employee"})
+    public void updateLoginData(LoginData loginData){
+        System.out.println("IN login data resrouce" + loginData.getEmail() + loginData.getPassword());
+        this.userService.updateLoginData(loginData);
+    }
+    @GET
+    @Path("/{email}")
+    @RolesAllowed({"administrator"})
+    public LoginData getLoginData(@PathParam("email") String email){
+        return userService.getLoginData(email);
+    }
 
     @GET
     @Path("/me")
@@ -89,7 +83,7 @@ public class UserResource
         System.out.println(updatePassword.getPassword());
         System.out.println(updatePassword.getEmail());
         System.out.println(updatePassword.getEmployeeNumber());
-        this.service.setPassword(updatePassword);
+        this.userService.setPassword(updatePassword);
     }
 
 }

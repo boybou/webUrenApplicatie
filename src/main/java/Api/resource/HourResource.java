@@ -46,11 +46,11 @@ public class HourResource {
     }
 
     @GET
-    @Path("/completeHourByDate{date}")
+    @Path("/me/{date}")
     @JsonView(View.Public.class)
     @RolesAllowed({"Employee","administrator"})
-    public ArrayList<CompleteHour> getHoursByDate(@PathParam("date") String date){
-        return hoursToCompleteHour(hourService.getCompleteHoursByDate(date));
+    public ArrayList<CompleteHour> getHoursByDate(@PathParam("date") String date,@Auth LoginData loginData){
+        return hoursToCompleteHour(hourService.getCompleteHoursByDate(date,loginData.getEmployeeNumber()));
     }
 
     @GET
@@ -64,8 +64,8 @@ public class HourResource {
 
 
     @POST
-    @Path("/inserthour")
     @Consumes(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"administrator","Employee"})
     public void insertHour(@Valid IncompleteHour incompleteHour){
         if(clientService.checkIfClientExitis(incompleteHour.getHour_client()) == false){
             System.out.println("Creating client because it doesn't exits");
@@ -89,15 +89,15 @@ public class HourResource {
         return hourService.getPendingHours();
     }
 
-    @GET
-    @Path("/approveHour{id}")
+    @PUT
+    @Path("/approveHour/{id}")
     @RolesAllowed({"administrator"})
     public void approveHour(@PathParam("id") int id){
         hourService.approveHour(id);
     }
 
-    @GET
-    @Path("/disapproveHour{id}")
+    @PUT
+    @Path("/disapproveHour/{id}")
     @RolesAllowed({"administrator"})
     public void disapproveHour(@PathParam("id") int id){
         hourService.disapproveHour(id);
@@ -105,16 +105,18 @@ public class HourResource {
 
     public ArrayList<CompleteHour> hoursToCompleteHour(ArrayList<Hour> hourList){
         ArrayList<CompleteHour> completeHoursList = new ArrayList<CompleteHour>();
-        for(Hour hour : hourList){
-            completeHoursList.add(new CompleteHour(hour.getHour_approved(),hour.getHour_subproject_number(),
-                    hour.getHour_employee_number(),hour.getStartTime(),hour.getEndTime(),hour.getHour_amount_of_hours(),
-                    hour.getHour_comments(),hour.getHour_date(),hour.getId(),
-                    projectService.getProjectById(subProjectService.getSubProjectById(hour.getHour_subproject_number()).getSubProject_Number()).getProject_Name(),
-                    subProjectService.getSubProjectById(hour.getHour_subproject_number()).getSubProject_Name(),
-                    employeeService.selectSpecificEmployee(hour.getHour_employee_number()).getEmployee_Firstname(),
-                    employeeService.selectSpecificEmployee(hour.getHour_employee_number()).getEmployee_Lastname(),
-                    projectService.getProjectById(subProjectService.getSubProjectById(hour.getHour_subproject_number()).getSubProject_Number()).getProject_client_name()));
-            System.out.println(subProjectService.getSubProjectById(hour.getHour_subproject_number()).getSubProject_Name()+projectService.getProjectById(subProjectService.getSubProjectById(hour.getHour_subproject_number()).getSubProject_Number()).getProject_Name());
+        for(Hour hour : hourList) {
+            String subprojectName;
+            String projectName;
+            try {
+               subprojectName = subProjectService.getSubProjectById(hour.getHour_subproject_number()).getSubProject_Name();
+               projectName = projectService.getProjectById(subProjectService.getSubProjectById(hour.getHour_subproject_number()).getSubProject_Project_Number()).getProject_Name();
+               completeHoursList.add(new CompleteHour(hour.getHour_approved(), hour.getHour_subproject_number(), hour.getHour_employee_number(), hour.getStartTime(), hour.getEndTime(), hour.getHour_amount_of_hours(), hour.getHour_comments(), hour.getHour_date(), hour.getId(), projectName, subprojectName, employeeService.selectSpecificEmployee(hour.getHour_employee_number()).getEmployee_Firstname(), employeeService.selectSpecificEmployee(hour.getHour_employee_number()).getEmployee_Lastname(), projectService.getProjectById(subProjectService.getSubProjectById(hour.getHour_subproject_number()).getSubProject_Project_Number()).getProject_client_name()));
+
+            }catch (Exception e){
+                System.out.println(e);
+            }
+
         }
         return completeHoursList;
     }

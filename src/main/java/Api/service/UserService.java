@@ -28,4 +28,11 @@ public class UserService extends BaseService<LoginData>
         return dao.getEmployeeNumberByEmail(employeeEmail);
     }
 
+    public LoginData getLoginData(String email) {
+        return this.dao.getLoginData(email);
+    }
+
+    public void updateLoginData(LoginData loginData) {
+        this.dao.updateLoginData(loginData);
+    }
 }

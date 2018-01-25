@@ -9,7 +9,9 @@ public class Project {
     private int project_Number;
     private String project_client_name;
 
-
+    public Project(int project_Number) {
+        this.project_Number = project_Number;
+    }
 
     public Project(String project_Name, int project_Number, String project_client_name) {
         this.project_Name = project_Name;

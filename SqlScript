@@ -1,0 +1,75 @@
+CREATE TABLE Employee_role (
+       employee_role_role_name          VARCHAR(255),
+       CONSTRAINT pk_employee_role PRIMARY KEY (employee_role_role_name)
+);
+CREATE TABLE Employee_type (
+       employee_type_type_name VARCHAR(255),
+       CONSTRAINT pk_employee_type PRIMARY KEY (employee_type_type_name)
+);
+CREATE TABLE Employee (
+       employee_firstname    VARCHAR(255) NOT NULL,
+       employee_lastname   VARCHAR(255) NOT NULL,
+       employee_type_name       VARCHAR(255),
+       employee_employee_number SERIAL,
+       employee_role_name    VARCHAR(255),
+       employee_active      BOOLEAN NOT NULL,
+       CONSTRAINT pk_employee PRIMARY KEY (employee_employee_number),
+       CONSTRAINT fk_employee_role_name FOREIGN KEY (employee_Role_Name) REFERENCES Employee_role (employee_role_role_name),
+       CONSTRAINT fk_employee_type_name FOREIGN KEY (employee_Type_Name) REFERENCES employee_type (employee_type_type_name)
+);
+CREATE TABLE Login_data (
+       login_data_password VARCHAR(255) NOT NULL,
+       login_data_email    VARCHAR(255),
+       login_data_employee_number INTEGER,
+       CONSTRAINT pk_LoginData PRIMARY KEY (Login_Data_email),
+       CONSTRAINT fk_LoginData_employee_number FOREIGN KEY (Login_Data_employee_number) REFERENCES Employee (employee_employee_number)
+);
+CREATE TABLE Client (
+       client_name        VARCHAR(255),
+       CONSTRAINT pk_Client PRIMARY KEY (client_name)
+);
+CREATE TABLE Project (
+       project_name         VARCHAR(255) NOT NULL UNIQUE,
+       project_number           SERIAL,
+       project_client_name  VARCHAR(255),
+       CONSTRAINT fk_project_client_name FOREIGN KEY (project_client_name) REFERENCES Client (Client_name),
+       CONSTRAINT pk_project  PRIMARY KEY (project_number)
+);
+CREATE TABLE Subproject (
+       subproject_name          VARCHAR(255) NOT NULL UNIQUE,
+       subproject_project_number INTEGER,
+       subproject_number     SERIAL,
+       CONSTRAINT pk_subproject PRIMARY KEY (subproject_number),
+       CONSTRAINT fk_subproject_project_number FOREIGN KEY (subproject_project_number) REFERENCES Project (project_number)
+);
+CREATE TABLE Hour_status(
+  hour_status_status VARCHAR(255),
+  CONSTRAINT pk_hour_status PRIMARY KEY (hour_status_status)
+);
+CREATE TABLE Hour (
+       hour_id              SERIAL,
+       hour_approved         VARCHAR(255),
+       hour_subproject_number INTEGER,
+       hour_employee_number  INTEGER,
+       hour_date          DATE NOT NULL,
+       hour_amount_of_hours   TIME DEFAULT NULL,
+       hour_starttime      TIME NOT NULL,
+       hour_endtime        TIME NOT NULL,
+       hour_comments          TEXT,
+       CONSTRAINT pk_hour PRIMARY KEY (hour_id),
+       CONSTRAINT fk_hour_approved FOREIGN KEY (hour_approved) REFERENCES Hour_status (hour_status_status),
+       CONSTRAINT fk_hour_employee_number FOREIGN KEY (hour_employee_number) REFERENCES Employee (employee_employee_number),
+       CONSTRAINT fk_hour_subproject_number FOREIGN KEY (hour_subproject_number) REFERENCES Subproject (subproject_number)
+);
+INSERT INTO Hour_status
+VALUES ('approved'),('pending'),('disapproved');
+INSERT INTO Employee_type
+VALUES ('intern'),('extern');
+INSERT INTO Employee_role
+VALUES ('administrator'),('Employee');
+INSERT INTO Employee (employee_firstname, employee_lastname, employee_type_name, employee_role_name, employee_active)
+VALUES ('ADMIN','ADMIN','intern','administrator',TRUE);
+INSERT INTO Login_data
+VALUES ('HxJeis89!.','admin',1);
+
+

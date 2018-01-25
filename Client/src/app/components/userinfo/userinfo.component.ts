@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {AuthorisationService} from "../../shared/authorisation.service";
 import {Employee} from "../../models/Employee";
 import {LoginData} from "../../models/LoginData";
+import {StaticUri} from "../../models/StaticUri";
 
 
 @Component({
@@ -14,12 +15,13 @@ import {LoginData} from "../../models/LoginData";
 export class UserinfoComponent implements OnInit {
   public loginData : LoginData = new LoginData();
   private emp : Employee;
-
+  private email : string;
 
   constructor(private api : ApiService, private rout : Router, private auth : AuthorisationService) { }
 
 
   ngOnInit() {
+    this.email = AuthorisationService.email;
     this.getUserInformation();
   }
 

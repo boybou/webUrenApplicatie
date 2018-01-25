@@ -16,8 +16,8 @@
     <input (click)="loginButton()" type="submit" class="login login-submit" id="loginButton" name="submit">
   </form>
 
-  <div id="wrong password" style="visibility: hidden; color: red; text-align: center">
-    <p>Inlog gegevens incorrect</p>
+  <div id="wrong password" style="color: red; text-align: center">
+    <p>{{errorMessage}}</p>
   </div>
 </div>
 

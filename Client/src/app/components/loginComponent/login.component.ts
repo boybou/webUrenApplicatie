@@ -8,6 +8,9 @@ import {LoginData} from "../../models/LoginData";
 import {Router} from "@angular/router";
 import {AuthorisationService} from "../../shared/authorisation.service";
 import {ApiService} from "../../shared/api.service";
+import {Employee} from "../../models/Employee";
+import {StaticUri} from "../../models/StaticUri";
+
 
 
 @Component({
@@ -19,13 +22,18 @@ import {ApiService} from "../../shared/api.service";
 export class Login{
   private emailAddress:string;
   private password:string;
+  private errorMessage:string;
+  private cookieFlag:boolean;
+
     constructor(private router: Router,private auth: AuthorisationService, private api: ApiService) {
+      this.cookieFlag = true;
   }
 
 
   loginButton(){
       this.auth.setHeader(this.emailAddress,this.password);
       this.login();
+
 
 
   }
@@ -35,19 +43,47 @@ export class Login{
 
   }
   private login(){
-    let uri = "/api/users/me";
-    this.api.get<LoginData>(uri).subscribe(data => {
-      let loginData:LoginData = data;
-      AuthorisationService.employeeNumber = loginData.employeeNumber;
-      this.auth.saveCookie();
-      AuthorisationService.isLoggedIn = true;
-      if(AuthorisationService.isLoggedIn) {
-        this.router.navigate(['/hourOverview'])
-      }
+
+      if (this.checkFieldsComplete()){
+        console.log("Alle velden ingevuld")
+      this.api.get<LoginData>(StaticUri.getSelf).subscribe(data => {
+        let loginData:LoginData = data;
+        AuthorisationService.employeeNumber = loginData.employeeNumber;
+        this.auth.saveCookie();
+        AuthorisationService.isLoggedIn = true;
+        if(AuthorisationService.isLoggedIn) {
+          this.router.navigate(['/hourOverview'])
+        }
+        this.api.get<Employee>(StaticUri.getEmployee(loginData.employeeNumber)).subscribe(data =>{
+          AuthorisationService.role = data.employee_Role_Name;
+        })
     },error =>{
       console.log("inloggen mislukt");
+      if (this.cookieFlag){
+       this.cookieFlag = false;
+      }else {
+        this.errorMessage = "Inloggegevens niet correct"
+      }
     })
+  }else{
+        console.log("Vul alle velden in")
+        this.errorMessage = "Vul alle velden in"
+
+      }
+    this.password = ""
+    this.emailAddress = ""
   }
 
+  private checkFieldsComplete() {
+      console.log(this.emailAddress)
+      console.log(this.password)
+      if (this.emailAddress != "" && this.password != "" + ""){
+        return true
+      }else{
+        return false
+      }
+
+
+  }
 
 }

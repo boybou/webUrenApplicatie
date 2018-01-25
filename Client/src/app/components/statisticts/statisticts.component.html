@@ -9,30 +9,22 @@
       <div class="row">
         <div class="column">
         <label for="employee">Werknemer</label>
-        <input [(ngModel)]="statistic.werknemerChecked" type="checkbox" id="employeeCheck" name="werknemer">
           <input [(ngModel)]="statistic.werknemer" type="text" id="employee" name="employee" placeholder="Werknemer naam..">
 
         <br><br>
 
           <label for="project">Project</label>
-        <input [(ngModel)]="statistic.projectChecked" type="checkbox" id="projectCheck" name="project">
           <input [(ngModel)]="statistic.project" type="text" id="project" name="project" placeholder="Project naam..">
 
           <br><br>
 
         <label for="subject">Onderwerp</label>
-        <input [(ngModel)]="statistic.subprojectChecked" type="checkbox" id="subjectCheck" name="subject">
           <input [(ngModel)]="statistic.subproject" type="text" id="subject" name="subject" placeholder="Onderwerp naam..">
 
       </div>
 
 
       <div class="column">
-        <label for="bDate">Start Datum</label><br>
-        <input lang="NL" type="date" [(ngModel)]="statistic.bDate" id="bDate" name="date" placeholder="Voer datum in.."><br>
-
-        <label for="eDate">Eind Datum</label><br>
-        <input type="date" [(ngModel)]="statistic.eDate" id="eDate" name="date" placeholder="Voer datum in.."><br>
 
 
         <input (click)="sendStatistics()" type="submit" value="Submit" id="submitButton">
@@ -46,4 +38,34 @@
 
 
 
+</div>
+
+<div class="container2" *ngIf="returned">
+  <div class="row">
+    <div class="column">
+      <label for="werknemerR">Werknemer</label>
+      <input [(ngModel)]="statisticReturn.employee" type="text" id="werknemerR" name="werk" disabled>
+
+      <br><br>
+
+      <label for="project">Project</label>
+      <input [(ngModel)]="statisticReturn.project" type="text" id="projectR" name="project" disabled>
+
+      <br><br>
+
+      <label for="subject">Onderwerp</label>
+      <input [(ngModel)]="statisticReturn.subproject" type="text" id="subjectR" name="subject" disabled>
+
+      <br><br>
+
+      <label for="uren">uren</label>
+      <input [(ngModel)]="statisticReturn.hours" type="text" id="uren" name="uren" disabled>
+
+      <br><br>
+
+      <label for="minuten">minuten</label>
+      <input [(ngModel)]="statisticReturn.minutes" type="text" id="minuten" name="minuten" disabled>
+
+    </div>
+  </div>
 </div>

@@ -5,19 +5,21 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 @Injectable()
 export class ApiService {
   constructor(private http: HttpClient) {
-
   }
 
   public get<Any>(uri: string) {
     let header = AuthorisationService.header;
     return this.http.get<Any>(uri, {headers: header});
-
-
   }
 
   public post<Any>(uri: string,data: Object) {
     let header = AuthorisationService.header;
     return this.http.post(uri,data, {headers: header});
+  }
+
+  public put<Any>(uri: string,data?: Object) {
+    let header = AuthorisationService.header;
+    return this.http.put(uri,data, {headers: header});
   }
 }
 

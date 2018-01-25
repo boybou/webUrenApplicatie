@@ -29,6 +29,7 @@ public class EmployeeResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"administrator"})
     public void insertEmployee(CompleteUser completeUser){
 
         Employee employee = new Employee(completeUser.getEmployee_Firstname(),completeUser.getEmployee_Lastname(),completeUser.getEmployee_Type_Name(),completeUser.getEmployee_Role_Name());
@@ -40,7 +41,8 @@ public class EmployeeResource {
     @GET
     @Path("/{id}")
     @JsonView(View.Private.class)
-    public Employee retreiveEmployee(@PathParam("id") int id){
+    @RolesAllowed({"administrator","Employee"})
+    public Employee retrieveEmployee(@PathParam("id") int id){
         return this.employeeService.selectSpecificEmployee(id);
     }
 

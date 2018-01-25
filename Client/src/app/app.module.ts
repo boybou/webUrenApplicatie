@@ -11,7 +11,7 @@ import {SideMenu} from './components/sideMenu/sidemenu.component';
 import { Authorization } from './components/sharedComponent/authorization.serve';
 import { HomeComponent } from './components/home/home.component';
 import { AccountmanagementComponent } from './components/accountmanagement/accountmanagement.component';
-import { StatistictsComponent } from './components/statisticts/statisticts.component';
+import { StatisticsComponent } from './components/statisticts/statisticts.component';
 import { HourapprovalComponent } from './components/hourapproval/hourapproval.component';
 import { ExportComponent } from './components/export/export.component';
 import { HouroveriewComponent } from './components/houroveriew/houroveriew.component';
@@ -26,6 +26,8 @@ import { PendingHourComponent } from './components/pending-hour/pending-hour.com
 import {WeekComponent} from "./components/week/week.component";
 import {DayComponent} from "./components/day/day.component";
 import {HourComponent} from "./components/hour/hour.component";
+import {PasswordcheckerService} from "./shared/PasswordChecker.service";
+
 import { PasswordChangerComponent } from './components/password-changer/password-changer.component';
 import { UserPasswordComponent } from './components/user-password/user-password.component';
 
@@ -35,7 +37,7 @@ const appRoutes: Routes = [
   {path: 'login', component: Login},
   {path: 'hourInsert', component: Hour},
   {path: 'accountManagement', component: AccountmanagementComponent},
-  {path: 'statistics', component: StatistictsComponent},
+  {path: 'statistics', component: StatisticsComponent},
   {path: 'hourApproval', component: HourapprovalComponent},
   {path: 'export', component: ExportComponent},
   {path: 'hourOverview', component: HouroveriewComponent},
@@ -54,7 +56,7 @@ const appRoutes: Routes = [
     SideMenu,
     HomeComponent,
     AccountmanagementComponent,
-    StatistictsComponent,
+    StatisticsComponent,
     HourapprovalComponent,
     HouroveriewComponent,
     ExportComponent,
@@ -74,7 +76,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FormsModule
   ],
-  providers: [Authorization,AuthorisationService,ApiService,CookieService],
+  providers: [Authorization,AuthorisationService,ApiService,CookieService,PasswordcheckerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
