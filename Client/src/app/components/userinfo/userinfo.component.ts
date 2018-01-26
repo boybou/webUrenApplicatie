@@ -5,6 +5,7 @@ import {AuthorisationService} from "../../shared/authorisation.service";
 import {Employee} from "../../models/Employee";
 import {LoginData} from "../../models/LoginData";
 import {StaticUri} from "../../models/StaticUri";
+import {PasswordcheckerService} from "../../shared/PasswordChecker.service";
 
 
 @Component({
@@ -16,6 +17,7 @@ export class UserinfoComponent implements OnInit {
   public loginData : LoginData = new LoginData();
   private emp : Employee;
   private email : string;
+  private service: PasswordcheckerService;
 
   constructor(private api : ApiService, private rout : Router, private auth : AuthorisationService) { }
 
@@ -40,7 +42,7 @@ export class UserinfoComponent implements OnInit {
 
   public changePassword(){
 
-      let uri = '/api/users/test';
+      let uri = '/test';
       this.loginData.email = AuthorisationService.email;
       this.loginData.employeeNumber = AuthorisationService.employeeNumber;
       console.log(this.loginData.email)
@@ -48,6 +50,9 @@ export class UserinfoComponent implements OnInit {
     console.log(this.loginData.employeeNumber)
 
       this.api.post(uri,this.loginData).subscribe();
-      this.loginData = new LoginData();
+      this.service.checkPassword(this.loginData.password, this.loginData.password)
+      if(this.service.succesfull){
+        this.loginData = new LoginData();
+      }
     }
   }

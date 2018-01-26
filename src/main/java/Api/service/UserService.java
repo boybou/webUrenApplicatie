@@ -33,6 +33,6 @@ public class UserService extends BaseService<LoginData>
     }
 
     public void updateLoginData(LoginData loginData) {
-        this.dao.updateLoginData(loginData);
+        this.dao.setPassword(loginData);
     }
 }

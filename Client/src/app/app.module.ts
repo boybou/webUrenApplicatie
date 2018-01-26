@@ -28,9 +28,6 @@ import {DayComponent} from "./components/day/day.component";
 import {HourComponent} from "./components/hour/hour.component";
 import {PasswordcheckerService} from "./shared/PasswordChecker.service";
 
-import { PasswordChangerComponent } from './components/password-changer/password-changer.component';
-import { UserPasswordComponent } from './components/user-password/user-password.component';
-
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -67,8 +64,6 @@ const appRoutes: Routes = [
     DayComponent,
     HourComponent,
     UserinfoComponent,
-    PasswordChangerComponent,
-    UserPasswordComponent
   ],
   imports: [
     HttpClientModule,
