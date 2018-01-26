@@ -45,9 +45,9 @@ export class UserinfoComponent implements OnInit {
       let uri = '/test';
       this.loginData.email = AuthorisationService.email;
       this.loginData.employeeNumber = AuthorisationService.employeeNumber;
-      console.log(this.loginData.email)
-      console.log(this.loginData.password)
-    console.log(this.loginData.employeeNumber)
+      console.log(this.loginData.email);
+      console.log(this.loginData.password);
+    console.log(this.loginData.employeeNumber);
 
       this.api.post(uri,this.loginData).subscribe();
       this.service.checkPassword(this.loginData.password, this.loginData.password)

@@ -18,7 +18,7 @@ export class PendingHourComponent implements OnInit {
   approveHour(){
     this.api.put(StaticUri.approveHour(this.hour.id)).subscribe(data =>{
     },error =>{
-      console.log("iest fout")
+      console.log("iets fout")
       }
     )
     document.getElementById('card').parentNode.removeChild(document.getElementById('card'))
@@ -27,7 +27,7 @@ export class PendingHourComponent implements OnInit {
   disapproveHour(){
     this.api.put(StaticUri.disapproveHour(this.hour.id)).subscribe(data =>{
       },error =>{
-        console.log("iest fout")
+        console.log("iets fout")
       }
     )
     document.getElementById('card').parentNode.removeChild(document.getElementById('card'))
