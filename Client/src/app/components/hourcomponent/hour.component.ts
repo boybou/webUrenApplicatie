@@ -26,7 +26,6 @@ export class Hour{
         this.hour = new IncompleteHour();
     }
       ,error =>{
-        console.log("internal server error")
       }
     );
     this.errorMessage = ""
@@ -53,7 +52,6 @@ export class Hour{
     let monthFound = false;
     let dayFound = false;
     for (let i in date) {
-      console.log(i);
       if (date[i] == "3" && !yearFound) {
         yearFound = true;
         dateFormat += "yyyy-"

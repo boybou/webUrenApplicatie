@@ -10,6 +10,7 @@ import Api.service.UserService;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.google.inject.Singleton;
 import io.dropwizard.auth.Auth;
+import sun.rmi.runtime.Log;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
@@ -40,12 +41,10 @@ public class UserResource {
     @RolesAllowed({"administrator"})
     public void insertLoginData(CompleteUser completeUser){
 
-        System.out.println(completeUser.getEmployee_Firstname());
-        System.out.println(completeUser.getPassword());
+
         Employee employee = new Employee(completeUser.getEmployee_Firstname(),completeUser.getEmployee_Lastname(),completeUser.getEmployee_Type_Name(),completeUser.getEmployee_Role_Name());
         employeeService.insertEmployee(employee);
         Employee employeeWithId = employeeService.selectEmployee(employee);
-        System.out.println("ID = " + employeeWithId.getEmployee_Employee_number());
         userService.insertLogindata(new LoginData(completeUser.getPassword(),completeUser.getEmail(),employeeWithId.getEmployee_Employee_number(),completeUser.getEmployee_Role_Name()));
     }
 
@@ -53,7 +52,6 @@ public class UserResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @RolesAllowed({"administrator","Employee"})
     public void updateLoginData(LoginData loginData){
-        System.out.println("IN login data resrouce" + loginData.getEmail() + loginData.getPassword());
         this.userService.updateLoginData(loginData);
     }
     @GET

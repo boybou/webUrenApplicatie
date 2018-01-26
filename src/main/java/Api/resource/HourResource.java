@@ -68,15 +68,15 @@ public class HourResource {
     @RolesAllowed({"administrator","Employee"})
     public void insertHour(@Valid IncompleteHour incompleteHour){
         if(clientService.checkIfClientExitis(incompleteHour.getHour_client()) == false){
-            System.out.println("Creating client because it doesn't exits");
+
             clientService.insertClient(incompleteHour.getHour_client());
         }
         if(projectService.checkProjectExist(incompleteHour.getHour_project_name()) == false){
-            System.out.println("Creating project because it doesn't exits");
+
             projectService.createProject(incompleteHour.getHour_project_name(),incompleteHour.getHour_client());
         }
         if (!subProjectService.checkIfSubprojectExists(incompleteHour.getHour_subproject_name())) {
-            System.out.println("Creating subproject because it doesn't exits");
+
             subProjectService.createSubProject(incompleteHour.getHour_subproject_name(), projectService.getProjectNumber(incompleteHour.getHour_project_name()));
         }
 
@@ -114,7 +114,6 @@ public class HourResource {
                completeHoursList.add(new CompleteHour(hour.getHour_approved(), hour.getHour_subproject_number(), hour.getHour_employee_number(), hour.getStartTime(), hour.getEndTime(), hour.getHour_amount_of_hours(), hour.getHour_comments(), hour.getHour_date(), hour.getId(), projectName, subprojectName, employeeService.selectSpecificEmployee(hour.getHour_employee_number()).getEmployee_Firstname(), employeeService.selectSpecificEmployee(hour.getHour_employee_number()).getEmployee_Lastname(), projectService.getProjectById(subProjectService.getSubProjectById(hour.getHour_subproject_number()).getSubProject_Project_Number()).getProject_client_name()));
 
             }catch (Exception e){
-                System.out.println(e);
             }
 
         }

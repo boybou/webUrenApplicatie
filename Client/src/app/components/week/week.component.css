@@ -1,9 +1,27 @@
 #day{
   float: left;
+  background-color: #444444;
+
 }
 p{
-
+  /*background-image: url("../images/");*/
 }
 calander{
   padding-left: 300px;
+}
+
+#left{
+  background-image: url("../images/arrowLeft.png");
+  background-size: 30px 30px;
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+}
+
+#right{
+  background-image: url("../images/arrowRight.png");
+  background-size: 30px 30px;
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
 }

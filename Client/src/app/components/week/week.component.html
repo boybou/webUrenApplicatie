@@ -1,12 +1,18 @@
-<div style="margin:0px; padding-left: 180px; padding-top: 40px; margin-bottom: 30px" id="calander">
+<div style="margin:0px; padding-left: 180px; margin-bottom: 30px" id="calander">
 
-  <app-day id="day" *ngFor="let date of currentWeek" [date]="date" ></app-day>
-  <br><br>
 
-  <div style="padding-left: 40%; margin-top: 50px">
-    <p (click)="preveiousWeek()" style="float: left; cursor: pointer">< PREV |</p>
-    <p (click)="nextWeek()" style="float: left; cursor: pointer"> NEXT ></p>
+  <div style="padding-bottom: 5px; padding-right:40px; position: relative; float: right;z-index: 1000">
+    <p (click)="preveiousWeek()" id="left" style="float: left; cursor: pointer;"></p>
+    <p (click)="nextWeek()" style="float: left; cursor: pointer" id="right"></p>
   </div>
+
+  <div style=" padding-top: 70px;">
+    <app-day id="day" *ngFor="let date of currentWeek" [date]="date" ></app-day>
+
+  </div>
+
+
+
 
 
 

@@ -48,7 +48,6 @@ public class ProjectDao implements Dao {
             getProjectById.setInt(1, projectId);
             ResultSet rs = getProjectById.executeQuery();
             if (!rs.next()) {
-                System.out.println("NEEEJJ" + projectId);
             }
             return new Project(rs.getString(DatabaseInfo.ProjectColumnNames.name), rs.getInt(DatabaseInfo.ProjectColumnNames.number),rs.getString(DatabaseInfo.ProjectColumnNames.clientName));
         } catch (SQLException e) {

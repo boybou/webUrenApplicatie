@@ -70,7 +70,6 @@ public class HourService extends BaseService<Hour>{
         java.util.Date parsed;
         try {
             parsed = format.parse(inputDate);
-            System.out.println(inputDate+dateFormat);
             return new java.sql.Date(parsed.getTime());
         } catch (ParseException e) {
             e.printStackTrace();

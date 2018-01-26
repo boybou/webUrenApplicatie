@@ -24,7 +24,7 @@ export class StatisticsComponent{
 
   sendStatistics() {
 
-    console.log("in send statistics");
+
 
     // let uri = "/api/statistics/sendStatistics";
     // this.api.post(uri,this.statistic).subscribe(data =>{
@@ -46,11 +46,9 @@ export class StatisticsComponent{
 
   retreiveStatistics()
   {
-    console.log("getStatistics");
     this.api.get<StatisticReturn>(StaticUri.getStatistics(this.statistic.werknemer,this.statistic.project,this.statistic.subproject)).subscribe(data =>{
       this.statisticReturn = data;
       this.returned = true;
-      console.log(data["hours"]);
       this.fillP();
       this.statistic = new StatisticsModel();
     });

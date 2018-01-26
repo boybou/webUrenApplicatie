@@ -35,7 +35,6 @@ public class EmployeeResource {
         Employee employee = new Employee(completeUser.getEmployee_Firstname(),completeUser.getEmployee_Lastname(),completeUser.getEmployee_Type_Name(),completeUser.getEmployee_Role_Name());
         employeeService.insertEmployee(employee);
         Employee employeeWithId = employeeService.selectEmployee(employee);
-        System.out.println("ID = " + employeeWithId);
     }
 
     @GET

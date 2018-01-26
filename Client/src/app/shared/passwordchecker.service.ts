@@ -12,10 +12,7 @@ export class PasswordcheckerService {
   }
 
   public checkPassword(password: string, checkPassword: string) {
-    console.log('In check password')
-    console.log((password.length > 6))
-    console.log((this.passwordHasCaptial(password)))
-    console.log((this.passwordHasNumber(password)))
+
     if(password != checkPassword){
       return this.noMatch
     }
@@ -34,11 +31,8 @@ export class PasswordcheckerService {
 
   private passwordHasCaptial(password: string) {
     let i: number = 0;
-    console.log('In has captal password')
     for (i; i < password.length; i++) {
-      console.log(password[i])
       if (password[i] == password[i].toUpperCase()) {
-        console.log(password[i] + " is dit hoofdletter?")
         return true;
       }
     }
@@ -48,10 +42,8 @@ export class PasswordcheckerService {
 
   private passwordHasNumber(password: string) {
     let i: number = 0;
-    console.log('In has number password')
     for (i; i < password.length; i++) {
       if (password[i] >= '0' && password[i] <= '9') {
-        console.log(password[i] + " is dit numer?")
         return true;
       }
     }

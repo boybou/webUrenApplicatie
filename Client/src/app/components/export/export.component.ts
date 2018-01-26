@@ -17,8 +17,7 @@ export class ExportComponent implements OnInit {
 
   checkifchecked()
   {
-    // document.getElementById("test").click();
-    // document.getElementById("test2").click();
+
     let element = <HTMLInputElement> document.getElementById("test");
     if (element.checked)
     {
