@@ -17,9 +17,13 @@ export class UserinfoComponent implements OnInit {
   public loginData : LoginData = new LoginData();
   private emp : Employee;
   private email : string;
-  private service: PasswordcheckerService;
+  private checkPassword: string;
+  private errorMessageChangePW: string;
+  private succesMessageChangePW:string;
+  private passwordIncorrect: string = "Wachtwoord incorrect";
+  private oldPassword : string;
 
-  constructor(private api : ApiService, private rout : Router, private auth : AuthorisationService) { }
+  constructor(private api : ApiService, private rout : Router, private auth : AuthorisationService, private pwChecker:PasswordcheckerService) { }
 
 
   ngOnInit() {
@@ -42,17 +46,29 @@ export class UserinfoComponent implements OnInit {
 
   public changePassword(){
 
-      let uri = '/test';
+
       this.loginData.email = AuthorisationService.email;
       this.loginData.employeeNumber = AuthorisationService.employeeNumber;
-      console.log(this.loginData.email);
-      console.log(this.loginData.password);
-    console.log(this.loginData.employeeNumber);
 
-      this.api.post(uri,this.loginData).subscribe();
-      this.service.checkPassword(this.loginData.password, this.loginData.password)
-      if(this.service.succesfull){
-        this.loginData = new LoginData();
-      }
+      this.api.get(StaticUri.getSelf).subscribe( data =>{
+       let tempLoginData:LoginData = data;
+       if(tempLoginData.password == this.oldPassword){
+        let messageChangePW:string = this.pwChecker.checkPassword(this.loginData.password, this.checkPassword);
+        if (messageChangePW == this.pwChecker.succesfull){
+
+          this.api.put(StaticUri.updateLoginData,this.loginData).subscribe();
+          this.succesMessageChangePW = messageChangePW;
+          this.errorMessageChangePW = "";
+
+        }else{
+          this.succesMessageChangePW = "";
+          this.errorMessageChangePW = messageChangePW;
+        }
+       }else{
+         this.succesMessageChangePW = "";
+         this.errorMessageChangePW = this.passwordIncorrect;
+       }
+      })
     }
+
   }
