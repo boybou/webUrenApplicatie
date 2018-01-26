@@ -53,6 +53,7 @@ public class LoginDao implements Dao {
     }
     public LoginData getLoginData(String email){
         ResultSet rs;
+
         try {
             getLoginData.setString(1,email);
             rs = getLoginData.executeQuery();

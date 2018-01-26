@@ -38,7 +38,8 @@
       </div>
       <div class="column">
         <label for="email">email</label>
-        <input [(ngModel)]="completeUser.email" type="text" id="email" name="email" placeholder="email">
+        <input [(ngModel)]="completeUser.email" (ngModelChange)="checkEmailInNewUser()" type="text" id="email" name="email" placeholder="email">
+        <p id="errorEmailMessageNewUser" style="color: red;">{{errorEmailMessageNewUser}}</p>
 
         <label for="password">wachtwoord</label>
         <input [(ngModel)]="completeUser.password" type="password" class="form-control" id="password" name="password" placeholder="Wachtwoord">
@@ -59,11 +60,12 @@
   <form>
     <div>
       <label >Emailadres</label>
-      <input [(ngModel)]="emailToUpdate" type="text" class="form-control"  name="Emailadres" placeholder="Emailadres">
+      <input [(ngModel)]="loginData.email" type="text" (ngModelChange)="checkEmailInChangePW()" class="form-control"  name="Emailadres" placeholder="Emailadres">
+      <p id="errorEmailChangePW" style="color: red;">{{errorEmailChangePW}}</p>
     </div>
     <div>
       <label >Wachtwoord</label>
-      <input [(ngModel)]="passwordToUpdate" type="password" class="form-control" name="wachtwoord" placeholder="Wachtwoord">
+      <input [(ngModel)]="loginData.password" type="password" class="form-control" name="wachtwoord" placeholder="Wachtwoord">
     </div>
     <div>
       <label >Herhaal Wachtwoord</label>

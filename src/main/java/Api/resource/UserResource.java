@@ -10,6 +10,7 @@ import Api.service.UserService;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.google.inject.Singleton;
 import io.dropwizard.auth.Auth;
+import sun.rmi.runtime.Log;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
